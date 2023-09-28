@@ -69,15 +69,79 @@ namespace BTL_NguyenVanTruong_.DAL
         }
 
         // Lấy thông tin khách hàng theo id khách hàng
-        public KhachHangModel GetDataKHByID(string id)
+        public KhachHangModel GetDataKHByID(int id)
         {
             return new KhachHangModel();
         }
 
         // Xóa thông tin khách hàng theo id kh
-        public bool DeleteKH(KhachHangModel model)
+        //public bool DeleteKH(int id)
+        //{
+        //    try
+        //    {
+        //        // Lấy chuỗi kết nối từ cấu hình
+        //        string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+        //        using (var connection = new SqlConnection(connectionString))
+        //        {
+        //            connection.Open();
+
+        //            // Tạo một đối tượng SqlCommand để gọi thủ tục SQL
+        //            using (var command = new SqlCommand("delete_kh", connection))
+        //            {
+        //                command.CommandType = CommandType.StoredProcedure;
+        //                command.Parameters.AddWithValue("@Id", id);
+
+        //                // Thực hiện thủ tục SQL và lấy số hàng bị ảnh hưởng
+        //                int rowsAffected = command.ExecuteNonQuery();
+
+        //                // Kiểm tra xem có bản ghi nào đã bị xóa không
+        //                return rowsAffected > 0;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
+        //        Console.WriteLine("Lỗi khi xóa khách hàng: " + ex.Message);
+        //        return false;
+        //    }
+        public bool DeleteKH(int id)
         {
-            return true;
+            try
+            {
+                // Lấy chuỗi kết nối từ cấu hình
+                string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Tạo một đối tượng SqlCommand để gọi thủ tục lưu trữ
+                    SqlCommand command = connection.CreateCommand();
+                    // Định nghĩa kiểu của command là 1 thủ tục lưu trữ (không sử dụng câu lệnh SQL)
+                    command.CommandType = CommandType.StoredProcedure;
+                    // Tên của thủ tục lưu trữ xóa khách hàng
+                    command.CommandText = "delete_kh"; // Thay thế "delete_KhachHang" bằng tên thực tế của thủ tục xóa
+
+                    // Định nghĩa tham số cho thủ tục lưu trữ
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    // Thực hiện thủ tục lưu trữ và lấy số hàng bị ảnh hưởng
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    // Kiểm tra xem có bản ghi nào đã bị xóa không
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
+                Console.WriteLine("Lỗi khi xóa khách hàng: " + ex.Message);
+                return false;
+            }
         }
+
     }
+}
 }

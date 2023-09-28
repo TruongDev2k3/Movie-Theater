@@ -8,8 +8,8 @@ namespace BTL_NguyenVanTruong_.DAL.Interfaces
     {
         bool AddKH(KhachHangModel model);
         bool UpdateKH(KhachHangModel model);
-        KhachHangModel GetDataKHByID(string id);
-        bool DeleteKH(KhachHangModel model);
+        KhachHangModel GetDataKHByID(int id);
+        bool DeleteKH(int id);
         //List<AdminModel> Search(int pageIndex, int pageSize, out long total, string hoten, string diachi);
     }
 }
