@@ -18,7 +18,59 @@ namespace BTL_NguyenVanTruong_.DAL
             _configuration = config;
         }
 
-        // Thêm khách hàng
+        //LẤY TOÀN BỘ BẢN GHI THÔNG TIN DANH SÁCH KHÁCH HÀNG
+        public List<KhachHangModel> GetAllKhachHangs()
+        {
+            try
+            {
+                // Chuỗi kết nối đến cơ sở dữ liệu
+                string connectionString = _configuration.GetConnectionString("DefaultConnection");
+                // Tạo một kết nối đến cơ sở dữ liệu
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    // Mở kết nối
+                    connection.Open();
+
+                    // Tạo một đối tượng SqlCommand để gọi stored procedure
+                    SqlCommand command = connection.CreateCommand();
+                    // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "GetDanhSachKhachHang"; // Tên stored procedure
+
+                    // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Tạo danh sách để lưu trữ kết quả
+                    List<KhachHangModel> danhSachKhachHang = new List<KhachHangModel>();
+                    // Đọc dữ liệu từ kết quả trả về
+                    while (reader.Read())
+                    {
+                        KhachHangModel khachHang = new KhachHangModel
+                        {
+                            Id = (int)reader["Id"],
+                            TenKH = reader["TenKH"].ToString(),
+                            GioiTinh = reader["GioiTinh"].ToString(),
+                            DiaChi = reader["DiaChi"].ToString(),
+                            SDT = reader["SDT"].ToString(),
+                            Email = reader["Email"].ToString()
+                        };
+
+                        // Thêm khách hàng vào danh sách
+                        danhSachKhachHang.Add(khachHang);
+                    }
+                    reader.Close();
+                    return danhSachKhachHang;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy danh sách khách hàng: " + ex.Message);
+                return null;
+            }
+        }
+
+
+            // Thêm khách hàng
         public bool AddKH(KhachHangModel model)
         {
             try
@@ -65,7 +117,35 @@ namespace BTL_NguyenVanTruong_.DAL
         // Sửa thông tin khách hàng
         public bool UpdateKH(KhachHangModel model)
         {
-            return true;
+            try
+            {
+                string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "UpdateKhachHang";
+
+                    command.Parameters.AddWithValue("@Id", model.Id);
+                    command.Parameters.AddWithValue("@TenKH", model.TenKH);
+                    command.Parameters.AddWithValue("@GioiTinh", model.GioiTinh);
+                    command.Parameters.AddWithValue("@DiaChi", model.DiaChi);
+                    command.Parameters.AddWithValue("@SDT", model.SDT);
+                    command.Parameters.AddWithValue("@Email", model.Email);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi cập nhật khách hàng: " + ex.Message);
+                return false;
+            }
         }
 
         // Lấy thông tin khách hàng theo id khách hàng
@@ -153,6 +233,68 @@ namespace BTL_NguyenVanTruong_.DAL
             }
         }
 
+        // Tìm kiếm khách hàng
+        public List<KhachHangModel> SearchKhachHang(int pageIndex, int pageSize, out long total, string tenkh, string diachi)
+        {
+            try
+            {
+                // Lấy chuỗi kết nối từ cấu hình
+                string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Tạo một đối tượng SqlCommand để gọi thủ tục lưu trữ
+                    SqlCommand command = connection.CreateCommand();
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "SearchKhachHang"; // Tên thủ tục lưu trữ
+
+                    // Định nghĩa các tham số cho thủ tục lưu trữ
+                    command.Parameters.AddWithValue("@PageIndex", pageIndex);
+                    command.Parameters.AddWithValue("@PageSize", pageSize);
+                    command.Parameters.AddWithValue("@TenKH", string.IsNullOrEmpty(tenkh) ? (object)DBNull.Value : tenkh);
+                    command.Parameters.AddWithValue("@DiaChi", string.IsNullOrEmpty(diachi) ? (object)DBNull.Value : diachi);
+
+                    // Thực hiện thủ tục lưu trữ và lấy kết quả
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Tạo danh sách để lưu trữ kết quả
+                    List<KhachHangModel> danhSachKhachHang = new List<KhachHangModel>();
+
+                    while (reader.Read())
+                    {
+                        KhachHangModel khachHang = new KhachHangModel
+                        {
+                            Id = (int)reader["Id"],
+                            TenKH = reader["TenKH"].ToString(),
+                            GioiTinh = reader["GioiTinh"].ToString(),
+                            DiaChi = reader["DiaChi"].ToString(),
+                            SDT = reader["SDT"].ToString(),
+                            Email = reader["Email"].ToString()
+                        };
+
+                        danhSachKhachHang.Add(khachHang);
+                    }
+
+                    reader.Close();
+
+                    // Lấy tổng số bản ghi
+                    total = (long)command.Parameters["@Total"].Value;
+
+                    return danhSachKhachHang;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
+                Console.WriteLine("Lỗi khi tìm kiếm khách hàng: " + ex.Message);
+                total = 0;
+                return null;
+            }
+        }
     }
+
 }
+
 

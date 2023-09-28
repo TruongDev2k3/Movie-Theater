@@ -34,5 +34,13 @@ namespace BTL_NguyenVanTruong_.BLL
         {
             return _res.GetDataKHByID(id);
         }
+        public List<KhachHangModel> GetAllKhachHangs()
+        {
+            return _res.GetAllKhachHangs();
+        }
+        public List<KhachHangModel> SearchKhachHang(int pageIndex, int pageSize, out long total, string tenkh, string diachi)
+        {
+            return _res.SearchKhachHang(pageIndex, pageSize, out total, tenkh, diachi);
+        }
     }
 }

@@ -8,5 +8,7 @@ namespace BTL_NguyenVanTruong_.BLL.Interfaces
         bool UpdateKH(KhachHangModel model);
         KhachHangModel GetDataKHByID(int id);
         bool DeleteKH(int id);
+        List<KhachHangModel> GetAllKhachHangs();
+        List<KhachHangModel> SearchKhachHang(int pageIndex, int pageSize, out long total, string tenkh, string diachi);
     }
 }

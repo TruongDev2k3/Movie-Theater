@@ -10,6 +10,7 @@ namespace BTL_NguyenVanTruong_.DAL.Interfaces
         bool UpdateKH(KhachHangModel model);
         KhachHangModel GetDataKHByID(int id);
         bool DeleteKH(int id);
-        //List<AdminModel> Search(int pageIndex, int pageSize, out long total, string hoten, string diachi);
+        List<KhachHangModel> GetAllKhachHangs();
+        List<KhachHangModel> SearchKhachHang(int pageIndex, int pageSize, out long total, string tenkh, string diachi);
     }
 }
