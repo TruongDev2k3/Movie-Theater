@@ -37,7 +37,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
         }
         [Route("DeleteKH/{id}")]
         [HttpDelete]
-        public IActionResult DeleteKH([FromBody] KhachHangModel id)
+        public IActionResult DeleteKH(int id)
         {
             // Khởi tạo đối tượng KhachHangRepository
             KhachHangBusiness khb = new KhachHangBusiness(_configuration);
@@ -51,6 +51,26 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
             else
             {
                 return BadRequest("Lỗi khi xóa khách hàng.");
+            }
+        }
+
+        [Route("GetKhachHangByID/{id}")]
+        [HttpGet]
+        public IActionResult GetKhachHangByID(int id)
+        {
+            // Khởi tạo đối tượng KhachHangBusiness
+            KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+
+            // Gọi phương thức GetDataKHByID để lấy thông tin khách hàng
+            KhachHangModel khachHang = khb.GetDataKHByID(id);
+
+            if (khachHang != null)
+            {
+                return Ok(khachHang);
+            }
+            else
+            {
+                return NotFound("Khách hàng không tồn tại.");
             }
         }
     }

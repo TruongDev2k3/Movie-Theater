@@ -71,41 +71,52 @@ namespace BTL_NguyenVanTruong_.DAL
         // Lấy thông tin khách hàng theo id khách hàng
         public KhachHangModel GetDataKHByID(int id)
         {
-            return new KhachHangModel();
+            // Khởi tạo khachhang
+            KhachHangModel khachHang = new KhachHangModel();
+
+            try
+            {
+                // Lấy chuỗi kết nối csdl
+                string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Tạo một đối tượng SqlCommand để gọi thủ tục lưu trữ
+                    SqlCommand command = connection.CreateCommand();
+                    // Định nghĩa kiểu của command là 1 thủ tục lưu trữ (không sử dụng câu lệnh sql)
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "GetKhachHangByID"; // Tên thủ tục lấy thông tin khách hàng
+
+                    // Định nghĩa tham số cho thủ tục lưu trữ
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    // Sử dụng SqlDataReader để đọc dữ liệu từ thủ tục lưu trữ
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            khachHang.Id = (int)reader["Id"];
+                            khachHang.TenKH = reader["TenKH"].ToString();
+                            khachHang.GioiTinh = reader["GioiTinh"].ToString();
+                            khachHang.DiaChi = reader["DiaChi"].ToString();
+                            khachHang.SDT = reader["SDT"].ToString();
+                            khachHang.Email = reader["Email"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
+                Console.WriteLine("Lỗi khi lấy thông tin khách hàng: " + ex.Message);
+            }
+
+            return khachHang;
         }
 
-        // Xóa thông tin khách hàng theo id kh
-        //public bool DeleteKH(int id)
-        //{
-        //    try
-        //    {
-        //        // Lấy chuỗi kết nối từ cấu hình
-        //        string connectionString = _configuration.GetConnectionString("DefaultConnection");
-
-        //        using (var connection = new SqlConnection(connectionString))
-        //        {
-        //            connection.Open();
-
-        //            // Tạo một đối tượng SqlCommand để gọi thủ tục SQL
-        //            using (var command = new SqlCommand("delete_kh", connection))
-        //            {
-        //                command.CommandType = CommandType.StoredProcedure;
-        //                command.Parameters.AddWithValue("@Id", id);
-
-        //                // Thực hiện thủ tục SQL và lấy số hàng bị ảnh hưởng
-        //                int rowsAffected = command.ExecuteNonQuery();
-
-        //                // Kiểm tra xem có bản ghi nào đã bị xóa không
-        //                return rowsAffected > 0;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
-        //        Console.WriteLine("Lỗi khi xóa khách hàng: " + ex.Message);
-        //        return false;
-        //    }
+        // Xóa thông tin khách hàng theo id khách hàng
         public bool DeleteKH(int id)
         {
             try
@@ -144,4 +155,4 @@ namespace BTL_NguyenVanTruong_.DAL
 
     }
 }
-}
+
