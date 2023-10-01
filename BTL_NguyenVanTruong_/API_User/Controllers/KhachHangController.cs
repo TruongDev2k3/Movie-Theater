@@ -19,34 +19,34 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
         }
 
         // API LẤY DANH SÁCH KHÁCH HÀNG
-        [Route("GetAllKhachHangs")]
-        [HttpGet]
-        public IActionResult GetAllKhachHangs()
-        {
-            try
-            {
-                // Khởi tạo đối tượng KhachHangBusiness
-                KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+        //[Route("GetAllKhachHangs")]
+        //[HttpGet]
+        //public IActionResult GetAllKhachHangs()
+        //{
+        //    try
+        //    {
+        //        // Khởi tạo đối tượng KhachHangBusiness
+        //        KhachHangBusiness khb = new KhachHangBusiness(_configuration);
 
-                // Gọi phương thức GetAllKhachHangs để lấy danh sách khách hàng
-                List<KhachHangModel> danhSachKhachHang = khb.GetAllKhachHangs();
+        //        // Gọi phương thức GetAllKhachHangs để lấy danh sách khách hàng
+        //        List<KhachHangModel> danhSachKhachHang = khb.GetAllKhachHangs();
 
-                if (danhSachKhachHang != null && danhSachKhachHang.Count > 0)
-                {
-                    return Ok(danhSachKhachHang);
-                }
-                else
-                {
-                    return NotFound("Không tìm thấy danh sách khách hàng hoặc có lỗi xảy ra.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi khi lấy danh sách khách hàng: " + ex.Message);
-                return BadRequest("Lỗi khi lấy danh sách khách hàng.");
-            }
+        //        if (danhSachKhachHang != null && danhSachKhachHang.Count > 0)
+        //        {
+        //            return Ok(danhSachKhachHang);
+        //        }
+        //        else
+        //        {
+        //            return NotFound("Không tìm thấy danh sách khách hàng hoặc có lỗi xảy ra.");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Lỗi khi lấy danh sách khách hàng: " + ex.Message);
+        //        return BadRequest("Lỗi khi lấy danh sách khách hàng.");
+        //    }
             
-        }
+        //}
 
         // API THÊM KHÁCH HÀNG
         [Route("AddKhachHang")]

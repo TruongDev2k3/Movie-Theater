@@ -1,0 +1,72 @@
+.Title-Header {
+    width: 1200px;
+    height: 100px;
+    display: block;
+    margin: 170px 157px 0px;
+    margin-bottom: 30px;
+    
+}
+
+.hr {
+  width: 520px;  
+  float: left;
+  /* border: solid; */
+  margin-top: 20px;
+}
+.Content-title-header {
+    height: 19px;
+    width: 100px;
+    float: left;
+    border: solid;
+    font-size: 1.25rem;
+    line-height: 1;
+    letter-spacing: .01em;
+    user-select: none;
+    cursor: default;
+    font-weight: 500;
+    color: #fff;
+    padding: 1.125rem 1.25rem;
+    /* display: inline-block; */
+    background-color: #ee4d2d;
+    margin: auto;
+    z-index: 1;
+    border-radius: 0.625rem;
+    text-transform: capitalize;
+    text-align: center;
+}
+.page2-view {
+    width: 1200px;
+    height: 2400px;
+    /* border: solid; */
+    margin: 0px 157px;
+}
+
+/* css khung chọn trang */
+.home-page {
+    width: 640px;
+    height: 45px;
+    /* border: solid; */
+    margin: 40px 450px;
+}
+.content-homt-page {
+    text-align: center;
+    height: 30px;
+    width: 40px;
+    /* border: solid; */
+    float: left;
+    margin-right: 30px;
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: rgba(0,0,0,.54);
+}
+#page-1 {
+    background-color: red;
+    color: #fff
+}
+.footer {
+    border-top: 4px solid red;
+    margin-top: 40px;
+}
+.content-homt-page:hover {
+    color: red;
+}

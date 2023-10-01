@@ -32,7 +32,7 @@ namespace BTL_NguyenVanTruong_.Controllers
 
             // Gọi phương thức GetAllKhachHangs để lấy danh sách khách hàng
             List<KhachHangModel> danhSachKhachHang = khb.GetAllKhachHangs();
-            return View(danhSachKhachHang);
+            return View("KhachHang", danhSachKhachHang);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

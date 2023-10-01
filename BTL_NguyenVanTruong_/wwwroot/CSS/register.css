@@ -1,0 +1,35 @@
+.form_login {
+    height: 435px;
+    width: 400px;
+}
+.mxh {
+    width: 165px;
+    height: 42px;
+}
+.rules_register {
+    width: 285px;
+    height: 29px;
+    padding: 0px 50px;
+    margin-top: 1.5625rem;
+    font-size: 12px;
+    color: rgba(0,0,0,.87);
+    text-align: center;
+}
+.rule {
+    text-decoration: none;
+    color: #EE4D2D;
+}
+.title_cr {
+    width: 135px;
+}
+.title_form_login {
+    padding: 30px 20px;
+}
+.blue_tick {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+    margin-left: 330px;
+    display: none;
+}

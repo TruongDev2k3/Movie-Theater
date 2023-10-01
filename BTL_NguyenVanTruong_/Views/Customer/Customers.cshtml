@@ -1,0 +1,81 @@
+﻿@model List<BTL_NguyenVanTruong_.Models.KhachHangModel>
+
+
+@{
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/CloneShopee/Image/Favicon.png">
+    <title>ADMIN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/admin.css">
+    <link rel="stylesheet" href="/CSS/productAdmin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+</head>
+<body>
+    <div id="frame">
+        
+        <div id="content-page">
+            
+            <div class="product">
+                <h2> <i class="fa-solid fa-circle-arrow-right" style="font-size: 30px; color: blue; margin-top: 10px;"></i>&nbsp;&nbsp;QUẢN LÝ KHÁCH HÀNG</h2>
+                <button class="add"><a href="#my-dialog" class="adds">THÊM MỚI</a></button>
+                <div class="dialog overlay" id="my-dialog">
+                 <a href="#" class="overlay-close"></a>             
+             </div>
+                
+           </div>
+            <table border="1" style="border-collapse: collapse; border-color: #fff ; ">
+                <thead>
+                  <tr>
+                    <th class="stt">ID</th>                   
+                    <th class="name">Tên khách hàng</th>
+                    <th class="seri">Giới tính</th>
+                    <th class="nameproduct">Địa chỉ</th>
+                    <th class="cate-gory">Số điện thoại</th>
+                    <th class="date">Email khách hàng</th>
+                    <th class="edit">Thao tác</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        @foreach(var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.TenKH</td>
+                                <td>@item.GioiTinh</td>
+                                <td>@item.DiaChi</td>
+                                <td>@item.SDT</td>
+                                <td>@item.Email</td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm" href="/Client/Edit?id=@item.Id">Edit</a>
+                                    <a class="btn btn-danger btn-sm" href="/Client/Delete?id=@item.Id">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <h3>null</h3>
+                    }
+
+                    
+
+                </tbody>
+                 
+            </table>
+        </div>
+    </div>
+    <script src="/JAVACRIPT/admin.js"></script>
+</body>
+ </html>   

@@ -1,0 +1,345 @@
+.menu_check {
+    width: 200px;
+    height: 1900px;
+    margin: 20px 157px;
+    float: left;
+}
+.title_menu_check {
+    width: 190px;
+    height: 30px;
+    font-weight: 700;
+    font-size: 1rem;
+    /* border: solid; */
+}
+.icon_filter {
+    font-size: 13px;
+}
+
+/* css khung phần theo danh mục */
+.frame_dm {
+    width: 100%;
+    height: 250px;
+    margin-top: 10px;
+}
+/* css các bảng */
+.table_search {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    font-size: 15px;
+    color: black;
+    
+}
+/* css icon down */
+.icon_down {
+    font-size: 12px;
+}
+
+input[type=checkbox] {
+    cursor: pointer;
+}
+/* css khung nơi bán */
+.frame_nb {
+    padding-top: 25px;
+    width: 100%;
+    height: 230px;
+    margin-top: 20px;
+    border-top: 0.5px solid #d4d4d4;
+}
+.frame_dvvc {
+    width: 100%;
+    height: 150px;
+    border-top: 0.5px solid #d4d4d4;
+    padding-top: 20px;  
+}
+.frame_rate,.frame_status {
+    width: 100%;
+    height: 160px;
+    border-top: 0.5px solid #d4d4d4;
+    padding-top: 20px;
+}
+.frame_status {
+    height: 110px;
+}
+.text  {
+    width: 80px;
+    height: 25px;
+}
+
+/* css khung đánh giá */
+.frame_star {
+    width: 100%;
+    height: 220px;
+}
+/* css khung giảm giá menu */
+.frame_sale {
+    width: 100%;
+    height: 220px;
+    padding-top: 20px;
+    border-top: 0.5px solid #d4d4d4;
+
+}
+/* CSS KHUNG BUTTON XÓA TẤT CẢ */
+.frame_btn_deleteAll {
+    width: 100%;
+    height: 60px;
+    border-top: 0.5px solid #d4d4d4;
+    padding-top: 20px;
+}
+
+/* css khung bên phải chứa sản phẩm */
+.frame_product {
+    position: absolute;
+    width: 1000px;
+    height: 3150px;
+    margin-left: 370px;
+    margin-top: 20px;
+}
+
+/* css khung thông tin shop */
+.shop_info {
+    width: 100%;
+    height: 205px;
+    background-color: #fff;
+}
+.name_shops {
+    width: 942px;
+    height: 35px;
+    /* border: solid; */
+    padding: 16px 24px;
+    /* background-color: #fff; */
+}
+.img_shops {
+    width: 40px;
+    height: 40px;
+    /* border: solid; */
+    float: left;
+    /* background-color: black; */
+}
+img {
+    width: 100%;
+    height: 100%;
+}
+.name_shop_content {
+    position: absolute;
+    width: 300px;
+    height: 20px;
+    /* border: solid; */
+    padding-top: 12px;
+    padding-left: 50px;
+    font-size: .875rem;
+}
+.icon_right {
+    position: absolute;
+    font-size: 15px;
+    margin-top: 16px;
+    margin-left: 900px;
+}
+
+/* css khung chứa shop liên quan đến dép */
+.frame_shop_lq {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+}
+/* css khung chứa tiêu đề  */
+.header_frame_shop {
+    position: absolute;
+    width: 850px;
+    height: 40px;
+    float: left;
+    margin-top: 14px;
+}
+/* bên phải */
+.header_frame_shop_right {
+    width: 130px;
+    height: 20px;
+    margin-left: 885px;
+    color: #EE4D2D;
+    font-size: .875rem;
+    margin-top: 14px;
+}
+
+/* css khung chứa nội dung  */
+.content_product_shop {
+    width: 100%;
+    height: 230px;
+    margin-top: 29px;
+    background-color: #fff;
+}
+.info_shop {
+    width: 300px;
+    height: 230px;
+    float: left;
+}
+.img_shop_lq {
+    width: 180px;
+    height: 120px;
+    margin-top: 40px;
+    margin-left: 60px;
+}
+.btn_viewshop {
+    width: 140px;
+    height: 28px;
+    color: #EE4D2D;
+    margin-left: 80px;
+    margin-top: 10px;
+    background-color: #FEF6F5;
+    border:1px solid #EE4D2D;
+}
+.products_shop {
+    width: 680px;
+    height: 230px;
+    margin-left: 300px;
+}
+.products {
+    width: 150px;
+    height: 205px;
+    margin-top: 10px;
+    float: left;
+    margin-right: 20px;
+}
+.image_products {
+    width: 100%;
+    height: 150px;
+}
+.title_products {
+    font-size: 12px;
+    margin-top: 5px;
+}
+.d-img-product {
+    margin-left: 0;
+    margin-top: 5px;
+}
+.price-img-product {
+    margin-top: 5px;
+    font-size: 12px;
+}
+.buy-img-product {
+    margin-top: -20px;
+    margin-left: 85px;
+}
+/* css phần dưới kết quả tìm kiếm */
+.img_den {
+    margin-top: 20px;
+    width: 28px;
+    height: 28px;
+    float: left;
+}
+.content_kqtk {
+    width: 300px;
+    height: 20px;
+    font-size: 1rem;
+    margin-top: 25px;
+    margin-left: 30px;
+}
+
+/* css mục kết quả tìm kiếm menu */
+.menu_select {
+    width: 950px;
+    height: 34px;
+    padding: 13px 20px;
+    margin-top: 20px;
+    font-size: .875rem;
+    background: rgba(0,0,0,.03);
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+.menu1_Select {
+    width: 84px;
+    height: 30px;
+    float: left;
+    padding-top: 10px;
+}
+
+.lq, .mn, .bc ,.rate{
+    width: 100px;
+    height: 36px;
+    color: #fff;
+    border: none;
+    float: left;
+    margin-left: 15px;
+    background-color: #EE4D2D;
+}
+.mn {
+    background-color: #fff;
+    color: black;
+}
+.bc {
+    background-color: #fff;
+    color: black;
+}
+.rate {
+    width: 205px;
+    text-align: left;
+    font-size: 15px;
+    background-color: #fff;
+    color: black;
+}
+.icon_downs {
+    margin-top: 10px;
+    font-size: 15px;
+    margin-left: -20px;
+}
+.number_page {
+    width: 50px;
+    height: 20px;
+    margin-left: 850px;
+    margin-top: -20px;
+}
+.one_color {
+    color: red;
+}
+.btn_lefts, .btn_rights {
+    width: 32px;
+    height: 32px;
+}
+.btn_next_pre {
+    width: 70px;
+    height: 40px;
+    margin-left: 890px;
+    margin-top: -25px;
+}
+.icon_lefts, .icon_rights {
+    font-size: 12px;
+}
+.btn_lefts {
+    border: 0.5px solid #d4d4d4;
+}
+.btn_rights {
+    background-color: #fff;
+    border: 0.5px solid #d4d4d4;
+    margin-left: -3px;
+}
+.page2-view {
+    margin-left: 3px;
+}
+
+/* css khung chọn trang */
+.home-page {
+    width: 640px;
+    height: 45px;
+    /* border: solid; */
+    margin: 40px 200px;
+}
+.content-homt-page {
+    text-align: center;
+    height: 30px;
+    width: 40px;
+    /* border: solid; */
+    float: left;
+    margin-right: 30px;
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: rgba(0,0,0,.54);
+}
+#page-1 {
+    background-color: red;
+    color: #fff
+}
+.frame_footer {
+    width: 100%;
+    height: 1000px;
+    margin-top: 3220px;
+    border-top: 5px solid red ;
+}

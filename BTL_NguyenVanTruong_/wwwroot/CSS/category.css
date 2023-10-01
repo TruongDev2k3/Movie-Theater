@@ -1,0 +1,729 @@
+/* css phần danh mục sp */
+/* css khung */
+.category-frame {
+    width: 1200px;
+    height: 365px;
+    /* border: solid; */
+    margin: 150px 157px 0px;
+    background-color: #FFFDFD;
+}
+/* khung tiêu đề phần danh mục */
+.title-category-frame {
+    width: 1160px;
+    height: 60px;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+/* TIEU DE DANH MUC */
+.title-category {
+    padding-top: 20px;
+    /* border: solid; */
+    font-size: 1rem;
+    color: rgba(0,0,0,.54);
+    font-weight: 500;
+}
+
+/* .product-category {
+    width: 140%;
+    height: 300px;
+    border: solid;
+    
+} */
+/* css animation phần danh mục */
+.cow-1-4 {
+    height: 300px;
+    width: 118.4px;
+    float: left;
+    /* margin-left: -10%; */
+    transition: 0.8s;
+}
+/* danh sách phần danh mục */
+.list {
+    height: 300px;
+    width: 120px;
+    float: left;
+    /* margin-left: -4%;
+    transition: 2s; */
+}
+/* KHUNG CHỨA DANH SÁCH SẢN PHẨM PHẦN DANH MỤC */
+.frame-product-show {
+    width: 1200px;
+    height: 300px;
+    /* border: solid green; */
+    overflow: hidden;
+}
+/* HÀNG 1 SẢN PHẨM PHẦN DANH MỤC*/
+.list-product-1 {
+    display: block;
+    width: 120px;
+    height: 150px;
+    /* border: solid; */
+    color: black;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(0,0,0,.05);
+    border-right: 2px solid rgba(0,0,0,.05);
+}
+/* HÀNG 2 SẢN PHẨM PHẦN DANH MỤC */
+.list-product {
+    display: block;
+    width: 120px;
+    height: 150px;
+    text-decoration: none;
+    color: black;
+    /* border-left: none; */
+    border-top: 2px solid rgba(0,0,0,.05);
+    border-right: 2px solid rgba(0,0,0,.05);
+    /* border: solid; */
+}
+/* KHI HOVER VÀO SẢN PHẨM PHẦN DANH MỤC SẼ HIỂN THỊ HIỆU ỨNG */
+.list-product:hover {
+    box-shadow: 0px 0px 1px 1px #C0C0C0;
+    background-color: #ffffff;
+
+}
+.list-product-1:hover {
+    box-shadow: 0px 0px 0.8px 0.8px #C0C0C0;
+    background-color: #ffffff;
+
+}
+
+/* ẢNH CÁC SẢN PHẨM PHẦN DANH MỤC */
+.img-list-product {
+    width: 83px;
+    height: 85px;
+    /* border: solid; */
+    padding-top: 12px;
+    margin: 0 18px;
+
+}
+/* TIÊU ĐỀ SẢN PHẨM PHẦN DANH MỤC */
+.title-img-prd {
+    width: 115px;
+    height: 40px;
+    font-size: .875rem;
+    text-align: center;
+    /* border: solid; */
+    margin-bottom: 10px;
+    padding-left: 5px;
+    
+}
+/* css ảnh phần shopee mall */
+.img-prd {
+    width: 100%;
+    height: 100%;
+}
+.btn-next {
+    /* position: absolute; */
+    box-shadow: 0px 0px 0.8px 0.8px #C0C0C0;
+    border:  1px solid;
+    margin-left: 1170px;
+    margin-top: 160px;
+    border-radius: 999px;
+    border: none;
+    background-color: #ffffff;
+}
+.btn-prev {
+    display: none;
+    box-shadow: 0px 0px 0.8px 0.8px #C0C0C0;
+    margin-left: -30px;
+    margin-top: 160px;
+    border: none;
+    border-radius: 999px;
+    background-color: #ffffff;
+}
+.btn-prev-1 {
+    position: absolute;
+    display: none;
+    
+    margin-left: -8px;
+    margin-top: 130px;
+    border-radius: 999px;
+    /* margin-right: 1190px; */
+    box-shadow: 0px 0px 0.8px 0.8px #C0C0C0;
+    border: none;
+    background-color: #ffffff; 
+}
+
+.btn-next-1 {
+    position: absolute;
+    box-shadow: 0px 0px 0.8px 0.8px #C0C0C0;
+    border:  1px solid;
+    margin-left: 6px;
+    margin-top: 130px;
+     border-radius: 999px;
+    border: none;
+    background-color: #ffffff; 
+}
+.btn-next-1:hover {
+    width: 40px;
+    height: 40px;
+    margin-left: 1px;
+    /* margin-top: 70px; */
+    border-radius: 999px;
+}
+
+.btn-next:hover {
+    width: 40px;
+    height: 40px;
+    margin-top: 150px;
+    margin-left: 1160px;
+    border-radius: 999px;
+}
+.btn-prev-1:hover {
+    width: 40px;
+    height: 40px;
+    margin-left: -19px;
+    margin-top: 130px;
+}
+.btn-prev:hover {
+    width: 40px;
+    height: 40px;
+    margin-top: 150px;
+    border-radius: 999px;
+}
+.animation-list {
+    width: 480px;
+    height: 300px;
+    /* border: solid; */
+    float: left;
+    transition: 1s;
+}
+/* i {
+    color: #C0C0C0;
+} */
+.title-category-frame:hover > .btn-next {
+    width: 40px;
+    height: 40px;
+    margin-left: 1160px;
+    border-radius: 999px;
+    /* display: none; */
+}
+.title-category-frame:hover > .btn-prev {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+}
+
+
+/* css falsh sale */
+.flash-sale {
+    width: 1200px;
+    height: 315px;
+    /* border: solid; */
+    margin: 20px 157px 0px;
+    background-color: #ffffff;
+}
+.title-flash-sale-frame {
+    width: 1200px;
+    height: 60px;
+    /* border: solid; */
+}
+.title-flash-sale {
+    width: 1037px;
+    height: 34px;
+    margin-left: 20px;
+    margin-top: 10px;
+    /* border: solid; */
+    float: left;
+}
+.title-right {
+    float: left;
+    width: 106px;
+    height: 34px;
+    /* border: solid; */
+    margin-top: 10px;
+    margin-left: 20px;
+    text-align: center;
+}
+.content-title-right {
+    display: inline-block;
+    text-decoration: none;
+    color: #ee4d2d;
+}
+.right {
+    font-size: 16px;
+}
+
+/* css sản phẩm flash sale */
+.product-sale {
+    width: 180%;
+    height: 250px;
+    /* border: solid; */
+}
+.frame-product-sale {
+    width: 1200px;
+    height: 250px;
+    /* border: solid; */
+    float: left;
+    overflow: hidden;
+}
+.animation-product-sale {
+    width: 1000px;
+    height: 250px;
+    /* border: solid; */
+    float: left;
+    /* margin-left: -85%; */
+    transition: 2s;
+}
+.page2-product-sale {
+    height: 250px;
+    width: 950px;
+    /* border: solid green; */
+    float: left;
+}
+.list-product-sale {
+    float: left;
+    width: 200px;
+    height: 250px;
+    text-decoration: none;
+    /* border: solid; */
+}
+.img-product-sale {
+    width: 170px;
+    height: 170px;
+    padding: 0px 15px;
+    /* border: solid; */
+}
+.title-product-sale {
+    width: 170px;
+    height: 38px;
+    padding: 15px;
+    /* border: solid green; */
+}
+.money-product {
+    width: 170px;
+    height: 27px;
+    text-align: center;
+    /* border: solid; */
+}
+.count-product {
+    width: 150px;
+    height: 16px;   
+    border: solid #FFBDA6;
+    /* padding: 0px 10px; */
+    border-radius: 10px;
+}
+.left-money-product {
+    float: left;
+    height: 21px;
+    width: 9px;
+    color: red;
+    text-align: center;
+    margin-left: 40px;
+    margin-top: 2px;
+    font-weight: 100;
+    font-size: 14px;
+}
+.rate {
+    color: red;
+    float: left;
+    text-align: center;
+    font-size: 20px;
+    margin-left: 2px;
+}
+.img-sale {
+    width: 100%;
+    height: 100%;
+
+}
+.img-fire {
+    height: 16px;
+    width: 20px;
+    /* border: solid; */
+    border-radius: 10px;
+    background-color: red;
+    float: left;
+    margin-right: 10px;
+}
+.title-fls {
+    width: 150px;
+    height: 16px;
+    border-radius: 10px;
+    background-color: #FFBDA6;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+/* .list-product-sale-1 {
+    float: left;
+} */
+
+
+/* css phần 2 ảnh dưới sales */
+.image-banner-img {
+    width: 1200px;
+    height: 116px;
+    /* border: solid; */
+    margin: 20px 157px 0px;
+    background-color: #ffffff;
+}
+.frame-img {
+    margin-top: 2px;
+    float: left;
+    width: 400px;
+    height: 110px;
+}
+    /* border: solid; */
+.imgg {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+/* CSSSS SẢN PHẨM MỤC SHOPEE MALL */
+.product-shopeeMall {
+    float: left;
+    width: 760px;
+    height: 471px;
+    /* border: solid; */
+    margin-left: 20px;
+    overflow: hidden;
+}
+.group-animation {
+    width: 585px;
+    height: 471px;
+    float: left;
+    /* margin-left: -75%; */
+    transition: 1s;
+    /* margin-right: 1px; */
+}
+.product-group-animation {
+    width: 180px;
+    height: 471px;
+    /* border: solid; */
+    float: left;
+    margin-right: 15px;
+}
+
+/* css khối chứa sản phẩm chi tiết */
+.List-product-1 {
+    display: block;
+    height: 235px;
+    width: 190px;
+    /* border: solid; */
+    text-decoration: none;
+    margin-bottom: 25px;
+}
+.List-product-2 {
+    display: block;
+    height: 235px;
+    width: 190px;
+    text-decoration: none;
+    
+    border: none;
+    /* border: solid green; */
+}
+.img-list-product-shopeemall {
+    width: 195px;
+    height: 190px;
+    /* border: solid; */
+}
+.title-img-prd-shopeemall {
+    margin-top: -15px;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    text-decoration: none;
+    color: red;
+}
+
+/* css phần k chứa animation */
+.list-product-spMall {
+    float: left;
+    width: 155px;
+    height: 471px;
+    /* border: solid; */
+    
+    margin-right: 20px;
+}
+
+.btn-prevMall {
+    display: none;
+    position: absolute;
+    margin-top: 215px;
+    margin-left: -18px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 0.8px 0.8px #C0C0C0;
+    border: none;
+}
+.btn-nextMall {
+    position: absolute;
+    margin-left: 757px;
+    margin-top: 215px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 0.8px 0.8px #C0C0C0;
+    border: none;
+}
+
+.btn-prevMall:hover {
+    width: 40px;
+    height: 40px;
+    margin-top: 210px;
+    /* margin-top: 70px; */
+    border-radius: 999px;
+}
+.btn-nextMall:hover {
+    width: 40px;
+    height: 40px;
+    margin-left: 748px;
+    margin-top: 210px;
+    /* margin-top: 70px; */
+    border-radius: 999px;
+}
+
+
+
+/* CSS MỤC TÌM KIẾM HÀNG ĐẦU */
+.top-search {
+    display: block;
+    width: 1200px;
+    height: 360px;
+    margin: 30px 157px 0;
+    /* border: solid; */
+    background-color: #ffffff;
+}
+/* css phần chứa tiêu đề search top */
+.title-search {
+    width: 100%;
+    height: 65px;
+    border-bottom: 2px solid rgba(0,0,0,.05);
+}
+.title-left-top-search {
+    padding-left: 15px;
+    float: left;
+    width: 1000px;
+    height: 20px;
+    /* border: solid; */
+    margin-top: 20px;
+    color: red;
+    border: none;
+}
+.content-title-search-right {
+    width: 110px;
+    height: 20px;
+    margin-top: 20px;
+    /* border: solid; */
+    float: left;
+    margin-left: 70px;
+    text-decoration: none;
+    color: red;
+    border: none;
+}
+
+/* css nội dung mục tìm kiếm hàng đầu */
+.content-top-search {
+    width: 100%;
+    height: 290px;  
+    /* border: solid; */
+    overflow: hidden;
+}
+/* css phần animation top search */
+.animation-top-search {
+    width: 1000px;
+    height: 290px;
+    /* border: solid; */
+    float: left;
+    /* margin-left: -85%; */
+    transition: 1s;
+}
+.list-product-top-search {
+    float: left;
+    width: 190px;
+    height: 290px;
+    /* border: solid; */
+    margin-right: 10px;
+    text-decoration: none;
+    color: black;
+}
+.img-search-top {
+    height: 200px;
+    width: 100%;
+    /* border: solid; */
+}
+.title-prd-top-search {
+    width: 100%;
+    height: 40px;
+    /* border: solid; */
+    margin-top: 15px;
+    font-size: 18px;
+}
+.list-product-search-top { 
+        float: left;
+        width: 190px;
+        height: 290px;
+        /* border: solid; */
+        margin-right: 10px;
+}
+.prev-top {
+    position: absolute;
+    margin-top: 140px;
+    display: none;
+    
+    
+    margin-left: -10px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 0.8px 0.8px #C0C0C0;
+    border: none;
+}
+.next-top {
+    /* position: absolute; */
+    margin-left: 1188px;
+    margin-top: 140px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 0.8px 0.8px #C0C0C0;
+    border: none;
+    border-radius: 20px;
+}
+.next-top:hover {
+    width: 40px;
+    height: 40px;
+    margin-top: 130px;
+    /* margin-top: 70px; */
+    border-radius: 999px;
+    margin-left: 1180px;
+}
+.prev-top:hover {
+    width: 40px;
+    height: 40px;
+    margin-left: -15px;
+    margin-top: 130px;
+    /* margin-top: 70px; */
+    border-radius: 999px;
+}
+
+
+
+
+/* CSS PHẦN GỢI Ý HÔM NAY */
+.today-suggestion {
+    width: 1200px;
+    height: 1560px;
+    /* border: solid; */
+    margin: 10px 157px 0px;
+    
+}
+/* css tiêu đề */
+.frame-title-sugges {
+    height: 35px;
+    width: 100%;
+    border-bottom: 5px solid red;
+    padding-top: 20px; 
+    text-align: center;
+    color: red;
+}
+/* css sản phẩm */
+.frame-product-sugges {
+    width: 190px;
+    height: 286px;
+    /* border: solid; */
+    float: left;
+    margin-top: 5px;
+    margin-right: 9px;
+    text-decoration: none;
+    color: black;
+    /* position: relative; */
+    background-color: #ffffff;
+}
+/* css phần chứa ảnh */
+.img-product-sugges {
+    width: 100%;
+    height: 186px;
+    /* border: solid; */
+}
+/* css chữ tương ứng ảnh sp */
+.title-img-product {
+    width: 170px;
+    margin: 5px;
+    height: 27px;
+    /* border: solid; */
+    font-size: 13px;
+}
+/* css chữ đ */
+.d-img-product {
+    height: 10px;
+    width: 5px;
+    float: left;
+    /* border: solid; */
+    font-size: 10px;
+    color: red;
+    margin-left: 5px;
+    margin-top: 40px;
+    margin-right: 2px;
+}
+/* css tiền sản phẩm */
+.price-img-product {
+    height: 20px;
+    width: 65px;
+    /* border: solid; */
+    float: left;
+    margin-top: 35px;
+    color: red;
+}
+.buy-img-product {
+    height: 15px;
+    width: 72px;
+    /* border: solid; */
+    float: left;
+    font-size: 12px;
+    margin-left: 36px;
+    margin-top: 40px;
+}
+/* css phần tìm kiếm tương tự */
+.title-hover {
+    display: none;
+    position: absolute;
+    width: 190px;
+    height: 25px;
+    /* border: solid; */
+    text-align: center;
+    color: #ffffff;
+    margin-top: 60px;
+    background-color: red;
+    padding-top: 5px ;
+}
+.frame-product-sugges:hover {
+    margin-top: 2px;
+    border: 1px solid red;
+}
+.frame-product-sugges:hover > .title-hover {
+    display: block;
+    position: absolute;
+}
+.list-1, .list-2, .list-3, .list-4, .list-5 {
+    display: block;
+    width: 100%;
+    height: 300px;
+    /* border: solid; */
+}
+
+/*  css nút xem thêm */
+.see-more {
+    text-decoration: none;
+    color: black;  
+}
+.title-see-more {
+    text-decoration: none;
+    width: 365px;
+    height: 25px;
+    
+    text-decoration: none;
+    margin-top: 20px;
+    margin-left: 555px;
+    text-align: center;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid;
+}
+.title-see-more:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+

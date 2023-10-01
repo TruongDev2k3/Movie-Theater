@@ -11,74 +11,72 @@ namespace BTL_NguyenVanTruong_.DAL
 {
     public class KhachHangRepository : IKhachHangRepository
     {
-        private readonly IConfiguration _configuration;
+        SqlConnection _connection = null;
+        SqlCommand _command = null;
+        public static IConfiguration _configuration { get; set; }
 
-        public KhachHangRepository(IConfiguration config)
+        public KhachHangRepository(IConfiguration configuration)
         {
-            _configuration = config;
+            _configuration = configuration;
+        }
+        private string GetConnectionString()
+        {
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
+            _configuration = builder.Build();
+            return _configuration.GetConnectionString("DefaultConnection");
         }
 
         //LẤY TOÀN BỘ BẢN GHI THÔNG TIN DANH SÁCH KHÁCH HÀNG
         public List<KhachHangModel> GetAllKhachHangs()
         {
-            try
-            {
-                // Chuỗi kết nối đến cơ sở dữ liệu
-                string connectionString = _configuration.GetConnectionString("DefaultConnection");
-                // Tạo một kết nối đến cơ sở dữ liệu
-                using (var connection = new SqlConnection(connectionString))
+                List<KhachHangModel> danhSachKhachHang = new List<KhachHangModel>();
+                
+                using (var connection = new SqlConnection(GetConnectionString()))
                 {
-                    // Mở kết nối
+                // Mở kết nối
+
                     connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                    _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                    _command.CommandType = CommandType.StoredProcedure;
+                    _command.CommandText = "GetDanhSachKhachHang"; // Tên stored procedure
+                    
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                    SqlDataReader reader = _command.ExecuteReader();
 
-                    // Tạo một đối tượng SqlCommand để gọi stored procedure
-                    SqlCommand command = connection.CreateCommand();
-                    // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "GetDanhSachKhachHang"; // Tên stored procedure
-
-                    // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    // Tạo danh sách để lưu trữ kết quả
-                    List<KhachHangModel> danhSachKhachHang = new List<KhachHangModel>();
                     // Đọc dữ liệu từ kết quả trả về
                     while (reader.Read())
                     {
-                        KhachHangModel khachHang = new KhachHangModel
+                        KhachHangModel khachHang = new KhachHangModel();
                         {
-                            Id = (int)reader["Id"],
-                            TenKH = reader["TenKH"].ToString(),
-                            GioiTinh = reader["GioiTinh"].ToString(),
-                            DiaChi = reader["DiaChi"].ToString(),
-                            SDT = reader["SDT"].ToString(),
-                            Email = reader["Email"].ToString()
-                        };
-
+                            khachHang.Id = (int)reader["Id"];
+                            khachHang.TenKH = reader["TenKH"].ToString();
+                            khachHang.GioiTinh = reader["GioiTinh"].ToString();
+                            khachHang.DiaChi = reader["DiaChi"].ToString();
+                            khachHang.SDT = reader["SDT"].ToString();
+                            khachHang.Email = reader["Email"].ToString();
+                            danhSachKhachHang.Add(khachHang);
+                        }
+                        
                         // Thêm khách hàng vào danh sách
-                        danhSachKhachHang.Add(khachHang);
+
                     }
+                    connection.Close();
                     reader.Close();
-                    return danhSachKhachHang;
+                    
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi khi lấy danh sách khách hàng: " + ex.Message);
-                return null;
-            }
+            return danhSachKhachHang;
         }
 
 
-            // Thêm khách hàng
+        // Thêm khách hàng
         public bool AddKH(KhachHangModel model)
         {
             try
             {
                 // Lấy chuỗi kết nối từ cấu hình
-                string connectionString = _configuration.GetConnectionString("DefaultConnection");
-
-                using (var connection = new SqlConnection(connectionString))
+                using (var connection = new SqlConnection(GetConnectionString()))
                 {
                     connection.Open();
 
@@ -119,9 +117,7 @@ namespace BTL_NguyenVanTruong_.DAL
         {
             try
             {
-                string connectionString = _configuration.GetConnectionString("DefaultConnection");
-
-                using (var connection = new SqlConnection(connectionString))
+                using (var connection = new SqlConnection(GetConnectionString()))
                 {
                     connection.Open();
 
@@ -157,9 +153,7 @@ namespace BTL_NguyenVanTruong_.DAL
             try
             {
                 // Lấy chuỗi kết nối csdl
-                string connectionString = _configuration.GetConnectionString("DefaultConnection");
-
-                using (var connection = new SqlConnection(connectionString))
+                using (var connection = new SqlConnection(GetConnectionString()))
                 {
                     connection.Open();
 
@@ -202,9 +196,7 @@ namespace BTL_NguyenVanTruong_.DAL
             try
             {
                 // Lấy chuỗi kết nối từ cấu hình
-                string connectionString = _configuration.GetConnectionString("DefaultConnection");
-
-                using (var connection = new SqlConnection(connectionString))
+                using (var connection = new SqlConnection(GetConnectionString()))
                 {
                     connection.Open();
 
@@ -239,9 +231,7 @@ namespace BTL_NguyenVanTruong_.DAL
             try
             {
                 // Lấy chuỗi kết nối từ cấu hình
-                string connectionString = _configuration.GetConnectionString("DefaultConnection");
-
-                using (var connection = new SqlConnection(connectionString))
+                using (var connection = new SqlConnection(GetConnectionString()))
                 {
                     connection.Open();
 

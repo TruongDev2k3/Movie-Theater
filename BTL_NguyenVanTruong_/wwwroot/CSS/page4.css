@@ -1,0 +1,297 @@
+
+.header-frame{
+    width: 100%;
+    height: 121px;
+    /* border: solid; */
+    position: absolute;
+    top: 0;
+}
+.btn-add-cart {
+    width: 35px;
+    height: 30px;
+    border: none;
+    background-color: #24a998;
+    color: #fff;
+    margin-top: 25px;
+    margin-left: 70px;
+    cursor: pointer;
+}
+#cart {
+    /* border: solid 0px; */
+    width: 1200px;
+    margin: auto;
+    margin: 0 157px;
+    text-align: center;
+    padding-top: 30px;
+    
+}
+#cart h2 {
+    margin-bottom: 20px;
+}
+#cart table {
+    width: 100%;
+}
+#cart table thead tr th:first-child {
+    text-align: left;
+}
+th {
+    color: red;
+    padding-left: 5px;
+}
+tr {
+    border-bottom: solid 1px #ddd;
+}
+td {
+    margin-bottom: 1px solid black;
+    /* padding: 12px 0 px; */
+    vertical-align: top;
+
+    
+}
+#cart table thead tr th:last-child {
+    text-align: right;
+    padding-bottom: 20px;
+}
+#cart table tbody tr td:last-child {
+    text-align: right;
+}
+.đ-img-product {
+    height: 10px;
+    width: 5px;
+    float: left;
+    /* border: solid; */
+    font-size: 10px;
+    color: red;
+    margin-left: 5px;
+    margin-top: 0px;
+    margin-right: 2px;
+}
+/* css tiền sản phẩm */
+.prices-img-product {
+    height: 20px;
+    width: 65px;
+    /* border: solid; */
+    float: left;
+    /* margin-top: 35px; */
+    color: red;
+}
+/* css giao diện giỏ hàng */
+#cart {
+    border-radius: 10px;
+    border: 1px solid;
+    position: absolute;
+    height: 200vh;
+    width: 500px;
+    margin-left: 1015px;
+    /* right: 0;  */
+    top: 0;  
+    margin-top: 120px;
+    background-color: #fff;
+}
+#cart {
+    /* border: solid 0px; */
+    width: 1200px;
+    position: relative;
+    height: 150vh;
+    /* height: 500px; */
+    /* top: none; */
+    margin: 0 157px;
+    text-align: center;
+    padding-top: 30px;
+    
+}
+#cart {
+    display: none;
+    border-radius: 10px;
+    border: 1px solid;
+    position: absolute;
+    height: 200vh;
+    width: 500px;
+    margin-left: 1015px;
+    /* right: 0;  */
+    top: 0;  
+    margin-top: 120px;
+    background-color: #fff;
+}
+.form-pay{
+    display: none;
+}
+
+/* css giao diện khi giỏ hàng k có hàng */
+.no-product-cart {
+    display: none;
+    position: fixed;
+    height: 50vh;
+    width: 300px;
+    border-radius: 10px;
+    margin-left: 1015px;
+    right: 0; 
+    top: 0; 
+    margin-top: 100px;
+    background-color: #f5f5f5;
+}
+.header__cart {
+    border: none;
+    cursor: pointer;
+    background-image: linear-gradient(0deg, rgb(254, 100, 51), rgb(245, 62, 45));
+}
+.icon-x, .icon-x-no-cart {
+    top: 0;
+    border-radius: 999px;
+    margin-bottom: 15px;
+    background-color: red;
+    color: #fff;
+    cursor: pointer;
+}
+/* .icon-x {
+    display: none;
+} */
+.icon-x-no-cart {
+    margin-top: 20px;
+    margin-left: 140px;
+}
+.page2-view {
+    height: 1200px;
+    /* border: solid; */
+}
+
+#frame {
+    height: 2000px;
+}
+.header__cart {
+
+    position: relative;
+}
+.header__cart-icon {
+    margin-left: -30px;
+}
+.leng-cart {
+    position: absolute;
+    display: none;
+    height: 18px;
+    width: 23px;
+    margin-left: -10px;
+    margin-top: 8px;
+    /* float: left; */
+    border-radius: 999px;
+    background-color: #fff;
+    border: solid 1px;
+    text-align: center;
+    /* margin-left: 20px; */
+}
+h2 {
+    font-size: 20px;
+    color: red;
+}
+/* css giỏ hàng bên dưới */
+.pay,.cart-buy {
+    text-decoration: none;
+    color: white;
+    
+}
+.btn-pay,.btn-cart,.btn-pays {
+    background-color: red;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 0px;
+    margin-left: 40px;
+}
+.btn-pay{
+    margin-left: 250px;
+}
+.btn-cart {
+    display: none;
+    position: absolute;
+    margin-left: -100px;
+    margin-top: -60px;
+}
+/* .btn-pays {
+    display: none;
+} */
+.table-pay {
+    width: 200px;
+    height: 200px;
+    border: solid;
+}
+.c-1 {
+    width: 200px;
+    height: 100%;
+    border: solid;
+    font-size: 20px;
+    margin-left: 500px;
+}
+/* css form thanh toán */
+.title-form-pay {
+    color: red;
+    font-size: 25px;
+    margin-top: 20px;
+}
+/* css nút giỏ hàng */
+
+.form-pay {
+    width: 600px;
+    height: 600px;
+    border: 1px solid;
+    margin: 50px 300px; 
+    background-color: #f5f5f5;
+}
+
+.form-group {
+    margin-top: 20px;
+}
+.form-label {
+    font-size: 18px;
+    margin-right: 50px;
+    margin-left: 40px;
+    
+}
+.form-group {
+    margin-bottom: 30px;
+}
+.form-control,select {
+    width: 250px;
+    height: 35px;
+    padding-left: 10px;
+}
+select {
+    width: 270px;
+}
+.cityBtn {
+    border: none;
+    background-color: #fff;
+    margin-left: -35px;
+}
+.city-list {
+    width: 260px;
+    display: none;
+    position: absolute;
+    /* z-index: 1; */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    margin-left: 290px;
+  }
+
+  .city-list li {
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+  }
+  .city-list li:hover {
+    background-color: #f1f1f1;
+  }
+
+
+.form-message {
+    font-size: 17px;
+    text-align: right;
+    float: left;
+    margin-left: 290px;
+    margin-top: 5px;
+    color: red;   
+}
+.form-group.invalid input{
+    border-color: #f33a58;
+    border-style: solid;
+}
