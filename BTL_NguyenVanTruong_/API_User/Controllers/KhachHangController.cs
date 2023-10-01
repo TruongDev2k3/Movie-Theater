@@ -45,6 +45,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
                 Console.WriteLine("Lỗi khi lấy danh sách khách hàng: " + ex.Message);
                 return BadRequest("Lỗi khi lấy danh sách khách hàng.");
             }
+            
         }
 
         // API THÊM KHÁCH HÀNG

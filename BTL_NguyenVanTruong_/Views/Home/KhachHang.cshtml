@@ -1,0 +1,104 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div id="frame">
+        <div id="header-page">
+            <div id="header-left">
+                <span>ADMIN</span>
+                <a class="log-out" href="./login.html"><i class="fa-solid fa-arrow-right-from-bracket">&nbsp;&nbsp;</i>Đăng Xuất</a>               
+            </div>
+            <div id="header-right">
+                <b class="title">HỆ THỐNG QUẢN TRỊ NỘI DUNG</b>
+            </div>
+        </div>
+        <div id="content-page">
+            <div class="menu">
+                <nav>
+                    <ul>
+                      <li><a class="link" href="./admin.html">Trang chủ</a></li>
+                      <li>
+                        <div class="link" href="#">Bán hàng
+                            <button class="down"><i class="icon-down fa-solid fa-angle-down"></i></button>
+                            <button class="up"><i class="icon-down fa-solid fa-angle-up"></i></button>
+                        </div>
+                        
+                        <ul>
+                          <li><a class="menu-1" href="#">Hóa đơn bán</a></li>
+                          <li><a class="menu-2" href="#">Khách hàng</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="link" href="#">Nhập Hàng
+                            <button class="btn-down"><i class="icon-down fa-solid fa-angle-down"></i></button>
+                            <button class="btn-up"><i class="icon-down fa-solid fa-angle-up"></i></button>
+                        </div>
+                        <ul>
+                          <li><a class="menu-3" href="./productAdmin.html">Hóa đơn nhập</a></li>
+                          <li><a class="menu-4" href="#">Hãng sản xuất</a></li>
+                          <li><a class="menu-5" href="#">Nhà cung cấp</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="link" href="#">Danh Mục
+                            <button class="btn-down-1"><i class="icon-down fa-solid fa-angle-down"></i></button>
+                            <button class="btn-up-1"><i class="icon-down fa-solid fa-angle-up"></i></button>
+                        </div>
+                        <ul>
+                          <li><a class="menu-6" href="#">Sản phẩm</a></li>
+                          <li><a class="menu-7" href="#">Chuyên mục</a></li>
+                          <li><a class="menu-8" href="#">Slide show</a></li>
+                          <li><a class="menu-9" href="#">Quảng cáo</a></li>
+                          <li><a class="menu-10" href="#">Người dùng</a></li>
+                        </ul>
+                      </li>
+              
+                    </ul>
+                  </nav>
+                  
+            </div>
+            <div class="product">
+                <h2> <i class="fa-solid fa-circle-arrow-right" style="font-size: 30px; color: blue; margin-top: 10px;"></i>&nbsp;&nbsp;QUẢN LÝ KHÁCH HÀNG</h2>
+                <button class="add"><a href="#my-dialog" class="adds">THÊM MỚI</a></button>
+                <div class="dialog overlay" id="my-dialog">
+                 <a href="#" class="overlay-close"></a>             
+             </div>
+                
+           </div>
+            <table border="1" >
+                <thead>
+                  <tr>
+                    <th class="stt">ID</th>                   
+                    <th>Tên khách hàng</th>
+                    <th class="seri">Giới tính</th>
+                    <th class="nameproduct">Địa chỉ</th>
+                    <th class="cate-gory">Số điện thoại</th>
+                    <th class="date">Email khách hàng</th>
+                    <th class="edit">Thao tác</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model.danhSachKhachHang)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.TenKH</td>
+                            <td>@item.GioiTinh</td>
+                            <td>@item.DiaChi</td>
+                            <td>@item.SDT</td>
+                            <td>@item.Email</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="/Client/Edit?id=@item.Id">Edit</a>
+                                 <a class="btn btn-danger btn-sm" href="/Client/Delete?id=@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+                 
+            </table>
+        </div>
+    </div>
+    <script src="/JAVACRIPT/admin.js"></script>
