@@ -1,0 +1,84 @@
+﻿@model BTL_NguyenVanTruong_.Models.KhachHangModel
+
+@{
+    ViewData["Title"] = "Create Customer";
+    var errorMessage = TempData["errorMessage"]?.ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/Customers.css">
+
+</head>
+<h3>@ViewData["Title"]?.ToString()</h3>
+<hr />
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <div class="alert alert-danger">
+        <b> Error : </b>@errorMessage
+        <button type="button" class="btn-close float-end" data-bs-dismiss = "alert" aria-label="Close"> </button>
+    </div>
+}
+<form method="post" action="CreateCustomer" class="mt-3" id="form-create" autocomplete="off">
+    <div class="mb-3">
+        <label class="form-label">Tên Khách Hàng</label>
+        <input id="fullname" type="text" class="form-control" asp-for="TenKH" />
+        <span asp-validation-for="TenKH" class="text-danger"></span>
+        <span class="form-message"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Giới tính</label>
+        <input id="gender" type="text" class="form-control" asp-for="GioiTinh" />
+        <span asp-validation-for="GioiTinh" class="text-danger"></span>
+        <span class="form-message"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Địa chỉ</label>
+        <input id="address" type="text" class="form-control" asp-for="DiaChi" />
+        <span asp-validation-for="DiaChi" class="text-danger"></span>
+        <span class="form-message"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Số điện thoại</label>
+        <input id="phone" type="text" class="form-control" asp-for="SDT" />
+        <span asp-validation-for="SDT" class="text-danger"></span>
+        <span class="form-message"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input id="email" type="email" class="form-control" asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <span class="form-message"></span>
+    </div>
+    <div class="mb-3">
+        <div class="col-lg-12 d-grid">
+            <button type="submit" class="btn btn-primary" id="btn-create"> Create CusTomer </button>
+        </div>
+    </div>
+</form>
+<script src="/JS/CustomerErrs.js"></script>
+    <script>
+
+        Validator({
+          form: '#form-create',
+          rules: [
+            Validator.isFullName('#fullname'),
+            Validator.isGender('#gender'),
+            Validator.isAddress('#address'),
+            Validator.isPhone('#phone'),
+            Validator.isEmail('#email')
+          ]
+        })
+      </script>
+@*@section Scripts {
+    @{
+        await Html.RenderComponentAsync("_ValidationScriptsPartial");
+    }
+}*@

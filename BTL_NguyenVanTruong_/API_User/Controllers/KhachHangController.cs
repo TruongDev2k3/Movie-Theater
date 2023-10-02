@@ -49,24 +49,24 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
         //}
 
         // API THÊM KHÁCH HÀNG
-        [Route("AddKhachHang")]
-        [HttpPost]
-        public IActionResult AddKhachHang([FromBody] KhachHangModel model)
-        {
-            // Khởi tạo đối tượng KhachHangRepository
-             KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+        //[Route("AddKhachHang")]
+        //[HttpPost]
+        //public IActionResult AddKhachHang([FromBody] KhachHangModel model)
+        //{
+        //    // Khởi tạo đối tượng KhachHangRepository
+        //     KhachHangBusiness khb = new KhachHangBusiness(_configuration);
 
-            bool result = khb.AddKH(model);
+        //    bool result = khb.AddKH(model);
 
-            if (result)
-            {
-                return Ok("Khách hàng đã được thêm thành công.");
-            }
-            else
-            {
-                return BadRequest("Lỗi khi thêm khách hàng.");
-            }
-        }
+        //    if (result)
+        //    {
+        //        return Ok("Khách hàng đã được thêm thành công.");
+        //    }
+        //    else
+        //    {
+        //        return BadRequest("Lỗi khi thêm khách hàng.");
+        //    }
+        //}
 
 
         // API XÓA KHÁCH HÀNG

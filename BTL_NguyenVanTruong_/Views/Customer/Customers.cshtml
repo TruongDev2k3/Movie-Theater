@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/CSS/admin.css">
-    <link rel="stylesheet" href="/CSS/Customer.css">
+    <link rel="stylesheet" href="/CSS/Customers.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
 </head>
 <body>
@@ -26,7 +26,7 @@
             
             <div class="product">
                 <h2> <i class="fa-solid fa-circle-arrow-right" style="font-size: 30px; color: blue; margin-top: 10px;"></i>&nbsp;&nbsp;QUẢN LÝ KHÁCH HÀNG</h2>
-                <button class="add"><a href="#my-dialog" class="adds">THÊM MỚI</a></button>
+                <a asp-action="CreateCustomer" asp-controller="Customer" class="btn btn-primary mb-3"> Create Customer</a>
                 <div class="dialog overlay" id="my-dialog">
                  <a href="#" class="overlay-close"></a>             
              </div>

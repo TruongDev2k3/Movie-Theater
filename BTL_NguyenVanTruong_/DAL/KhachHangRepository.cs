@@ -71,35 +71,37 @@ namespace BTL_NguyenVanTruong_.DAL
 
 
         // Thêm khách hàng
-        public bool AddKH(KhachHangModel model)
+        public bool CreateCustomer(KhachHangModel model)
         {
+            
             try
             {
+                int rowsAffected = 0;
                 // Lấy chuỗi kết nối từ cấu hình
                 using (var connection = new SqlConnection(GetConnectionString()))
                 {
                     connection.Open();
 
                     // Tạo một đối tượng SqlCommand để gọi thủ tục lưu trữ
-                    SqlCommand command = connection.CreateCommand();
-                    // Định nghĩa kiểu của command là 1 thủ tục lưu trữ (không sử dụng câu lệnh sql)
-                    command.CommandType = CommandType.StoredProcedure;
+                    _command = connection.CreateCommand();
+                    // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                    _command.CommandType = CommandType.StoredProcedure;
                     // Tên của thủ tục lưu trữ
-                    command.CommandText = "add_KhachHang";
+                    _command.CommandText = "add_KhachHang";
 
                     // Định nghĩa các tham số cho thủ tục lưu trữ
                     //Parameters.AddWithValue() : định nghĩa các giá trị tham số và gán giá trị cho chúng.
-                    command.Parameters.AddWithValue("@TenKH", model.TenKH);
-                    command.Parameters.AddWithValue("@GioiTinh", model.GioiTinh);
-                    command.Parameters.AddWithValue("@DiaChi", model.DiaChi);
-                    command.Parameters.AddWithValue("@SDT", model.SDT);
-                    command.Parameters.AddWithValue("@Email", model.Email);
-
+                    _command.Parameters.AddWithValue("@TenKH", model.TenKH);
+                    _command.Parameters.AddWithValue("@GioiTinh", model.GioiTinh);
+                    _command.Parameters.AddWithValue("@DiaChi", model.DiaChi);
+                    _command.Parameters.AddWithValue("@SDT", model.SDT);
+                    _command.Parameters.AddWithValue("@Email", model.Email);
+                    
                     // Thực hiện thủ tục lưu trữ và lấy số hàng bị ảnh hưởng
-                    int rowsAffected = command.ExecuteNonQuery();
+                     rowsAffected = _command.ExecuteNonQuery();
 
                     // Kiểm tra xem có bản ghi nào đã được thêm vào không
-                    return rowsAffected > 0;
+                    return rowsAffected > 0 ? true : false;
                 }
             }
             catch (Exception ex)

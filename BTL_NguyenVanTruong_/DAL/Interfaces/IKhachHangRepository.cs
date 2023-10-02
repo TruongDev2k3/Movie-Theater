@@ -6,7 +6,7 @@ namespace BTL_NguyenVanTruong_.DAL.Interfaces
 {
     public partial interface IKhachHangRepository
     {
-        bool AddKH(KhachHangModel model);
+        bool CreateCustomer(KhachHangModel model);
         bool UpdateKH(KhachHangModel model);
         KhachHangModel GetDataKHByID(int id);
         bool DeleteKH(int id);

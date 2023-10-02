@@ -18,9 +18,9 @@ namespace BTL_NguyenVanTruong_.BLL
             _res = new KhachHangRepository(_configuration); // Khởi tạo _res sau khi _configuration đã được gán giá trị
         }
         
-        public bool AddKH(KhachHangModel model)
+        public bool CreateCustomer(KhachHangModel model)
         {
-            return _res.AddKH(model);
+            return _res.CreateCustomer(model);
         }
         public bool UpdateKH(KhachHangModel model)
         {

@@ -14,39 +14,74 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
         [Route("Customer")]
         [HttpGet]
         public IActionResult Customers()
-        {           
-             // Khởi tạo đối tượng KhachHangBusiness
+        {
             KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+            List<KhachHangModel> danhSachKhachHang = new List<KhachHangModel>();
+            try
+            {
+                danhSachKhachHang = khb.GetAllKhachHangs();
+            }
+            // Khởi tạo đối tượng KhachHangBusiness
+            catch(Exception ex)
+            {
+                TempData["errorMessage"] = ex.Message;
+            }
 
             // Gọi phương thức GetAllKhachHangs để lấy danh sách khách hàng
-            List<KhachHangModel> danhSachKhachHang = new List<KhachHangModel>();
+            
 
-            danhSachKhachHang = khb.GetAllKhachHangs();
+            
 
             // Trả về view "Customers" với danh sách khách hàng
             return View(danhSachKhachHang);
         }
 
+        [HttpGet]
+        public IActionResult CreateCustomer()
+        {
+            return View();
+        }
 
-            // API THÊM KHÁCH HÀNG
-            [Route("AddKhachHang")]
-            [HttpPost]
-            public IActionResult AddKhachHang([FromBody] KhachHangModel model)
+        [HttpPost]
+        public IActionResult CreateCustomer(KhachHangModel model)
+        {
+            if (ModelState.IsValid)
             {
-                // Khởi tạo đối tượng KhachHangRepository
-                KhachHangBusiness khb = new KhachHangBusiness(_configuration);
-
-                bool result = khb.AddKH(model);
-
-                if (result)
-                {
-                    return Ok("Khách hàng đã được thêm thành công.");
-                }
-                else
-                {
-                    return BadRequest("Lỗi khi thêm khách hàng.");
-                }
+                TempData["errorMessage"] = "Dữ liệu không hợp lệ";
             }
+            KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+            bool result = khb.CreateCustomer(model);
+            
+            if(!result)
+            {
+                TempData["errorMessage"] = "Dữ liệu chưa được lưu . Vui lòng nhập đầy đủ các trường dữ liệu";
+                return View();
+            }
+            TempData["errorMessage"] = "Lưu thông tin thành công";
+            return RedirectToAction("Customers");
+        }
+
+
+
+        //// API THÊM KHÁCH HÀNG
+        //[Route("AddKhachHang")]
+        //    [HttpPost]
+        //    public IActionResult AddKhachHang([FromBody] KhachHangModel model)
+        //    {
+        //        // Khởi tạo đối tượng KhachHangRepository
+        //        KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+
+        //        bool result = khb.AddKH(model);
+
+        //        if (result)
+        //        {
+        //            return Ok("Khách hàng đã được thêm thành công.");
+        //        }
+        //        else
+        //        {
+        //            return BadRequest("Lỗi khi thêm khách hàng.");
+        //        }
+        //    }
 
 
             // API XÓA KHÁCH HÀNG
