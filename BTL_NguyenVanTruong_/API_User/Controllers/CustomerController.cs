@@ -54,12 +54,137 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
             
             if(!result)
             {
-                TempData["errorMessage"] = "Dữ liệu chưa được lưu . Vui lòng nhập đầy đủ các trường dữ liệu";
+                TempData["errorMessage"] = "Dữ liệu chưa được lưu.";
                 return View();
             }
-            TempData["errorMessage"] = "Lưu thông tin thành công";
+            TempData["successMessage"] = "Lưu thông tin thành công";
             return RedirectToAction("Customers");
         }
+
+
+        [HttpGet]
+        public IActionResult EditCustomer(int id)
+        {
+            try
+            {
+                KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+                KhachHangModel khachhang = khb.GetCustomerByID(id);
+
+                if (khachhang.Id == 0)
+                {
+                    TempData["errorMessage"] = "ID khách hàng không hợp lệ";
+                    return RedirectToAction("Customers");
+                }
+                return View(khachhang);
+            }
+            catch (Exception ex)
+            {
+
+                TempData["errorMessage"] = ex.Message;
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult EditCustomer(KhachHangModel model)
+        {
+            try
+            {
+                KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+                //KhachHangModel khachhang = khb.GetCustomerByID(id);
+
+                if (!ModelState.IsValid)
+                {
+                    TempData["errorMessage"] = "Dữ liệu không hợp lệ";
+                    return View();
+                }
+                bool result = khb.UpdateCustomer(model);
+                
+                if (!result)
+                {
+                    TempData["errorMessage"] = "Dữ liệu chưa được cập nhập.";
+                    return View();
+                }
+                TempData["successMessage"] = "Dữ liệu đã được cập nhập";
+                return RedirectToAction("Customers");
+                
+            }
+            catch (Exception ex)
+            {
+
+                TempData["errorMessage"] = ex.Message;
+                return View();
+            }
+        }
+
+
+        [HttpGet]
+        public IActionResult DeleteCustomer(int id)
+        {
+            try
+            {
+                KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+                KhachHangModel khachhang = khb.GetCustomerByID(id);
+
+                if (khachhang.Id == 0)
+                {
+                    TempData["errorMessage"] = "ID khách hàng không hợp lệ";
+                    return RedirectToAction("Customers");
+                }
+                return View(khachhang);
+            }
+            catch (Exception ex)
+            {
+
+                TempData["errorMessage"] = ex.Message;
+                return View();
+            }
+        }
+
+        [HttpPost, ActionName("DeleteCustomer")]
+        public IActionResult DeleteCustomerConfirmed(KhachHangModel model)
+        {
+            try
+            {
+                KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+                //KhachHangModel khachhang = khb.GetCustomerByID(id);
+
+                if (!ModelState.IsValid)
+                {
+                    TempData["errorMessage"] = "Dữ liệu không hợp lệ";
+                    return View();
+                }
+                bool result = khb.DeleteCustomer(model.Id);
+
+                if (!result)
+                {
+                    TempData["errorMessage"] = "Dữ liệu chưa được xóa.";
+                    return View();
+                }
+                TempData["successMessage"] = "Dữ liệu đã được xóa thành công";
+                return RedirectToAction("Customers");
+
+            }
+            catch (Exception ex)
+            {
+
+                TempData["errorMessage"] = ex.Message;
+                return View();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -84,66 +209,66 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
         //    }
 
 
-            // API XÓA KHÁCH HÀNG
-            [Route("DeleteKH/{id}")]
-            [HttpDelete]
-            public IActionResult DeleteKH(int id)
-            {
-                // Khởi tạo đối tượng KhachHangRepository
-                KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+        //// API XÓA KHÁCH HÀNG
+        //[Route("DeleteKH/{id}")]
+        //    [HttpDelete]
+        //    public IActionResult DeleteKH(int id)
+        //    {
+        //        // Khởi tạo đối tượng KhachHangRepository
+        //        KhachHangBusiness khb = new KhachHangBusiness(_configuration);
 
-                bool result = khb.DeleteKH(id);
+        //        bool result = khb.DeleteKH(id);
 
-                if (result)
-                {
-                    return Ok("Khách hàng đã được xóa thành công.");
-                }
-                else
-                {
-                    return BadRequest("Lỗi khi xóa khách hàng.");
-                }
-            }
+        //        if (result)
+        //        {
+        //            return Ok("Khách hàng đã được xóa thành công.");
+        //        }
+        //        else
+        //        {
+        //            return BadRequest("Lỗi khi xóa khách hàng.");
+        //        }
+        //    }
 
             // API LẤY THÔNG TIN KHÁCH HÀNG THEO MÃ KHÁCH HÀNG
-            [Route("GetKhachHangByID/{id}")]
-            [HttpGet]
-            public IActionResult GetKhachHangByID(int id)
-            {
-                // Khởi tạo đối tượng KhachHangBusiness
-                KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+            //[Route("GetKhachHangByID/{id}")]
+            //[HttpGet]
+            //public IActionResult GetKhachHangByID(int id)
+            //{
+            //    // Khởi tạo đối tượng KhachHangBusiness
+            //    KhachHangBusiness khb = new KhachHangBusiness(_configuration);
 
-                // Gọi phương thức GetDataKHByID để lấy thông tin khách hàng
-                KhachHangModel khachHang = khb.GetDataKHByID(id);
+            //    // Gọi phương thức GetDataKHByID để lấy thông tin khách hàng
+            //    KhachHangModel khachHang = khb.GetDataKHByID(id);
 
-                if (khachHang != null)
-                {
-                    return Ok(khachHang);
-                }
-                else
-                {
-                    return NotFound("Khách hàng không tồn tại.");
-                }
-            }
+            //    if (khachHang != null)
+            //    {
+            //        return Ok(khachHang);
+            //    }
+            //    else
+            //    {
+            //        return NotFound("Khách hàng không tồn tại.");
+            //    }
+            //}
 
 
             // API CẬP NHẬP THÔNG TIN KHÁCH HÀNG
-            [HttpPut]
-            [Route("UpdateKhachHang")]
-            public IActionResult UpdateKhachHang([FromBody] KhachHangModel model)
-            {
-                KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+            //[HttpPut]
+            //[Route("UpdateKhachHang")]
+            //public IActionResult UpdateKhachHang([FromBody] KhachHangModel model)
+            //{
+            //    KhachHangBusiness khb = new KhachHangBusiness(_configuration);
 
-                bool result = khb.UpdateKH(model);
+            //    bool result = khb.UpdateKH(model);
 
-                if (result)
-                {
-                    return Ok("Khách hàng đã được cập nhật thành công.");
-                }
-                else
-                {
-                    return BadRequest("Lỗi khi cập nhật khách hàng.");
-                }
-            }
+            //    if (result)
+            //    {
+            //        return Ok("Khách hàng đã được cập nhật thành công.");
+            //    }
+            //    else
+            //    {
+            //        return BadRequest("Lỗi khi cập nhật khách hàng.");
+            //    }
+            //}
 
 
             //API TÌM KIẾM THÔNG TIN KHÁCH HÀNG

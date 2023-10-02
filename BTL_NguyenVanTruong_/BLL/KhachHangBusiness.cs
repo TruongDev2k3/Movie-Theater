@@ -22,17 +22,17 @@ namespace BTL_NguyenVanTruong_.BLL
         {
             return _res.CreateCustomer(model);
         }
-        public bool UpdateKH(KhachHangModel model)
+        public bool UpdateCustomer(KhachHangModel model)
         {
-            return _res.UpdateKH(model);
+            return _res.UpdateCustomer(model);
         }
-        public bool DeleteKH(int id)
+        public bool DeleteCustomer(int id)
         {
-            return _res.DeleteKH(id);
+            return _res.DeleteCustomer(id);
         }
-        public KhachHangModel GetDataKHByID(int id)
+        public KhachHangModel GetCustomerByID(int id)
         {
-            return _res.GetDataKHByID(id);
+            return _res.GetCustomerByID(id);
         }
         public List<KhachHangModel> GetAllKhachHangs()
         {

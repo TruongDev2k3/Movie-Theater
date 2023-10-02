@@ -115,7 +115,7 @@ namespace BTL_NguyenVanTruong_.DAL
 
 
         // Sửa thông tin khách hàng
-        public bool UpdateKH(KhachHangModel model)
+        public bool UpdateCustomer(KhachHangModel model)
         {
             try
             {
@@ -123,21 +123,22 @@ namespace BTL_NguyenVanTruong_.DAL
                 {
                     connection.Open();
 
-                    SqlCommand command = connection.CreateCommand();
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "UpdateKhachHang";
+                    _command = connection.CreateCommand();
+                    _command.CommandType = CommandType.StoredProcedure;
+                    _command.CommandText = "UpdateKhachHang";
 
-                    command.Parameters.AddWithValue("@Id", model.Id);
-                    command.Parameters.AddWithValue("@TenKH", model.TenKH);
-                    command.Parameters.AddWithValue("@GioiTinh", model.GioiTinh);
-                    command.Parameters.AddWithValue("@DiaChi", model.DiaChi);
-                    command.Parameters.AddWithValue("@SDT", model.SDT);
-                    command.Parameters.AddWithValue("@Email", model.Email);
+                    _command.Parameters.AddWithValue("@Id", model.Id);
+                    _command.Parameters.AddWithValue("@TenKH", model.TenKH);
+                    _command.Parameters.AddWithValue("@GioiTinh", model.GioiTinh);
+                    _command.Parameters.AddWithValue("@DiaChi", model.DiaChi);
+                    _command.Parameters.AddWithValue("@SDT", model.SDT);
+                    _command.Parameters.AddWithValue("@Email", model.Email);
 
-                    int rowsAffected = command.ExecuteNonQuery();
-
+                    int rowsAffected = _command.ExecuteNonQuery();
+                    connection.Close();
                     return rowsAffected > 0;
                 }
+
             }
             catch (Exception ex)
             {
@@ -147,7 +148,7 @@ namespace BTL_NguyenVanTruong_.DAL
         }
 
         // Lấy thông tin khách hàng theo id khách hàng
-        public KhachHangModel GetDataKHByID(int id)
+        public KhachHangModel GetCustomerByID(int id)
         {
             // Khởi tạo khachhang
             KhachHangModel khachHang = new KhachHangModel();
@@ -160,16 +161,16 @@ namespace BTL_NguyenVanTruong_.DAL
                     connection.Open();
 
                     // Tạo một đối tượng SqlCommand để gọi thủ tục lưu trữ
-                    SqlCommand command = connection.CreateCommand();
+                    _command = connection.CreateCommand();
                     // Định nghĩa kiểu của command là 1 thủ tục lưu trữ (không sử dụng câu lệnh sql)
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "GetKhachHangByID"; // Tên thủ tục lấy thông tin khách hàng
+                    _command.CommandType = CommandType.StoredProcedure;
+                    _command.CommandText = "GetKhachHangByID"; // Tên thủ tục lấy thông tin khách hàng
 
                     // Định nghĩa tham số cho thủ tục lưu trữ
-                    command.Parameters.AddWithValue("@Id", id);
+                    _command.Parameters.AddWithValue("@Id", id);
 
                     // Sử dụng SqlDataReader để đọc dữ liệu từ thủ tục lưu trữ
-                    using (var reader = command.ExecuteReader())
+                    using (var reader = _command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -181,6 +182,7 @@ namespace BTL_NguyenVanTruong_.DAL
                             khachHang.Email = reader["Email"].ToString();
                         }
                     }
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -193,7 +195,7 @@ namespace BTL_NguyenVanTruong_.DAL
         }
 
         // Xóa thông tin khách hàng theo id khách hàng
-        public bool DeleteKH(int id)
+        public bool DeleteCustomer(int id)
         {
             try
             {
