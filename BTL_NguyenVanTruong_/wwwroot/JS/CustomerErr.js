@@ -34,7 +34,9 @@ function Validator(options){
                  //gọi hàm vadidator
                  validator(inputElement, rule);
              })
-
+             if (!formElement.querySelector('.invalid')) {
+                formElement.submit();
+            }
          }
         //Lấy ra từng rules trong mảng rules
         options.rules.forEach(function (rule){
