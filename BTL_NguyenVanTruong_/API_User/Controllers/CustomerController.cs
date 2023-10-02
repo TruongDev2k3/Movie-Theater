@@ -11,50 +11,21 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
     public class CustomerController : Controller
     {
         private readonly IConfiguration _configuration;
-        [Route("GetAllKhachHangs")]
+        [Route("Customer")]
         [HttpGet]
         public IActionResult Customers()
         {           
-                // Khởi tạo đối tượng KhachHangBusiness
-                KhachHangBusiness khb = new KhachHangBusiness(_configuration);
-                // Gọi phương thức GetAllKhachHangs để lấy danh sách khách hàng
-                List<KhachHangModel> danhSachKhachHang = new List<KhachHangModel>();
+             // Khởi tạo đối tượng KhachHangBusiness
+            KhachHangBusiness khb = new KhachHangBusiness(_configuration);
+
+            // Gọi phương thức GetAllKhachHangs để lấy danh sách khách hàng
+            List<KhachHangModel> danhSachKhachHang = new List<KhachHangModel>();
+
             danhSachKhachHang = khb.GetAllKhachHangs();
+
             // Trả về view "Customers" với danh sách khách hàng
             return View(danhSachKhachHang);
         }
-
-
-        //[HttpGet]
-        //public IActionResult Customers()
-        //{
-        //    try
-        //    {
-        //        // Khởi tạo đối tượng KhachHangBusiness
-        //        KhachHangBusiness khb = new KhachHangBusiness(_configuration);
-
-        //        // Gọi phương thức GetAllKhachHangs để lấy danh sách khách hàng
-        //        List<KhachHangModel> danhSachKhachHang = khb.GetAllKhachHangs();
-
-        //        if (danhSachKhachHang != null && danhSachKhachHang.Count > 0)
-        //        {
-        //            // Trả về view "Customers" với danh sách khách hàng
-        //            return View("Customers", danhSachKhachHang);
-        //        }
-        //        else
-        //        {
-        //            // Trả về view "Customers" với thông báo không tìm thấy khách hàng
-        //            return View("Customers", new List<KhachHangModel>());
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Lỗi khi lấy danh sách khách hàng: " + ex.Message);
-        //        // Trả về view "Error" với thông báo lỗi
-        //        return View("Error");
-        //    }
-        //}
-
 
 
             // API THÊM KHÁCH HÀNG

@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/CSS/admin.css">
-    <link rel="stylesheet" href="/CSS/productAdmin.css">
+    <link rel="stylesheet" href="/CSS/Customer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
 </head>
 <body>
@@ -32,7 +32,7 @@
              </div>
                 
            </div>
-            <table border="1" style="border-collapse: collapse; border-color: #fff ; ">
+            <table border="1" style="border-collapse: collapse; border: 1px solid #fff;">
                 <thead>
                   <tr>
                     <th class="stt">ID</th>                   
@@ -58,7 +58,7 @@
                                 <td>@item.SDT</td>
                                 <td>@item.Email</td>
                                 <td>
-                                    <a class="btn btn-primary btn-sm" href="/Client/Edit?id=@item.Id">Edit</a>
+                                    <a class="btn btn-primary btn-sm" href="/Client/Edit?id=@item.Id" style="width:65px">Edit</a>
                                     <a class="btn btn-danger btn-sm" href="/Client/Delete?id=@item.Id">Delete</a>
                                 </td>
                             </tr>
