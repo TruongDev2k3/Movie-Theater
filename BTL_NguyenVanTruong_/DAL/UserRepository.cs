@@ -47,14 +47,14 @@ namespace BTL_NguyenVanTruong_.DAL
                             {
                                 while (reader.Read())
                                 {
-                                    UserModel userModel = new UserModel
+                                    UserModel userModel = new UserModel();
                                     {
-                                        MaTaiKhoan = Convert.ToInt32(reader["MaTaiKhoan"]),
-                                        LoaiTaiKhoan = Convert.ToInt32(reader["LoaiTaiKhoan"]),
-                                        TenTaiKhoan = reader["TenTaiKhoan"].ToString(),
-                                        MatKhau = reader["MatKhau"].ToString(),
-                                        Email = reader["Email"].ToString(),
-                                        Token = reader["Token"].ToString()
+                                        userModel.MaTaiKhoan = Convert.ToInt32(reader["MaTaiKhoan"]);
+                                        userModel.LoaiTaiKhoan = Convert.ToInt32(reader["LoaiTaiKhoan"]);
+                                        userModel.TenTaiKhoan = reader["TenTaiKhoan"].ToString();
+                                        userModel.MatKhau = reader["MatKhau"].ToString();
+                                        userModel.Email = reader["Email"].ToString();
+                                        userModel.Token = reader["Token"].ToString()
                                     };
 
                                     return userModel;
