@@ -33,56 +33,28 @@ namespace BTL_NguyenVanTruong_.BLL
         }
         public UserModel Login(string taikhoan, string matkhau, int loaitaikhoan)
         {
-            using (var connection = new SqlConnection(GetConnectionString()))
+            var user = _res.Login(taikhoan, matkhau, loaitaikhoan);
+            if (user == null)
+                return null;
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
-                connection.Open();
-
-                using (SqlCommand command = new SqlCommand("CheckLogin", connection))
+                Subject = new ClaimsIdentity(new Claim[]
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@TenTaiKhoan", taikhoan);
-                    command.Parameters.AddWithValue("@MatKhau", matkhau);
-                    command.Parameters.AddWithValue("@LoaiTaiKhoan", loaitaikhoan);
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            UserModel user = new UserModel
-                            {
-                                MaTaiKhoan = Convert.ToInt32(reader["MaTaiKhoan"]),
-                                LoaiTaiKhoan = Convert.ToInt32(reader["LoaiTaiKhoan"]),
-                                TenTaiKhoan = reader["TenTaiKhoan"].ToString(),
-                                Email = reader["Email"].ToString(),
-                                
-                            };
-
-                            // Tạo và gán giá trị cho token 
-                            var tokenHandler = new JwtSecurityTokenHandler();
-                            var key = Encoding.ASCII.GetBytes(secret);
-                            var tokenDescriptor = new SecurityTokenDescriptor
-                            {
-                                Subject = new ClaimsIdentity(new Claim[]
-                                {
-                            new Claim(ClaimTypes.Name, user.TenTaiKhoan.ToString()),
-                            new Claim(ClaimTypes.Email, user.Email)
-                                }),
-                                Expires = DateTime.UtcNow.AddDays(7),
-                                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Aes128CbcHmacSha256)
-                            };
-                            var Token = tokenHandler.CreateToken(tokenDescriptor);
-                            user.Token = tokenHandler.WriteToken(Token);
-
-                            return user;
-                        }
-                    }
-                }
-            }
+                    new Claim(ClaimTypes.Name, user.TenTaiKhoan.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email)
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Aes128CbcHmacSha256)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            user.Token = tokenHandler.WriteToken(token);
+            return user;
+        }
 
             // Nếu không tìm thấy người dùng
-            return null;
-        }
+        
 
     }
 }

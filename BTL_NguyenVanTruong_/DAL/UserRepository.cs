@@ -54,13 +54,14 @@ namespace BTL_NguyenVanTruong_.DAL
                                         userModel.TenTaiKhoan = reader["TenTaiKhoan"].ToString();
                                         userModel.MatKhau = reader["MatKhau"].ToString();
                                         userModel.Email = reader["Email"].ToString();
-                                        userModel.Token = reader["Token"].ToString()
+                                        userModel.Token = reader["Token"].ToString();
                                     };
 
                                     return userModel;
                                 }
                             }
                         }
+                        connection.Close();
                     }
                 }
 

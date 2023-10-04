@@ -11,7 +11,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
     public class UserController : Controller
     {
         private readonly IConfiguration _configuration;
-        public IActionResult Index()
+        public IActionResult UserLogin()
         {
             return View();
         }
