@@ -25,55 +25,46 @@ namespace BTL_NguyenVanTruong_.DAL
             _configuration = builder.Build();
             return _configuration.GetConnectionString("DefaultConnection");
         }
-        public UserModel Login(string taikhoan, string matkhau, int loaitaikhoan)
+        public UserModel Login(string taikhoan, string matkhau)
         {
-            try
+            using (var connection = new SqlConnection(GetConnectionString()))
             {
-                using (var connection = new SqlConnection(GetConnectionString()))
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("UserLogin", connection))
                 {
-                    connection.Open();
+                    command.CommandType = CommandType.StoredProcedure;
 
-                    using (SqlCommand command = new SqlCommand("CheckLogin", connection))
+                    command.Parameters.AddWithValue("@TenTaiKhoan", taikhoan);
+                    command.Parameters.AddWithValue("@MatKhau", matkhau);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        command.CommandType = CommandType.StoredProcedure;
-
-                        command.Parameters.AddWithValue("@taikhoan", taikhoan);
-                        command.Parameters.AddWithValue("@matkhau", matkhau);
-                        command.Parameters.AddWithValue("@loaitaikhoan", loaitaikhoan); 
-
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        if (reader.HasRows)
                         {
-                            if (reader.HasRows)
+                            while (reader.Read())
                             {
-                                while (reader.Read())
+                                UserModel userModel = new UserModel
                                 {
-                                    UserModel userModel = new UserModel();
-                                    {
-                                        userModel.MaTaiKhoan = Convert.ToInt32(reader["MaTaiKhoan"]);
-                                        userModel.LoaiTaiKhoan = Convert.ToInt32(reader["LoaiTaiKhoan"]);
-                                        userModel.TenTaiKhoan = reader["TenTaiKhoan"].ToString();
-                                        userModel.MatKhau = reader["MatKhau"].ToString();
-                                        userModel.Email = reader["Email"].ToString();
-                                        userModel.Token = reader["Token"].ToString();
-                                    };
+                                    MaTaiKhoan = Convert.ToInt32(reader["MaTaiKhoan"]),
+                                    LoaiTaiKhoan = Convert.ToInt32(reader["LoaiTaiKhoan"]),
+                                    TenTaiKhoan = reader["TenTaiKhoan"].ToString(),
+                                    MatKhau = reader["MatKhau"].ToString(),
+                                    Email = reader["Email"].ToString(),
+                                    Token = reader["Token"].ToString()
+                                };
 
-                                    return userModel;
-                                }
+                                connection.Close(); // Đóng kết nối ở đây để đảm bảo được đóng sau khi đọc dữ liệu.
+                                return userModel;
                             }
                         }
-                        connection.Close();
                     }
                 }
+            }
 
-                return null; // Trả về null nếu không có dữ liệu hợp lệ
-            }
-            catch (Exception ex)
-            {
-                // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
-                Console.WriteLine("Lỗi : " + ex.Message);
-                return null;
-            }
+            return null;
         }
+
 
     }
 }

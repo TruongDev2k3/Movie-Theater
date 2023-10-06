@@ -31,9 +31,9 @@ namespace BTL_NguyenVanTruong_.BLL
             _configuration = builder.Build();
             return _configuration.GetConnectionString("DefaultConnection");
         }
-        public UserModel Login(string taikhoan, string matkhau, int loaitaikhoan)
+        public UserModel Login(string taikhoan, string matkhau)
         {
-            var user = _res.Login(taikhoan, matkhau, loaitaikhoan);
+            var user = _res.Login(taikhoan, matkhau);
             if (user == null)
                 return null;
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -46,7 +46,9 @@ namespace BTL_NguyenVanTruong_.BLL
                     new Claim(ClaimTypes.Email, user.Email)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Aes128CbcHmacSha256)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
+
+                //SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Aes128CbcHmacSha256)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
