@@ -29,7 +29,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
 
             // Gọi phương thức GetAllKhachHangs để lấy danh sách khách hàng
             
-            //
+            
             
 
             // Trả về view "Customers" với danh sách khách hàng
