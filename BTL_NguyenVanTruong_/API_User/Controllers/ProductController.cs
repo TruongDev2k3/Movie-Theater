@@ -37,6 +37,44 @@ namespace BTL_NguyenVanTruong_.API_User.API
             }
         }
 
+        [HttpGet("getlistspmb")]
+        public ActionResult<List<ProductsModel>> GetMacProduct()
+        {
+            try
+            {
+                var productList = _prb.GetListMacProduct();
+
+                if (productList == null || productList.Count == 0)
+                {
+                    return NotFound("Danh sách sản phẩm trống");
+                }
+
+                return Ok(productList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi server: {ex.Message}");
+            }
+        }
+        [HttpGet("getlistspip")]
+        public ActionResult<List<ProductsModel>> GetIphoneProduct()
+        {
+            try
+            {
+                var productList = _prb.GetListIphoneProduct();
+
+                if (productList == null || productList.Count == 0)
+                {
+                    return NotFound("Danh sách sản phẩm trống");
+                }
+
+                return Ok(productList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi server: {ex.Message}");
+            }
+        }
         [HttpGet("getbyid/{id}")]
         public ActionResult<ProductsModel> GetProductById(int id)
         {

@@ -70,7 +70,91 @@ namespace BTL_NguyenVanTruong_.DAL
             return dssp;
         }
 
+        public List<ProductsModel> GetListMacProduct()
+        {
+            List<ProductsModel> dssp = new List<ProductsModel>();
 
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetMacBook_Prd"; // Tên stored procedure
+
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    ProductsModel sanPham = new ProductsModel();
+                    {
+                        sanPham.MaSanPham = (int)reader["MaSanPham"];
+                        sanPham.MaChuyenMuc = (int)reader["MaChuyenMuc"];
+                        sanPham.TenSanPham = reader["TenSanPham"].ToString();
+                        sanPham.AnhSanPham = reader["AnhSanPham"].ToString();
+                        sanPham.Gia = (decimal)reader["Gia"];
+                        sanPham.GiaGiam = (decimal)reader["GiaGiam"];
+                        sanPham.SoLuong = (int)reader["SoLuong"];
+                        sanPham.SoLuongDaBan = (int)reader["SoLuongDaBan"];
+                        dssp.Add(sanPham);
+                    }
+                    // Thêm sản phẩm vào danh sách
+                }
+
+                connection.Close();
+                reader.Close();
+
+            }
+            return dssp;
+        }
+
+        public List<ProductsModel> GetListIphoneProduct()
+        {
+            List<ProductsModel> dssp = new List<ProductsModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetIphone_Prd"; // Tên stored procedure
+
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    ProductsModel sanPham = new ProductsModel();
+                    {
+                        sanPham.MaSanPham = (int)reader["MaSanPham"];
+                        sanPham.MaChuyenMuc = (int)reader["MaChuyenMuc"];
+                        sanPham.TenSanPham = reader["TenSanPham"].ToString();
+                        sanPham.AnhSanPham = reader["AnhSanPham"].ToString();
+                        sanPham.Gia = (decimal)reader["Gia"];
+                        sanPham.GiaGiam = (decimal)reader["GiaGiam"];
+                        sanPham.SoLuong = (int)reader["SoLuong"];
+                        sanPham.SoLuongDaBan = (int)reader["SoLuongDaBan"];
+                        dssp.Add(sanPham);
+                    }
+                    // Thêm sản phẩm vào danh sách
+                }
+
+                connection.Close();
+                reader.Close();
+
+            }
+            return dssp;
+        }
         // Thêm khách hàng
         public bool CreateProduct(ProductsModel model)
         {
