@@ -51,7 +51,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
 
             return Ok(cm);
         }
-
+        //
         [HttpPost("create-cm")]
         public ActionResult CreateChuyenMuc([FromBody] ChuyenMucModel model)
         {
