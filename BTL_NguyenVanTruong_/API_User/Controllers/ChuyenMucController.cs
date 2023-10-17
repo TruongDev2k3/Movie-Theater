@@ -51,21 +51,21 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
 
             return Ok(cm);
         }
-        //
+        //thêm chuyên mục
         [HttpPost("create-cm")]
         public ActionResult CreateChuyenMuc([FromBody] ChuyenMucModel model)
         {
             var result = _prb.CreateChuyenMuc(model);
             return Ok(result);
         }
-
+        // caaph nhập chuyên mục
         [HttpPut("update-cm")]
         public ActionResult UpdateChuyenMuc([FromBody] ChuyenMucModel model)
         {
             var result = _prb.UpdateChuyenMuc(model);
             return Ok(result);
         }
-
+        // xóa chuyên mục theo mã chuyên mục
         [HttpDelete("delete-cm/{mcm}")]
         public ActionResult DeleteChuyenMuc(int mcm)
         {
