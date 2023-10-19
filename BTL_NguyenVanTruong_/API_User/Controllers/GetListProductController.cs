@@ -139,7 +139,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
         }
 
         [HttpGet("getlistmsi")]
-        public ActionResult<List<ProductsModel>> GetDELLProduct()
+        public ActionResult<List<ProductsModel>> GetMSIProduct()
         {
             try
             {
@@ -167,7 +167,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
 
                 if (productList == null || productList.Count == 0)
                 {
-                    return NotFound("Danh sách sản phẩm trống");
+                    return NotFound("Danh sách sản phẩm sam sung trống");
                 }
 
                 return Ok(productList);
