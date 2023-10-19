@@ -322,6 +322,355 @@ namespace BTL_NguyenVanTruong_.DAL
             }
         }
 
+
+        public List<ProductsModel> GetListOppoProduct()
+        {
+            List<ProductsModel> dssp = new List<ProductsModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetOppo_Prd"; // Tên stored procedure
+
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    ProductsModel sanPham = new ProductsModel();
+                    {
+                        sanPham.MaSanPham = (int)reader["MaSanPham"];
+                        sanPham.MaChuyenMuc = (int)reader["MaChuyenMuc"];
+                        sanPham.TenSanPham = reader["TenSanPham"].ToString();
+                        sanPham.AnhSanPham = reader["AnhSanPham"].ToString();
+                        sanPham.Gia = (decimal)reader["Gia"];
+                        sanPham.GiaGiam = (decimal)reader["GiaGiam"];
+                        sanPham.SoLuong = (int)reader["SoLuong"];
+                        sanPham.SoLuongDaBan = (int)reader["SoLuongDaBan"];
+                        dssp.Add(sanPham);
+                    }
+                    // Thêm sản phẩm vào danh sách
+                }
+
+                connection.Close();
+                reader.Close();
+
+            }
+            return dssp;
+        }
+
+
+        public List<ProductsModel> GetListASUSProduct()
+        {
+            List<ProductsModel> dssp = new List<ProductsModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetAsus_Prd"; // Tên stored procedure
+
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    ProductsModel sanPham = new ProductsModel();
+                    {
+                        sanPham.MaSanPham = (int)reader["MaSanPham"];
+                        sanPham.MaChuyenMuc = (int)reader["MaChuyenMuc"];
+                        sanPham.TenSanPham = reader["TenSanPham"].ToString();
+                        sanPham.AnhSanPham = reader["AnhSanPham"].ToString();
+                        sanPham.Gia = (decimal)reader["Gia"];
+                        sanPham.GiaGiam = (decimal)reader["GiaGiam"];
+                        sanPham.SoLuong = (int)reader["SoLuong"];
+                        sanPham.SoLuongDaBan = (int)reader["SoLuongDaBan"];
+                        dssp.Add(sanPham);
+                    }
+                    // Thêm sản phẩm vào danh sách
+                }
+
+                connection.Close();
+                reader.Close();
+
+            }
+            return dssp;
+        }
+
+        public List<ProductsModel> GetLGTVProduct()
+        {
+            List<ProductsModel> dssp = new List<ProductsModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetLGTV_Prd"; // Tên stored procedure
+
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    ProductsModel sanPham = new ProductsModel();
+                    {
+                        sanPham.MaSanPham = (int)reader["MaSanPham"];
+                        sanPham.MaChuyenMuc = (int)reader["MaChuyenMuc"];
+                        sanPham.TenSanPham = reader["TenSanPham"].ToString();
+                        sanPham.AnhSanPham = reader["AnhSanPham"].ToString();
+                        sanPham.Gia = (decimal)reader["Gia"];
+                        sanPham.GiaGiam = (decimal)reader["GiaGiam"];
+                        sanPham.SoLuong = (int)reader["SoLuong"];
+                        sanPham.SoLuongDaBan = (int)reader["SoLuongDaBan"];
+                        dssp.Add(sanPham);
+                    }
+                    // Thêm sản phẩm vào danh sách
+                }
+
+                connection.Close();
+                reader.Close();
+
+            }
+            return dssp;
+        }
+
+        public List<ProductsModel> GetPanasonicProduct()
+        {
+            List<ProductsModel> dssp = new List<ProductsModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetPanasonic_Prd"; // Tên stored procedure
+
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    ProductsModel sanPham = new ProductsModel();
+                    {
+                        sanPham.MaSanPham = (int)reader["MaSanPham"];
+                        sanPham.MaChuyenMuc = (int)reader["MaChuyenMuc"];
+                        sanPham.TenSanPham = reader["TenSanPham"].ToString();
+                        sanPham.AnhSanPham = reader["AnhSanPham"].ToString();
+                        sanPham.Gia = (decimal)reader["Gia"];
+                        sanPham.GiaGiam = (decimal)reader["GiaGiam"];
+                        sanPham.SoLuong = (int)reader["SoLuong"];
+                        sanPham.SoLuongDaBan = (int)reader["SoLuongDaBan"];
+                        dssp.Add(sanPham);
+                    }
+                    // Thêm sản phẩm vào danh sách
+                }
+
+                connection.Close();
+                reader.Close();
+
+            }
+            return dssp;
+        }
+
+        public List<ProductsModel> GetAppleWatchProduct()
+        {
+            List<ProductsModel> dssp = new List<ProductsModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetAw_Prd"; // Tên stored procedure
+
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    ProductsModel sanPham = new ProductsModel();
+                    {
+                        sanPham.MaSanPham = (int)reader["MaSanPham"];
+                        sanPham.MaChuyenMuc = (int)reader["MaChuyenMuc"];
+                        sanPham.TenSanPham = reader["TenSanPham"].ToString();
+                        sanPham.AnhSanPham = reader["AnhSanPham"].ToString();
+                        sanPham.Gia = (decimal)reader["Gia"];
+                        sanPham.GiaGiam = (decimal)reader["GiaGiam"];
+                        sanPham.SoLuong = (int)reader["SoLuong"];
+                        sanPham.SoLuongDaBan = (int)reader["SoLuongDaBan"];
+                        dssp.Add(sanPham);
+                    }
+                    // Thêm sản phẩm vào danh sách
+                }
+
+                connection.Close();
+                reader.Close();
+
+            }
+            return dssp;
+        }
+
+
+        public List<ProductsModel> GetDELLProduct()
+        {
+            List<ProductsModel> dssp = new List<ProductsModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetDell_Prd"; // Tên stored procedure
+
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    ProductsModel sanPham = new ProductsModel();
+                    {
+                        sanPham.MaSanPham = (int)reader["MaSanPham"];
+                        sanPham.MaChuyenMuc = (int)reader["MaChuyenMuc"];
+                        sanPham.TenSanPham = reader["TenSanPham"].ToString();
+                        sanPham.AnhSanPham = reader["AnhSanPham"].ToString();
+                        sanPham.Gia = (decimal)reader["Gia"];
+                        sanPham.GiaGiam = (decimal)reader["GiaGiam"];
+                        sanPham.SoLuong = (int)reader["SoLuong"];
+                        sanPham.SoLuongDaBan = (int)reader["SoLuongDaBan"];
+                        dssp.Add(sanPham);
+                    }
+                    // Thêm sản phẩm vào danh sách
+                }
+
+                connection.Close();
+                reader.Close();
+
+            }
+            return dssp;
+        }
+
+        public List<ProductsModel> GetMSIProduct()
+        {
+            List<ProductsModel> dssp = new List<ProductsModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetMSI_Prd"; // Tên stored procedure
+
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    ProductsModel sanPham = new ProductsModel();
+                    {
+                        sanPham.MaSanPham = (int)reader["MaSanPham"];
+                        sanPham.MaChuyenMuc = (int)reader["MaChuyenMuc"];
+                        sanPham.TenSanPham = reader["TenSanPham"].ToString();
+                        sanPham.AnhSanPham = reader["AnhSanPham"].ToString();
+                        sanPham.Gia = (decimal)reader["Gia"];
+                        sanPham.GiaGiam = (decimal)reader["GiaGiam"];
+                        sanPham.SoLuong = (int)reader["SoLuong"];
+                        sanPham.SoLuongDaBan = (int)reader["SoLuongDaBan"];
+                        dssp.Add(sanPham);
+                    }
+                    // Thêm sản phẩm vào danh sách
+                }
+
+                connection.Close();
+                reader.Close();
+
+            }
+            return dssp;
+        }
+
+
+        public List<ProductsModel> GetSamsungProduct()
+        {
+            List<ProductsModel> dssp = new List<ProductsModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetSS_Prd"; // Tên stored procedure
+
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    ProductsModel sanPham = new ProductsModel();
+                    {
+                        sanPham.MaSanPham = (int)reader["MaSanPham"];
+                        sanPham.MaChuyenMuc = (int)reader["MaChuyenMuc"];
+                        sanPham.TenSanPham = reader["TenSanPham"].ToString();
+                        sanPham.AnhSanPham = reader["AnhSanPham"].ToString();
+                        sanPham.Gia = (decimal)reader["Gia"];
+                        sanPham.GiaGiam = (decimal)reader["GiaGiam"];
+                        sanPham.SoLuong = (int)reader["SoLuong"];
+                        sanPham.SoLuongDaBan = (int)reader["SoLuongDaBan"];
+                        dssp.Add(sanPham);
+                    }
+                    // Thêm sản phẩm vào danh sách
+                }
+
+                connection.Close();
+                reader.Close();
+
+            }
+            return dssp;
+        }
+
+        //get list các sản phâm
         //// Tìm kiếm khách hàng
         //public List<KhachHangModel> SearchKhachHang(int pageIndex, int pageSize, out long total, string tenkh, string diachi)
         //{

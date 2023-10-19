@@ -10,5 +10,13 @@ namespace BTL_NguyenVanTruong_.BLL.Interfaces
         List<ProductsModel> GetListProduct();
         List<ProductsModel> GetListMacProduct();
         List<ProductsModel> GetListIphoneProduct();
+        List<ProductsModel> GetListOppoProduct(); //9
+        List<ProductsModel> GetListASUSProduct(); // 2
+        List<ProductsModel> GetLGTVProduct(); // 8
+        List<ProductsModel> GetPanasonicProduct(); //13
+        List<ProductsModel> GetAppleWatchProduct(); //14
+        List<ProductsModel> GetDELLProduct(); //4
+        List<ProductsModel> GetMSIProduct(); //5
+        List<ProductsModel> GetSamsungProduct(); //16
     }
 }

@@ -45,6 +45,38 @@ namespace BTL_NguyenVanTruong_.BLL
         {
             return _res.GetListMacProduct();
         }
+        public List<ProductsModel> GetListOppoProduct()
+        {
+            return _res.GetListOppoProduct();
+        }
+        public List<ProductsModel> GetListASUSProduct()
+        {
+            return _res.GetListASUSProduct();
+        }
+        public List<ProductsModel> GetLGTVProduct()
+        {
+            return _res.GetLGTVProduct();
+        }
+        public List<ProductsModel> GetPanasonicProduct()
+        {
+            return _res.GetPanasonicProduct();
+        }
+        public List<ProductsModel> GetAppleWatchProduct()
+        {
+            return _res.GetAppleWatchProduct();
+        }
+        public List<ProductsModel> GetDELLProduct()
+        {
+            return _res.GetDELLProduct();
+        }
+        public List<ProductsModel> GetMSIProduct()
+        {
+            return _res.GetMSIProduct();
+        }
+        public List<ProductsModel> GetSamsungProduct()
+        {
+            return _res.GetSamsungProduct();
+        }
         //public List<KhachHangModel> SearchKhachHang(int pageIndex, int pageSize, out long total, string tenkh, string diachi)
         //{
         //    return _res.SearchKhachHang(pageIndex, pageSize, out total, tenkh, diachi);
