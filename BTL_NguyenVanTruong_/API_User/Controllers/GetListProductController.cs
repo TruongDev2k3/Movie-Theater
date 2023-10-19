@@ -7,5 +7,6 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
     [ApiController]
     public class GetListProductController : ControllerBase
     {
+
     }
 }
