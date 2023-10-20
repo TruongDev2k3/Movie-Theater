@@ -57,7 +57,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
                 TempData["errorMessage"] = "Dữ liệu chưa được lưu.";
                 return View();
             }
-            TempData["successMessage"] = "Lưu thông tin thành công";
+            TempData["successMessage"] = "Thêm thông tin khách hàng thành công";
             return RedirectToAction("Customers");
         }
 
