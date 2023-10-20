@@ -27,7 +27,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
 
                 if (productList == null || productList.Count == 0)
                 {
-                    return NotFound("Danh sách sản phẩm trống");
+                    return NotFound("Danh sách sản phẩm OPPO trống");
                 }
 
                 return Ok(productList);
@@ -47,7 +47,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
 
                 if (productList == null || productList.Count == 0)
                 {
-                    return NotFound("Danh sách sản phẩm trống");
+                    return NotFound("Danh sách sản phẩm ASUS trống");
                 }
 
                 return Ok(productList);
@@ -67,7 +67,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
 
                 if (productList == null || productList.Count == 0)
                 {
-                    return NotFound("Danh sách sản phẩm trống");
+                    return NotFound("Danh sách sản phẩm LGTV trống");
                 }
 
                 return Ok(productList);
@@ -87,7 +87,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
 
                 if (productList == null || productList.Count == 0)
                 {
-                    return NotFound("Danh sách sản phẩm trống");
+                    return NotFound("Danh sách sản phẩm PANASONIC trống");
                 }
 
                 return Ok(productList);
@@ -107,7 +107,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
 
                 if (productList == null || productList.Count == 0)
                 {
-                    return NotFound("Danh sách sản phẩm trống");
+                    return NotFound("Danh sách sản phẩm APPLE WATCH trống");
                 }
 
                 return Ok(productList);
@@ -127,7 +127,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
 
                 if (productList == null || productList.Count == 0)
                 {
-                    return NotFound("Danh sách sản phẩm trống");
+                    return NotFound("Danh sách sản phẩm DELL trống");
                 }
 
                 return Ok(productList);
@@ -147,7 +147,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
 
                 if (productList == null || productList.Count == 0)
                 {
-                    return NotFound("Danh sách sản phẩm trống");
+                    return NotFound("Danh sách sản phẩm MSI trống");
                 }
 
                 return Ok(productList);
