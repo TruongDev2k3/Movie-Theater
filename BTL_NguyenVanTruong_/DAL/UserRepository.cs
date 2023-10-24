@@ -47,11 +47,13 @@ namespace BTL_NguyenVanTruong_.DAL
                                 UserModel userModel = new UserModel
                                 {
                                     MaTaiKhoan = Convert.ToInt32(reader["MaTaiKhoan"]),
-                                    LoaiTaiKhoan = Convert.ToInt32(reader["LoaiTaiKhoan"]),
+                                    MaLoai = Convert.ToInt32(reader["MaLoai"]),
                                     TenTaiKhoan = reader["TenTaiKhoan"].ToString(),
                                     MatKhau = reader["MatKhau"].ToString(),
                                     Email = reader["Email"].ToString(),
-                                    Token = reader["Token"].ToString()
+                                    Loai = reader["Loai"].ToString(),
+                                    
+
                                 };
 
                                 connection.Close(); // Đóng kết nối ở đây để đảm bảo được đóng sau khi đọc dữ liệu.

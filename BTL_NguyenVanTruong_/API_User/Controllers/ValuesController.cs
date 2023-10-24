@@ -13,7 +13,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ValuesController : ControllerBase
     {
         private readonly IConfiguration _configuration;
@@ -24,17 +24,15 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
             _userBusiness = userBusiness;
             _khb = khb;
         }
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login([FromBody] AuthenticateModel model)
         {
-            
-            // Gọi hàm Login từ service hoặc repository của bạn
             var user = _userBusiness.Login(model.Username, model.Password);
 
             if (user != null)
             {
-                return Ok(new { taikhoan = user.TenTaiKhoan, email = user.Email, token = user.Token });
+                return Ok(new { taikhoan = user.TenTaiKhoan, email = user.Email, Loai = user.Loai , token = user.Token });
             }
             else
             {
@@ -42,7 +40,8 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
             }
         }
 
-        
+
+
         [HttpGet("getbyid/{id}")]
         public ActionResult<KhachHangModel> GetCustomerById(int id)
         {
