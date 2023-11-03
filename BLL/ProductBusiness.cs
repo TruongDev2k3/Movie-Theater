@@ -48,7 +48,10 @@ namespace BTL_NguyenVanTruong_.BLL
         {
             return _res.GetListProduct();
         }
-
+        public List<ProductsModel> SearchProduct(string tensp)
+        {
+            return _res.SearchProduct(tensp);
+        }
         //public List<KhachHangModel> SearchKhachHang(int pageIndex, int pageSize, out long total, string tenkh, string diachi)
         //{
         //    return _res.SearchKhachHang(pageIndex, pageSize, out total, tenkh, diachi);

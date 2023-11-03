@@ -11,5 +11,6 @@ namespace BTL_NguyenVanTruong_.DAL.Interfaces
         ProductsModel GetProductByMaSP(int masp);
         bool DeleteProduct(int masp);
         List<ProductsModel> GetListProduct(); // done
+        List<ProductsModel> SearchProduct(string tensp);
     }
 }

@@ -47,6 +47,9 @@ namespace BTL_NguyenVanTruong_.BLL
         {
             return _res.GetChuyenMuc();
         }
-
+        public List<ChuyenMucModel> SearchChuyenMuc(string tencm)
+        {
+            return _res.SearchChuyenMuc(tencm);
+        }
     }
 }

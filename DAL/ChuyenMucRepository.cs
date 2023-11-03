@@ -221,5 +221,46 @@ namespace DAL
                 return false;
             }
         }
+
+        public List<ChuyenMucModel> SearchChuyenMuc(string tencm)
+        {
+            List<ChuyenMucModel> dsachcm = new List<ChuyenMucModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "SearchChuyenMuc"; // Thay "SearchChuyenMuc" bằng tên stored procedure tương ứng
+
+                    // Thêm tham số đầu vào cho stored procedure
+                    command.Parameters.AddWithValue("@Keyword", tencm);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        ChuyenMucModel cm = new ChuyenMucModel();
+                        {
+                            cm.MaChuyenMuc = (int)reader["MaChuyenMuc"];
+                            cm.MaChuyenMucCha = (int)reader["MaChuyenMucCha"];
+                            cm.TenChuyenMuc = reader["TenChuyenMuc"].ToString();
+                            cm.NoiDung = reader["NoiDung"].ToString();
+                            dsachcm.Add(cm);
+                        }
+                    }
+
+                    reader.Close();
+                }
+
+                connection.Close();
+            }
+
+            return dsachcm;
+        }
+
+
     }
 }

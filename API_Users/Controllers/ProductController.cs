@@ -71,5 +71,24 @@ namespace BTL_NguyenVanTruong_.API_User.API
             var result = _prb.DeleteProduct(masp);
             return Ok(result);
         }
+        [HttpPost("searchprd")]
+        public ActionResult<List<ProductsModel>> SearchProduct(string tensp)
+        {
+            try
+            {
+                var productList = _prb.SearchProduct(tensp);
+
+                if (productList == null || productList.Count == 0)
+                {
+                    return NotFound("Danh sách sản phẩm trống");
+                }
+
+                return Ok(productList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi server: {ex.Message}");
+            }
+        }
     }
 }

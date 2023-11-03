@@ -36,9 +36,8 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
                 return StatusCode(500, $"Lỗi server: {ex.Message}");
             }
         }
-
         
-      
+
         [HttpGet("getbyid/{mcm}")]
         public ActionResult<ChuyenMucModel> GetCMbyID(int mcm)
         {
@@ -71,6 +70,26 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
         {
             var result = _prb.DeleteChuyenMuc(mcm);
             return Ok(result);
+        }
+
+        [HttpPost("searchcm")]
+        public ActionResult<List<ChuyenMucModel>> SearchChuyenMuc(string tencm)
+        {
+            try
+            {
+                var cmlist = _prb.SearchChuyenMuc(tencm);
+
+                if (cmlist == null || cmlist.Count == 0)
+                {
+                    return NotFound("Danh sách chuyên mục trống");
+                }
+
+                return Ok(cmlist);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi server: {ex.Message}");
+            }
         }
     }
 }

@@ -11,5 +11,6 @@ namespace BTL_NguyenVanTruong_.DAL.Interfaces
         ChuyenMucModel GetCMbyID(int mcm);
         bool DeleteChuyenMuc(int mcm);
         List<ChuyenMucModel> GetChuyenMuc();
+        List<ChuyenMucModel> SearchChuyenMuc(string tencm);
     }
 }
