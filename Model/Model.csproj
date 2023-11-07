@@ -223,6 +223,7 @@
   <ItemGroup>
     <Compile Include="AuthenticateModel.cs" />
     <Compile Include="ChuyenMucModel.cs" />
+    <Compile Include="CustomerModel.cs" />
     <Compile Include="ProductsModel.cs" />
     <Compile Include="UserModel.cs" />
   </ItemGroup>

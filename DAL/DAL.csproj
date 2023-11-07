@@ -232,8 +232,10 @@
     <Compile Include="Helper\DatabaseHelper.cs" />
     <Compile Include="Helper\Interfaces\IDatabaseHelper.cs" />
     <Compile Include="Interfaces\IChuyenMucRepository.cs" />
+    <Compile Include="Interfaces\IKhachHangRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="KhachHangRepository.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
@@ -242,7 +244,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />
