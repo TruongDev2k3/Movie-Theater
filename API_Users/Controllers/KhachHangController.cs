@@ -37,7 +37,7 @@ namespace API_Users.Controllers
 
 
         [HttpGet("getbyid/{id}")]
-        public ActionResult<ProductsModel> GetCustomerByID(int id)
+        public ActionResult<CustomerModel> GetCustomerByID(int id)
         {
             var product = _khb.GetCustomerByID(id);
 
@@ -70,7 +70,7 @@ namespace API_Users.Controllers
             return Ok(result);
         }
         [HttpPost("searchkh")]
-        public ActionResult<List<ProductsModel>> SearchProduct(string tukhoa)
+        public ActionResult<List<CustomerModel>> SearchProduct(string tukhoa)
         {
             try
             {

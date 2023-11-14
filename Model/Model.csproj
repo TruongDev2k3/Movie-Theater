@@ -224,6 +224,9 @@
     <Compile Include="AuthenticateModel.cs" />
     <Compile Include="ChuyenMucModel.cs" />
     <Compile Include="CustomerModel.cs" />
+    <Compile Include="HoaDonModel.cs" />
+    <Compile Include="OrderDataModel.cs" />
+    <Compile Include="OrderDetailsModel.cs" />
     <Compile Include="ProductsModel.cs" />
     <Compile Include="UserModel.cs" />
   </ItemGroup>

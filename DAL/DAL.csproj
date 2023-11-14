@@ -231,10 +231,14 @@
     <Compile Include="Helper\AppSettings.cs" />
     <Compile Include="Helper\DatabaseHelper.cs" />
     <Compile Include="Helper\Interfaces\IDatabaseHelper.cs" />
+    <Compile Include="HoaDonRepository.cs" />
     <Compile Include="Interfaces\IChuyenMucRepository.cs" />
+    <Compile Include="Interfaces\IHoaDonRepository.cs" />
     <Compile Include="Interfaces\IKhachHangRepository.cs" />
+    <Compile Include="Interfaces\IOrderRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="OrderRepository.cs" />
     <Compile Include="KhachHangRepository.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="UserRepository.cs" />
