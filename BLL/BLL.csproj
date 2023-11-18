@@ -222,7 +222,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChuyenMucBusiness.cs" />
+    <Compile Include="HoaDonBusiness.cs" />
     <Compile Include="Interfaces\IChuyenMucBusiness.cs" />
+    <Compile Include="Interfaces\IHoaDonBusiness.cs" />
     <Compile Include="Interfaces\IKhachHangBusiness.cs" />
     <Compile Include="Interfaces\IOrderBusiness.cs" />
     <Compile Include="Interfaces\IProductBusiness.cs" />

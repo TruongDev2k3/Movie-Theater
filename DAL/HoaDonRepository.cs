@@ -127,7 +127,7 @@ namespace DAL
 
 
         // Sửa thông tin khách hàng
-        public bool UpdateCustomer(CustomerModel model)
+        public bool UpdateHoaDon(HoaDonModel model)
         {
             try
             {
@@ -137,14 +137,18 @@ namespace DAL
 
                     _command = connection.CreateCommand();
                     _command.CommandType = CommandType.StoredProcedure;
-                    _command.CommandText = "UpdateKhachHang";
+                    _command.CommandText = "UpdateHoaDon";
 
-                    _command.Parameters.AddWithValue("@Id", model.Id);
+                    _command.Parameters.AddWithValue("@MaHoaDon", model.MaHoaDon);
+                    _command.Parameters.AddWithValue("@NgayTao", model.NgayTao);
+                    _command.Parameters.AddWithValue("@NgayDuyet", model.NgayDuyet); // Đặt ngày duyệt là ngày hiện tại
+                    _command.Parameters.AddWithValue("@TongGia", model.TongGia);
                     _command.Parameters.AddWithValue("@TenKH", model.TenKH);
                     _command.Parameters.AddWithValue("@GioiTinh", model.GioiTinh);
                     _command.Parameters.AddWithValue("@DiaChi", model.DiaChi);
-                    _command.Parameters.AddWithValue("@SDT", model.SDT);
                     _command.Parameters.AddWithValue("@Email", model.Email);
+                    _command.Parameters.AddWithValue("@SDT", model.SDT);
+                    
 
                     int rowsAffected = _command.ExecuteNonQuery();
                     connection.Close();
@@ -160,10 +164,10 @@ namespace DAL
         }
 
         // Lấy thông tin khách hàng theo id khách hàng
-        public CustomerModel GetCustomerByID(int id)
+        public HoaDonModel GetHoaDonbyID(int mhd)
         {
             // Khởi tạo khachhang
-            CustomerModel khachHang = new CustomerModel();
+            HoaDonModel hoadon = new HoaDonModel();
 
             try
             {
@@ -176,22 +180,26 @@ namespace DAL
                     _command = connection.CreateCommand();
                     // Định nghĩa kiểu của command là 1 thủ tục lưu trữ (không sử dụng câu lệnh sql)
                     _command.CommandType = CommandType.StoredProcedure;
-                    _command.CommandText = "GetKhachHangByID"; // Tên thủ tục lấy thông tin khách hàng
+                    _command.CommandText = "GetByMHD"; // Tên thủ tục lấy thông tin khách hàng
 
                     // Định nghĩa tham số cho thủ tục lưu trữ
-                    _command.Parameters.AddWithValue("@Id", id);
+                    _command.Parameters.AddWithValue("@MaHoaDon", mhd);
 
                     // Sử dụng SqlDataReader để đọc dữ liệu từ thủ tục lưu trữ
                     using (var reader = _command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            khachHang.Id = (int)reader["Id"];
-                            khachHang.TenKH = reader["TenKH"].ToString();
-                            khachHang.GioiTinh = reader["GioiTinh"].ToString();
-                            khachHang.DiaChi = reader["DiaChi"].ToString();
-                            khachHang.SDT = reader["SDT"].ToString();
-                            khachHang.Email = reader["Email"].ToString();
+                            hoadon.MaHoaDon = (int)reader["MaHoaDon"];
+                            hoadon.NgayTao = (DateTime)reader["NgayTao"];
+                            hoadon.NgayDuyet = (DateTime)reader["NgayTao"];
+                            hoadon.TongGia = (decimal)reader["TongGia"];
+                            hoadon.Id = (int)reader["Id"];
+                            hoadon.TenKH = reader["TenKH"].ToString();
+                            hoadon.GioiTinh = reader["GioiTinh"].ToString();
+                            hoadon.DiaChi = reader["DiaChi"].ToString();
+                            hoadon.Email = reader["Email"].ToString();
+                            hoadon.SDT = reader["SDT"].ToString();                         
                         }
                     }
                     connection.Close();
@@ -203,11 +211,11 @@ namespace DAL
                 Console.WriteLine("Lỗi khi lấy thông tin khách hàng: " + ex.Message);
             }
 
-            return khachHang;
+            return hoadon;
         }
 
         // Xóa thông tin khách hàng theo id khách hàng
-        public bool DeleteCustomer(int id)
+        public bool DeleteHoaDon(int mhd)
         {
             try
             {
@@ -221,10 +229,10 @@ namespace DAL
                     // Định nghĩa kiểu của command là 1 thủ tục lưu trữ (không sử dụng câu lệnh SQL)
                     command.CommandType = CommandType.StoredProcedure;
                     // Tên của thủ tục lưu trữ xóa khách hàng
-                    command.CommandText = "delete_kh"; // Thay thế "delete_KhachHang" bằng tên thực tế của thủ tục xóa
+                    command.CommandText = "DeleteHoaDon"; // Thay thế "delete_KhachHang" bằng tên thực tế của thủ tục xóa
 
                     // Định nghĩa tham số cho thủ tục lưu trữ
-                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@MaHoaDon", mhd);
 
                     // Thực hiện thủ tục lưu trữ và lấy số hàng bị ảnh hưởng
                     int rowsAffected = command.ExecuteNonQuery();
@@ -242,9 +250,9 @@ namespace DAL
         }
 
         // Tìm kiếm khách hàng
-        public List<CustomerModel> SearchKhachHang(string tukhoa)
+        public List<HoaDonModel> SearchHoaDon(string tenkh)
         {
-            List<CustomerModel> searchResult = new List<CustomerModel>();
+            List<HoaDonModel> searchResult = new List<HoaDonModel>();
 
             using (var connection = new SqlConnection(GetConnectionString()))
             {
@@ -254,10 +262,10 @@ namespace DAL
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "TimKiemKhachHang"; // Replace with the actual stored procedure name
+                    command.CommandText = "SearchHD"; // Replace with the actual stored procedure name
 
                     // Add parameter for the stored procedure
-                    command.Parameters.AddWithValue("@TuKhoa", tukhoa);
+                    command.Parameters.AddWithValue("@TuKhoa", tenkh);
 
                     // Execute the stored procedure and get the results
                     SqlDataReader reader = command.ExecuteReader();
@@ -265,15 +273,19 @@ namespace DAL
                     // Read data from the result set
                     while (reader.Read())
                     {
-                        CustomerModel khachHang = new CustomerModel();
+                        HoaDonModel hoadon = new HoaDonModel();
                         {
-                            khachHang.Id = (int)reader["Id"];
-                            khachHang.TenKH = reader["TenKH"].ToString();
-                            khachHang.GioiTinh = reader["GioiTinh"].ToString();
-                            khachHang.DiaChi = reader["DiaChi"].ToString();
-                            khachHang.SDT = reader["SDT"].ToString();
-                            khachHang.Email = reader["Email"].ToString();
-                            searchResult.Add(khachHang);
+                            hoadon.MaHoaDon = (int)reader["MaHoaDon"];
+                            hoadon.NgayTao = (DateTime)reader["NgayTao"];
+                            hoadon.NgayDuyet = (DateTime)reader["NgayTao"];
+                            hoadon.TongGia = (decimal)reader["TongGia"];
+                            hoadon.Id = (int)reader["Id"];
+                            hoadon.TenKH = reader["TenKH"].ToString();
+                            hoadon.GioiTinh = reader["GioiTinh"].ToString();
+                            hoadon.DiaChi = reader["DiaChi"].ToString();
+                            hoadon.Email = reader["Email"].ToString();
+                            hoadon.SDT = reader["SDT"].ToString();
+                            searchResult.Add(hoadon);
                         }
                     }
 
@@ -286,5 +298,4 @@ namespace DAL
             return searchResult;
         }
     }
-}
 }

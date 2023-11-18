@@ -26,6 +26,8 @@ builder.Services.AddTransient<IKhachHangRepository, KhachHangRepository>();
 builder.Services.AddTransient<IKhachHangBusiness, KhachHangBusiness>();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IOrderBusiness, OrderBusiness>();
+builder.Services.AddTransient<IHoaDonRepository, HoaDonRepository>();
+builder.Services.AddTransient<IHoaDonBusiness, HoaDonBusiness>();
 // configure strongly typed settings objects
 IConfiguration configuration = builder.Configuration;
 var appSettingsSection = configuration.GetSection("AppSettings");

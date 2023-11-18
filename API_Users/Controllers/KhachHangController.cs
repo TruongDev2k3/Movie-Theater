@@ -63,7 +63,7 @@ namespace API_Users.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("delete-product/{makh}")]
+        [HttpDelete("delete-kh/{makh}")]
         public ActionResult DeleteProduct(int makh)
         {
             var result = _khb.DeleteCustomer(makh);
