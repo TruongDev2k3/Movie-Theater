@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using BTL_NguyenVanTruong_.BLL;
 using BTL_NguyenVanTruong_.BLL.Interfaces;
 using MODEL;
+using Microsoft.AspNetCore.Authorization;
+
 namespace API_Users.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "ADMIN")]
     public class KhachHangController : ControllerBase
     {
         private readonly IConfiguration _configuration;
@@ -16,6 +19,7 @@ namespace API_Users.Controllers
             _khb = khb;
         }
         [HttpGet("getlistkh")]
+        
         public ActionResult<List<CustomerModel>> GetAllKhachHangs()
         {
             try
@@ -34,6 +38,7 @@ namespace API_Users.Controllers
                 return StatusCode(500, $"Lỗi server: {ex.Message}");
             }
         }
+
 
 
         [HttpGet("getbyid/{id}")]

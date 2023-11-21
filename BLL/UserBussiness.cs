@@ -13,6 +13,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System;
+using System.Collections.Generic;
 
 namespace BTL_NguyenVanTruong_.BLL
 {
@@ -38,27 +39,36 @@ namespace BTL_NguyenVanTruong_.BLL
             var user = _res.Login(taikhoan, matkhau);
             if (user == null)
                 return null;
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(secret);
+
+            // Tạo danh sách claims
+            var claims = new List<Claim>
+             {
+                 new Claim(ClaimTypes.Name, user.TenTaiKhoan.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email)
+            };
+
+            // Thêm claim cho vai trò (admin hoặc user)
+            claims.Add(new Claim(ClaimTypes.Role, user.Loai.ToString()));
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, user.TenTaiKhoan.ToString()),
-                    new Claim(ClaimTypes.Email, user.Email)
-                }),
+                Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
-
-                //SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Aes128CbcHmacSha256)
             };
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
+
             return user;
         }
 
-            // Nếu không tìm thấy người dùng
-        
+
+        // Nếu không tìm thấy người dùng
+
 
     }
 }

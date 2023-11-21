@@ -13,6 +13,8 @@ namespace BTL_NguyenVanTruong_.API_User.API
     {
         private readonly IConfiguration _configuration;
         private IProductBusiness _prb;
+        private readonly AppSettings _appSettings;
+        private ITools _tools;
         public ProductController(IProductBusiness prb)
         {
             _prb = prb;
