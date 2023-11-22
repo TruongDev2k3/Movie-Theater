@@ -15,9 +15,10 @@ namespace BTL_NguyenVanTruong_.API_User.API
         private IProductBusiness _prb;
         private readonly AppSettings _appSettings;
         private ITools _tools;
-        public ProductController(IProductBusiness prb)
+        public ProductController(IProductBusiness prb, ITools tools)
         {
             _prb = prb;
+            _tools = tools;
         }
         [HttpGet("getlistsp")]
         public ActionResult<List<ProductsModel>> GetProductById()
@@ -90,6 +91,33 @@ namespace BTL_NguyenVanTruong_.API_User.API
             catch (Exception ex)
             {
                 return StatusCode(500, $"Lỗi server: {ex.Message}");
+            }
+        }
+
+        [Route("upload")]
+        [HttpPost]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            try
+            {
+                if (file.Length > 0)
+                {
+                    string filePath = $"./Image/{file.FileName.Replace("-", "_").Replace("%", "")}";
+                    var fullPath = _tools.CreatePathFile(filePath);
+                    using (var fileStream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                    return Ok(new { filePath });
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Không thể upload tệp");
             }
         }
     }
