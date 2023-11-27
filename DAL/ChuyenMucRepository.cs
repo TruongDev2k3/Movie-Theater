@@ -124,7 +124,7 @@ namespace DAL
                     _command = connection.CreateCommand();
                     _command.CommandType = CommandType.StoredProcedure;
                     _command.CommandText = "UpdateChuyenMuc";
-
+                    _command.Parameters.AddWithValue("@MaChuyenMuc", model.MaChuyenMuc);
                     _command.Parameters.AddWithValue("@MaChuyenMucCha", model.MaChuyenMucCha);
                     _command.Parameters.AddWithValue("@TenChuyenMuc", model.TenChuyenMuc);
                     _command.Parameters.AddWithValue("@NoiDung", model.NoiDung);
