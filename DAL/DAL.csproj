@@ -227,11 +227,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountRepository.cs" />
     <Compile Include="ChuyenMucRepository.cs" />
     <Compile Include="Helper\AppSettings.cs" />
     <Compile Include="Helper\DatabaseHelper.cs" />
     <Compile Include="Helper\Interfaces\IDatabaseHelper.cs" />
     <Compile Include="HoaDonRepository.cs" />
+    <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\IChuyenMucRepository.cs" />
     <Compile Include="Interfaces\IHoaDonRepository.cs" />
     <Compile Include="Interfaces\IKhachHangRepository.cs" />
@@ -245,9 +247,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />

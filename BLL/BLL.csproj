@@ -221,8 +221,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountBusiness.cs" />
     <Compile Include="ChuyenMucBusiness.cs" />
     <Compile Include="HoaDonBusiness.cs" />
+    <Compile Include="Interfaces\IAccountBusiness.cs" />
     <Compile Include="Interfaces\IChuyenMucBusiness.cs" />
     <Compile Include="Interfaces\IHoaDonBusiness.cs" />
     <Compile Include="Interfaces\IKhachHangBusiness.cs" />
@@ -245,9 +247,6 @@
       <Project>{e45852e5-b6f6-4d1b-b7dd-9924dda3a3ad}</Project>
       <Name>Model</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />
