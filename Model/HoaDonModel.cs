@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MODEL
 {
     public class HoaDonModel
-    {
+	{
         public int MaHoaDon { get; set; }
         public DateTime NgayTao { get; set; }
         public DateTime NgayDuyet { get; set; }

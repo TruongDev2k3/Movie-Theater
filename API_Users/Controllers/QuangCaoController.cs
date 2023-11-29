@@ -19,7 +19,7 @@ namespace API_Users.Controllers
         }
         [HttpGet("getlistQC")]
 
-        public ActionResult<List<CustomerModel>> GetQuangCao()
+        public ActionResult<List<QuangCaoModel>> GetQuangCao()
         {
             try
             {

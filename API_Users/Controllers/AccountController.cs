@@ -42,7 +42,7 @@ namespace API_Users.Controllers
 
 
         [HttpGet("getbyid/{mtk}")]
-        public ActionResult<CustomerModel> GetCustomerByID(int mtk)
+        public ActionResult<AccountModel> GetAccountbyID(int mtk)
         {
             var acc = _acc.GetAccountbyID(mtk);
 

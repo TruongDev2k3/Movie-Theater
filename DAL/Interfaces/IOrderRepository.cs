@@ -5,7 +5,6 @@ using MODEL;
 using DAL.Helper;
 using BTL_NguyenVanTruong_.DAL.Interfaces;
 using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 using System.IO;
 namespace BTL_NguyenVanTruong_.DAL.Interfaces
 {
