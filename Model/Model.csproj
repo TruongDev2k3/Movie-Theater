@@ -229,6 +229,7 @@
     <Compile Include="OrderDataModel.cs" />
     <Compile Include="OrderDetailsModel.cs" />
     <Compile Include="ProductsModel.cs" />
+    <Compile Include="QuangCaoModel.cs" />
     <Compile Include="UserModel.cs" />
   </ItemGroup>
   <ItemGroup>

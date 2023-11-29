@@ -239,10 +239,12 @@
     <Compile Include="Interfaces\IKhachHangRepository.cs" />
     <Compile Include="Interfaces\IOrderRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
+    <Compile Include="Interfaces\IQuangCaoRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="OrderRepository.cs" />
     <Compile Include="KhachHangRepository.cs" />
     <Compile Include="ProductRepository.cs" />
+    <Compile Include="QuangCaoRepository.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

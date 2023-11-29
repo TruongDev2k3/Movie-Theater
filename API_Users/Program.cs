@@ -31,6 +31,8 @@ builder.Services.AddTransient<IHoaDonBusiness, HoaDonBusiness>();
 builder.Services.AddTransient<ITools, Tools>();
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
 builder.Services.AddTransient<IAccountBusiness, AccountBusiness>();
+builder.Services.AddTransient<IQuangCaoRepository, QuangCaoRepository>();
+builder.Services.AddTransient<IQuangCaoBusiness, QuangCaoBusiness>();
 // configure strongly typed settings objects
 IConfiguration configuration = builder.Configuration;
 var appSettingsSection = configuration.GetSection("AppSettings");
