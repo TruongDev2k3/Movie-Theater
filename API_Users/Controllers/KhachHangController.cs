@@ -20,7 +20,7 @@ namespace API_Users.Controllers
         }
         [HttpGet("getlistkh")]
         
-        public ActionResult<List<CustomerModel>> GetAllKhachHangs()
+        public ActionResult<List<CustomerModel>> GetAllKhachHangs() 
         {
             try
             {
