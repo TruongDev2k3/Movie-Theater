@@ -102,7 +102,7 @@ namespace BTL_NguyenVanTruong_.API_User.API
             {
                 if (file.Length > 0)
                 {
-                    string filePath = $"{file.FileName.Replace("-", "_").Replace("%", "")}";
+                    string filePath = $"./Image/{file.FileName.Replace("-", "_").Replace("%", "")}";
                     var fullPath = _tools.CreatePathFile(filePath);
                     using (var fileStream = new FileStream(fullPath, FileMode.Create))
                     {

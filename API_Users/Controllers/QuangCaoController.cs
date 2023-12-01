@@ -60,14 +60,14 @@ namespace API_Users.Controllers
             return Ok(result);
         }
 
-        [HttpPut("update-kh")]
+        [HttpPut("update-qc")]
         public ActionResult UpdateQuangCao([FromBody] QuangCaoModel model)
         {
             var result = _khb.UpdateQuangCao(model);
             return Ok(result);
         }
 
-        [HttpDelete("delete-kh/{makh}")]
+        [HttpDelete("delete-qc/{maqc}")]
         public ActionResult DeleteQuangCao(int maqc)
         {
             var result = _khb.DeleteQuangCao(maqc);
