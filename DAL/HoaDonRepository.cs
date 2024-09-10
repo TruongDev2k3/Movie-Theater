@@ -63,6 +63,8 @@ namespace DAL
                         hoadon.DiaChi = reader["DiaChi"].ToString();
                         hoadon.Email = reader["Email"].ToString();
                         hoadon.SDT = reader["SDT"].ToString();
+                        hoadon.TrangThai = reader["TrangThai"].ToString();
+
                         dshoadon.Add(hoadon);
                     }
 

@@ -102,8 +102,10 @@ namespace BTL_NguyenVanTruong_.API_User.API
             {
                 if (file.Length > 0)
                 {
-                    string filePath = $"./Image/{file.FileName.Replace("-", "_").Replace("%", "")}";
-                    var fullPath = _tools.CreatePathFile(filePath);
+                    string filePath = $"/Image/{file.FileName.Replace("-", "_").Replace("%", "")}";
+                    string filePaths = $"{file.FileName.Replace("-", "_").Replace("%", "")}";
+
+                    var fullPath = _tools.CreatePathFile(filePaths);
                     using (var fileStream = new FileStream(fullPath, FileMode.Create))
                     {
                         await file.CopyToAsync(fileStream);

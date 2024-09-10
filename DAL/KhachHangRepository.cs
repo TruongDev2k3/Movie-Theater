@@ -58,10 +58,11 @@ namespace DAL
                         khachHang.DiaChi = reader["DiaChi"].ToString();
                         khachHang.SDT = reader["SDT"].ToString();
                         khachHang.Email = reader["Email"].ToString();
-                        danhSachKhachHang.Add(khachHang);
+                        //danhSachKhachHang.Add(khachHang);
                     }
 
-                    // Thêm khách hàng vào danh sách
+                    // Thêm khách hàng vào danh sách.
+                    danhSachKhachHang.Add(khachHang);
 
                 }
                 connection.Close();

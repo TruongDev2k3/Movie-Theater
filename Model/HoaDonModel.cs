@@ -18,5 +18,6 @@ namespace MODEL
 		public string DiaChi { get; set; }
 		public string SDT { get; set; }
 		public string Email { get; set; }
-	}
+        public string TrangThai { get; set; }
+    }
 }
