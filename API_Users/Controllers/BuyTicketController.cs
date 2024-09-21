@@ -46,7 +46,7 @@ namespace API_Users.Controllers
 
                 if (foodlist == null || foodlist.Count == 0)
                 {
-                    return NotFound("Danh sách khách hàng trống");
+                    return NotFound("Danh sách đồ ăn hàng trống");
                 }
 
                 return Ok(foodlist);
