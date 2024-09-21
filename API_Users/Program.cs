@@ -8,6 +8,9 @@ using System.Text;
 using BTL_NguyenVanTruong_;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using DAL;
+using BLL;
+using DAL.Interfaces;
+using BLL.Interfaces;
 
 
 
@@ -18,21 +21,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserBussiness, UserBussiness>();
-builder.Services.AddTransient<IProductRepository, ProductRepository>();
-builder.Services.AddTransient<IProductBusiness, ProductBusiness>();
-builder.Services.AddTransient<IChuyenMucRepository, ChuyenMucRepository>();
-builder.Services.AddTransient<IChuyenMucBusiness, ChuyenMucBusiness>();
-builder.Services.AddTransient<IKhachHangRepository, KhachHangRepository>();
-builder.Services.AddTransient<IKhachHangBusiness, KhachHangBusiness>();
-builder.Services.AddTransient<IOrderRepository, OrderRepository>();
-builder.Services.AddTransient<IOrderBusiness, OrderBusiness>();
-builder.Services.AddTransient<IHoaDonRepository, HoaDonRepository>();
-builder.Services.AddTransient<IHoaDonBusiness, HoaDonBusiness>();
+builder.Services.AddTransient<IMovieRepository, MovieRepository>();
+builder.Services.AddTransient<IMovieBusiness, MovieBusiness>();
 builder.Services.AddTransient<ITools, Tools>();
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
 builder.Services.AddTransient<IAccountBusiness, AccountBusiness>();
-builder.Services.AddTransient<IQuangCaoRepository, QuangCaoRepository>();
-builder.Services.AddTransient<IQuangCaoBusiness, QuangCaoBusiness>();
+builder.Services.AddTransient<ISeatStatusRepository, SeatStatusRepository>();
+builder.Services.AddTransient<ISeatStatusBussiness, SeatStatusBusiness>();
+builder.Services.AddTransient<IFoodRepository, FoodRepository>();
+builder.Services.AddTransient<IFoodBusiness, FoodBusiness>();
 // configure strongly typed settings objects
 IConfiguration configuration = builder.Configuration;
 var appSettingsSection = configuration.GetSection("AppSettings");

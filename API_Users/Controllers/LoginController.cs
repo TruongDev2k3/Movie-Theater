@@ -45,7 +45,7 @@ namespace BTL_NguyenVanTruong_.API_User.Controllers
                 // Gán principal cho người dùng
                 HttpContext.SignInAsync(principal);
 
-                return Ok(new { taikhoan = user.TenTaiKhoan, email = user.Email, Loai = user.Loai, token = user.Token });
+                return Ok(new { id = user.MaTaiKhoan, taikhoan = user.TenTaiKhoan, email = user.Email, Loai = user.Loai, token = user.Token, name = user.nameUsser });
             }
             else
             {

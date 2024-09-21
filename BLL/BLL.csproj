@@ -222,21 +222,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountBusiness.cs" />
-    <Compile Include="ChuyenMucBusiness.cs" />
-    <Compile Include="HoaDonBusiness.cs" />
+    <Compile Include="FoodBusiness.cs" />
     <Compile Include="Interfaces\IAccountBusiness.cs" />
-    <Compile Include="Interfaces\IChuyenMucBusiness.cs" />
-    <Compile Include="Interfaces\IHoaDonBusiness.cs" />
-    <Compile Include="Interfaces\IKhachHangBusiness.cs" />
-    <Compile Include="Interfaces\IOrderBusiness.cs" />
-    <Compile Include="Interfaces\IProductBusiness.cs" />
-    <Compile Include="Interfaces\IQuangCaoBusiness.cs" />
+    <Compile Include="Interfaces\IFoodBusiness.cs" />
+    <Compile Include="Interfaces\IMovieBusiness.cs" />
+    <Compile Include="Interfaces\ISeatStatusBussiness.cs" />
     <Compile Include="Interfaces\IUserBussiness.cs" />
-    <Compile Include="KhachHangBusiness.cs" />
-    <Compile Include="OrderBusiness.cs" />
-    <Compile Include="ProductBusiness.cs" />
+    <Compile Include="MovieBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuangCaoBusiness.cs" />
+    <Compile Include="SeatStatusBusiness.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="UserBussiness.cs" />
   </ItemGroup>

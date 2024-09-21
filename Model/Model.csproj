@@ -223,13 +223,14 @@
   <ItemGroup>
     <Compile Include="AccountModel.cs" />
     <Compile Include="AuthenticateModel.cs" />
-    <Compile Include="ChuyenMucModel.cs" />
-    <Compile Include="CustomerModel.cs" />
-    <Compile Include="HoaDonModel.cs" />
-    <Compile Include="OrderDataModel.cs" />
-    <Compile Include="OrderDetailsModel.cs" />
-    <Compile Include="ProductsModel.cs" />
-    <Compile Include="QuangCaoModel.cs" />
+    <Compile Include="DayshowModel.cs" />
+    <Compile Include="FilmAndShowTimeModel.cs" />
+    <Compile Include="FoodModel.cs" />
+    <Compile Include="MovieModel.cs" />
+    <Compile Include="PremiereModel.cs" />
+    <Compile Include="SeatStatusModel.cs" />
+    <Compile Include="ShowtimeModel.cs" />
+    <Compile Include="TicketModel.cs" />
     <Compile Include="UserModel.cs" />
   </ItemGroup>
   <ItemGroup>

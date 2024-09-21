@@ -34,7 +34,7 @@ namespace DAL
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("UserLogin", connection))
+                using (SqlCommand command = new SqlCommand("CheckLogins", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -50,12 +50,12 @@ namespace DAL
                                 UserModel userModel = new UserModel
                                 {
                                     MaTaiKhoan = Convert.ToInt32(reader["MaTaiKhoan"]),
-                                    MaLoai = Convert.ToInt32(reader["MaLoai"]),
+                                    MaLoai = Convert.ToInt32(reader["LoaiTaiKhoan"]),
                                     TenTaiKhoan = reader["TenTaiKhoan"].ToString(),
                                     MatKhau = reader["MatKhau"].ToString(),
                                     Email = reader["Email"].ToString(),
                                     Loai = reader["Loai"].ToString(),
-                                    
+                                    nameUsser = reader["nameUsser"].ToString(),
 
                                 };
 

@@ -228,23 +228,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountRepository.cs" />
-    <Compile Include="ChuyenMucRepository.cs" />
+    <Compile Include="FoodRepository.cs" />
     <Compile Include="Helper\AppSettings.cs" />
     <Compile Include="Helper\DatabaseHelper.cs" />
     <Compile Include="Helper\Interfaces\IDatabaseHelper.cs" />
-    <Compile Include="HoaDonRepository.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
-    <Compile Include="Interfaces\IChuyenMucRepository.cs" />
-    <Compile Include="Interfaces\IHoaDonRepository.cs" />
-    <Compile Include="Interfaces\IKhachHangRepository.cs" />
-    <Compile Include="Interfaces\IOrderRepository.cs" />
-    <Compile Include="Interfaces\IProductRepository.cs" />
-    <Compile Include="Interfaces\IQuangCaoRepository.cs" />
+    <Compile Include="Interfaces\IFoodRepository.cs" />
+    <Compile Include="Interfaces\IMovieRepository.cs" />
+    <Compile Include="Interfaces\ISeatStatusRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
-    <Compile Include="OrderRepository.cs" />
-    <Compile Include="KhachHangRepository.cs" />
-    <Compile Include="ProductRepository.cs" />
-    <Compile Include="QuangCaoRepository.cs" />
+    <Compile Include="MovieRepository.cs" />
+    <Compile Include="SeatStatusRepository.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

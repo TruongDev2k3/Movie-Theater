@@ -1,16 +1,7 @@
 ﻿using MODEL;
-using BTL_NguyenVanTruong_.DAL.Interfaces;
 using BTL_NguyenVanTruong_.BLL;
 using BTL_NguyenVanTruong_.BLL.Interfaces;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Net.Sockets;
-using System.Security.Claims;
-using System.Text;
-using System.Data.SqlClient;
-using System.Data;
-using System.IO;
 using System.Collections.Generic;
 using DAL;
 namespace BTL_NguyenVanTruong_.BLL
