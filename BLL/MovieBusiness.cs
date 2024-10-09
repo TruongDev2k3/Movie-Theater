@@ -46,5 +46,17 @@ namespace BLL
         {
             return _res.OrderTicket(model);
         }
+        public bool CreateMovie(MovieModel model)
+        {
+            return _res.CreateMovie(model);
+        }
+        public bool UpdateMovie(MovieModel model)
+        {
+            return _res.UpdateMovie(model);
+        }
+        public bool DeleteMovie(int movieId)
+        {
+            return _res.DeleteMovie(movieId);
+        }
     }
 }

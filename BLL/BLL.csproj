@@ -222,8 +222,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountBusiness.cs" />
+    <Compile Include="CategoryBusiness.cs" />
     <Compile Include="FoodBusiness.cs" />
     <Compile Include="Interfaces\IAccountBusiness.cs" />
+    <Compile Include="Interfaces\ICategoryBusiness.cs" />
     <Compile Include="Interfaces\IFoodBusiness.cs" />
     <Compile Include="Interfaces\IMovieBusiness.cs" />
     <Compile Include="Interfaces\ISeatStatusBussiness.cs" />

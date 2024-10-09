@@ -228,11 +228,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountRepository.cs" />
+    <Compile Include="CategoryRepository.cs" />
     <Compile Include="FoodRepository.cs" />
     <Compile Include="Helper\AppSettings.cs" />
     <Compile Include="Helper\DatabaseHelper.cs" />
     <Compile Include="Helper\Interfaces\IDatabaseHelper.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
+    <Compile Include="Interfaces\ICategoryRepository.cs" />
     <Compile Include="Interfaces\IFoodRepository.cs" />
     <Compile Include="Interfaces\IMovieRepository.cs" />
     <Compile Include="Interfaces\ISeatStatusRepository.cs" />

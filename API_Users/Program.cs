@@ -30,6 +30,8 @@ builder.Services.AddTransient<ISeatStatusRepository, SeatStatusRepository>();
 builder.Services.AddTransient<ISeatStatusBussiness, SeatStatusBusiness>();
 builder.Services.AddTransient<IFoodRepository, FoodRepository>();
 builder.Services.AddTransient<IFoodBusiness, FoodBusiness>();
+builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+builder.Services.AddTransient<ICategoryBusiness, CategoryBusiness>();
 // configure strongly typed settings objects
 IConfiguration configuration = builder.Configuration;
 var appSettingsSection = configuration.GetSection("AppSettings");

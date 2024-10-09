@@ -1,24 +1,24 @@
-﻿using DAL.Helper;
-using BTL_NguyenVanTruong_.DAL.Interfaces;
+﻿using DAL.Interfaces;
+using Microsoft.Extensions.Configuration;
 using MODEL;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Data;
-using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-using System.IO;
+using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class AccountRepository : IAccountRepository
+    public class CategoryRepository : ICategoryRepository
     {
         SqlConnection _connection = null;
         SqlCommand _command = null;
         public static IConfiguration _configuration { get; set; }
 
-        public AccountRepository(IConfiguration configuration)
+        public CategoryRepository(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -29,9 +29,9 @@ namespace DAL
             return _configuration.GetConnectionString("DefaultConnection");
         }
 
-        public List<AccountModel> GetAccount()
+        public List<CategoryModel> GetCategory()
         {
-            List<AccountModel> acc = new List<AccountModel>();
+            List<CategoryModel> ctg = new List<CategoryModel>();
 
             using (var connection = new SqlConnection(GetConnectionString()))
             {
@@ -41,33 +41,31 @@ namespace DAL
                 _command = connection.CreateCommand();
                 // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
                 _command.CommandType = CommandType.StoredProcedure;
-                _command.CommandText = "LayDanhSachTaiKhoan"; // Tên stored procedure
+                _command.CommandText = "sp_GetAllCategories"; // Tên stored procedure
                 // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
                 SqlDataReader reader = _command.ExecuteReader();
                 // Đọc dữ liệu từ kết quả trả về
                 while (reader.Read())
                 {
-                    AccountModel ac = new AccountModel();
+                    CategoryModel tl = new CategoryModel();
                     {
-                        ac.MaTaiKhoan = (int)reader["MaTaiKhoan"];
-                        ac.MaLoai = (int)reader["MaLoai"];
-                        ac.TenTaiKhoan = reader["TenTaiKhoan"].ToString();
-                        ac.MatKhau = reader["MatKhau"].ToString();
-                        ac.Email = reader["Email"].ToString();
-                        ac.Loai = reader["Loai"].ToString();
-                        acc.Add(ac);
+                        tl.IdCategory = (int)reader["id_category"];
+                        tl.Category = reader["category"].ToString();
+                        tl.DescriptionCtg = reader["descriptionCtg"].ToString();
+                        
+                        ctg.Add(tl);
                     }
                 }
                 connection.Close();
                 reader.Close();
 
             }
-            return acc;
+            return ctg;
         }
 
 
 
-        public bool CreateAccount(AccountModel model)
+        public bool CreateCategory(CategoryModel model)
         {
 
             try
@@ -83,15 +81,13 @@ namespace DAL
                     // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
                     _command.CommandType = CommandType.StoredProcedure;
                     // Tên của thủ tục lưu trữ
-                    _command.CommandText = "ThemTaiKhoan";
+                    _command.CommandText = "sp_AddCategory";
 
                     // Định nghĩa các tham số cho thủ tục lưu trữ
                     //Parameters.AddWithValue() : định nghĩa các giá trị tham số và gán giá trị cho chúng.
-                    _command.Parameters.AddWithValue("@MaLoai", model.MaLoai);
-                    _command.Parameters.AddWithValue("@TenTaiKhoan", model.TenTaiKhoan);
-                    _command.Parameters.AddWithValue("@MatKhau", model.MatKhau);
-                    _command.Parameters.AddWithValue("@Email", model.Email);
-                    _command.Parameters.AddWithValue("@Loai", model.Loai);
+                    _command.Parameters.AddWithValue("@Category", model.Category);
+                    _command.Parameters.AddWithValue("@DescriptionCtg", model.DescriptionCtg);
+                    
 
                     // Thực hiện thủ tục lưu trữ và lấy số hàng bị ảnh hưởng
                     rowsAffected = _command.ExecuteNonQuery();
@@ -103,15 +99,15 @@ namespace DAL
             catch (Exception ex)
             {
                 // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
-                Console.WriteLine("Lỗi khi thêm khách hàng: " + ex.Message);
+                Console.WriteLine("Lỗi khi thêm thể loại: " + ex.Message);
                 return false;
             }
         }
 
 
 
-        // Sửa thông tin khách hàng
-        public bool UpdateAccount(AccountModel model)
+        // Sửa thông tin thể loại
+        public bool UpdateCategory(CategoryModel model)
         {
             try
             {
@@ -121,13 +117,11 @@ namespace DAL
 
                     _command = connection.CreateCommand();
                     _command.CommandType = CommandType.StoredProcedure;
-                    _command.CommandText = "SuaTaiKhoan";
-                    _command.Parameters.AddWithValue("@MaTaiKhoan", model.MaTaiKhoan);
-                    _command.Parameters.AddWithValue("@MaLoai", model.MaLoai);
-                    _command.Parameters.AddWithValue("@TenTaiKhoan", model.TenTaiKhoan);
-                    _command.Parameters.AddWithValue("@MatKhau", model.MatKhau);
-                    _command.Parameters.AddWithValue("@Email", model.Email);
-                    _command.Parameters.AddWithValue("@Loai", model.Loai);
+                    _command.CommandText = "sp_UpdateCategory";
+                    _command.Parameters.AddWithValue("@IdCategory", model.IdCategory);
+                    _command.Parameters.AddWithValue("@Category", model.Category);
+                    _command.Parameters.AddWithValue("@DescriptionCtg", model.DescriptionCtg);
+          
 
                     int rowsAffected = _command.ExecuteNonQuery();
                     connection.Close();
@@ -142,11 +136,11 @@ namespace DAL
             }
         }
 
-        // Lấy thông tin khách hàng theo id khách hàng
-       
+        // Lấy thông tin thể loại theo id thể loại
 
-        // Xóa thông tin khách hàng theo id khách hàng
-        public bool DeleteAccount(int mtk)
+
+        // Xóa thông tin thể loại theo id thể loại
+        public bool DeleteCategory(int mtl)
         {
             try
             {
@@ -159,11 +153,11 @@ namespace DAL
                     SqlCommand command = connection.CreateCommand();
                     // Định nghĩa kiểu của command là 1 thủ tục lưu trữ (không sử dụng câu lệnh SQL)
                     command.CommandType = CommandType.StoredProcedure;
-                    // Tên của thủ tục lưu trữ xóa khách hàng
-                    command.CommandText = "XoaTaiKhoan"; // Thay thế "delete_KhachHang" bằng tên thực tế của thủ tục xóa
+                    // Tên của thủ tục lưu trữ xóa thể loại
+                    command.CommandText = "sp_DeleteCategory"; // Thay thế "delete_KhachHang" bằng tên thực tế của thủ tục xóa
 
                     // Định nghĩa tham số cho thủ tục lưu trữ
-                    command.Parameters.AddWithValue("@MaTaiKhoan", mtk);
+                    command.Parameters.AddWithValue("@IdCategory", mtl);
 
                     // Thực hiện thủ tục lưu trữ và lấy số hàng bị ảnh hưởng
                     int rowsAffected = command.ExecuteNonQuery();
@@ -175,14 +169,14 @@ namespace DAL
             catch (Exception ex)
             {
                 // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
-                Console.WriteLine("Lỗi khi xóa khách hàng: " + ex.Message);
+                Console.WriteLine("Lỗi khi xóa thể loại: " + ex.Message);
                 return false;
             }
         }
-        public AccountModel GetAccountbyID(int mtk)
+        public CategoryModel GetCategorybyID(int mtl)
         {
             // Khởi tạo khachhang
-            AccountModel ac = new AccountModel();
+            CategoryModel tl = new CategoryModel();
 
             try
             {
@@ -195,22 +189,20 @@ namespace DAL
                     _command = connection.CreateCommand();
                     // Định nghĩa kiểu của command là 1 thủ tục lưu trữ (không sử dụng câu lệnh sql)
                     _command.CommandType = CommandType.StoredProcedure;
-                    _command.CommandText = "LayTaiKhoanTheoMa"; // Tên thủ tục lấy thông tin khách hàng
+                    _command.CommandText = "sp_GetCategoryById"; // Tên thủ tục lấy thông tin thể loại
 
                     // Định nghĩa tham số cho thủ tục lưu trữ
-                    _command.Parameters.AddWithValue("@MaTaiKhoan", mtk);
+                    _command.Parameters.AddWithValue("@IdCategory", mtl);
 
                     // Sử dụng SqlDataReader để đọc dữ liệu từ thủ tục lưu trữ
                     using (var reader = _command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            ac.MaTaiKhoan = (int)reader["MaTaiKhoan"];
-                            ac.MaLoai = (int)reader["MaLoai"];
-                            ac.TenTaiKhoan = reader["TenTaiKhoan"].ToString();
-                            ac.MatKhau = reader["MatKhau"].ToString();
-                            ac.Email = reader["Email"].ToString();
-                            ac.Loai = reader["Loai"].ToString();
+                            tl.IdCategory = (int)reader["id_category"];
+                            tl.Category = reader["category"].ToString();
+                            tl.DescriptionCtg = reader["descriptionCtg"].ToString();
+
                         }
                     }
                     connection.Close();
@@ -219,54 +211,11 @@ namespace DAL
             catch (Exception ex)
             {
                 // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
-                Console.WriteLine("Lỗi khi lấy thông tin khách hàng: " + ex.Message);
+                Console.WriteLine("Lỗi khi lấy thông tin thể loại: " + ex.Message);
             }
 
-            return ac;
+            return tl;
         }
-        // Tìm kiếm khách hàng
-        public List<AccountModel> SearchAccount(string tk)
-        {
-            List<AccountModel> searchResult = new List<AccountModel>();
-
-            using (var connection = new SqlConnection(GetConnectionString()))
-            {
-                connection.Open();
-
-                // Create a SqlCommand object to call the stored procedure
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "SearchAccount"; // Replace with the actual stored procedure name
-
-                    // Add parameter for the stored procedure
-                    command.Parameters.AddWithValue("@TuKhoa", tk);
-
-                    // Execute the stored procedure and get the results
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    // Read data from the result set
-                    while (reader.Read())
-                    {
-                        AccountModel ac = new AccountModel();
-                        {
-                            ac.MaTaiKhoan = (int)reader["MaTaiKhoan"];
-                            ac.MaLoai = (int)reader["MaLoai"];
-                            ac.TenTaiKhoan = reader["TenTaiKhoan"].ToString();
-                            ac.MatKhau = reader["MatKhau"].ToString();
-                            ac.Email = reader["Email"].ToString();
-                            ac.Loai = reader["Loai"].ToString();
-                            searchResult.Add(ac);
-                        }
-                    }
-
-                    reader.Close();
-                }
-
-                connection.Close();
-            }
-
-            return searchResult;
-        }
+        
     }
 }

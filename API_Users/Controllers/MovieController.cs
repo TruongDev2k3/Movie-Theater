@@ -13,13 +13,40 @@ namespace API_Users.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
         private IMovieBusiness _mv;
-        public MovieController(IMovieBusiness mv)
+        private ITools _tools;
+
+        public MovieController(IMovieBusiness mv,ITools tools)
         {
             _mv = mv;
+            _tools = tools;
         }
-
+        [Route("upload")]
+        [HttpPost]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            try
+            {
+                if (file.Length > 0)
+                {
+                    string filePath = $"/img/{file.FileName.Replace("-", "_").Replace("%", "")}";
+                    var fullPath = _tools.CreatePathFile(filePath);
+                    using (var fileStream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                    return Ok(new { filePath });
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Không thể upload tệp");
+            }
+        }
         [HttpGet("get-list-movie")]
         public ActionResult<List<MovieModel>> GetMovie()
         {
@@ -99,6 +126,27 @@ namespace API_Users.Controllers
         public ActionResult OrderTicket([FromBody] TicketModel model)
         {
             var result = _mv.OrderTicket(model);
+            return Ok(result);
+        }
+
+        [HttpPost("create-movie")]
+        public ActionResult CreateMovie([FromBody] MovieModel model)
+        {
+            var result = _mv.CreateMovie(model);
+            return Ok(result);
+        }
+
+        [HttpPut("update-movie")]
+        public ActionResult UpdateMovie([FromBody] MovieModel model)
+        {
+            var result = _mv.UpdateMovie(model);
+            return Ok(result);
+        }
+
+        [HttpDelete("delete-movie/{movieId}")]
+        public ActionResult DeleteMovie(int movieId)
+        {
+            var result = _mv.DeleteMovie(movieId);
             return Ok(result);
         }
     }

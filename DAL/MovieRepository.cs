@@ -85,7 +85,7 @@ namespace DAL
                     _command = connection.CreateCommand();
                     // Định nghĩa kiểu của command là 1 thủ tục lưu trữ (không sử dụng câu lệnh sql)
                     _command.CommandType = CommandType.StoredProcedure;
-                    _command.CommandText = "GetMovieById"; // Tên thủ tục lấy thông tin khách hàng
+                    _command.CommandText = "GetMovieById"; // Tên thủ tục lấy thông tin phim
 
                     // Định nghĩa tham số cho thủ tục lưu trữ
                     _command.Parameters.AddWithValue("@movieId", id);
@@ -118,6 +118,139 @@ namespace DAL
 
             return mv;
         }
+
+        public bool CreateMovie(MovieModel model)
+        {
+            try
+            {
+                int rowsAffected = 0;
+
+                // Lấy chuỗi kết nối từ cấu hình
+                using (var connection = new SqlConnection(GetConnectionString()))
+                {
+                    connection.Open();
+
+                    // Tạo một đối tượng SqlCommand để gọi thủ tục lưu trữ
+                    _command = connection.CreateCommand();
+                    // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                    _command.CommandType = CommandType.StoredProcedure;
+                    // Tên của thủ tục lưu trữ
+                    _command.CommandText = "AddMovie";
+
+                    // Định nghĩa các tham số cho thủ tục lưu trữ, gán các giá trị từ model
+                    _command.Parameters.AddWithValue("@title", model.Title);
+                    _command.Parameters.AddWithValue("@category", model.Category);
+                    _command.Parameters.AddWithValue("@date_premiere", model.DatePremiere.HasValue ? (object)model.DatePremiere.Value : DBNull.Value);
+                    _command.Parameters.AddWithValue("@poster", model.Poster);
+                    _command.Parameters.AddWithValue("@director", model.Director);
+                    _command.Parameters.AddWithValue("@content", model.Content);
+                    _command.Parameters.AddWithValue("@trailer", model.Trailer);
+                    _command.Parameters.AddWithValue("@rating", model.Rating);
+                    _command.Parameters.AddWithValue("@actor", model.Actor);
+
+                    // Thực hiện thủ tục lưu trữ và lấy số hàng bị ảnh hưởng
+                    rowsAffected = _command.ExecuteNonQuery();
+
+                    // Kiểm tra xem có bản ghi nào đã được thêm vào không
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
+                Console.WriteLine("Lỗi khi thêm phim: " + ex.Message);
+                return false;
+            }
+        }
+
+
+
+        // Sửa thông tin phim
+        public bool UpdateMovie(MovieModel model)
+        {
+            try
+            {
+                int rowsAffected = 0;
+
+                // Lấy chuỗi kết nối từ cấu hình
+                using (var connection = new SqlConnection(GetConnectionString()))
+                {
+                    connection.Open();
+
+                    // Tạo một đối tượng SqlCommand để gọi thủ tục lưu trữ
+                    _command = connection.CreateCommand();
+                    // Kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                    _command.CommandType = CommandType.StoredProcedure;
+                    // Tên của thủ tục lưu trữ
+                    _command.CommandText = "UpdateMovie";
+
+                    // Định nghĩa các tham số cho thủ tục lưu trữ
+                    _command.Parameters.AddWithValue("@movieId", model.MovieId); // MovieId để xác định phim nào cần update
+                    _command.Parameters.AddWithValue("@title", model.Title);
+                    _command.Parameters.AddWithValue("@category", model.Category);
+                    _command.Parameters.AddWithValue("@date_premiere", model.DatePremiere.HasValue ? (object)model.DatePremiere.Value : DBNull.Value);
+                    _command.Parameters.AddWithValue("@poster", model.Poster);
+                    _command.Parameters.AddWithValue("@director", model.Director);
+                    _command.Parameters.AddWithValue("@content", model.Content);
+                    _command.Parameters.AddWithValue("@trailer", model.Trailer);
+                    _command.Parameters.AddWithValue("@rating", model.Rating);
+                    _command.Parameters.AddWithValue("@actor", model.Actor);
+
+                    // Thực hiện thủ tục lưu trữ và lấy số hàng bị ảnh hưởng
+                    rowsAffected = _command.ExecuteNonQuery();
+
+                    // Kiểm tra xem có bản ghi nào đã được cập nhật không
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
+                Console.WriteLine("Lỗi khi cập nhật phim: " + ex.Message);
+                return false;
+            }
+        }
+
+        // Lấy thông tin phim theo id phim
+
+
+        // Xóa thông tin phim theo id phim
+        public bool DeleteMovie(int movieId)
+        {
+            try
+            {
+                int rowsAffected = 0;
+
+                // Lấy chuỗi kết nối từ cấu hình
+                using (var connection = new SqlConnection(GetConnectionString()))
+                {
+                    connection.Open();
+
+                    // Tạo một đối tượng SqlCommand để gọi thủ tục lưu trữ
+                    _command = connection.CreateCommand();
+                    // Kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                    _command.CommandType = CommandType.StoredProcedure;
+                    // Tên của thủ tục lưu trữ
+                    _command.CommandText = "DeleteMovie";
+
+                    // Định nghĩa tham số cho thủ tục lưu trữ (ID của phim cần xóa)
+                    _command.Parameters.AddWithValue("@movieId", movieId);
+
+                    // Thực hiện thủ tục lưu trữ và lấy số hàng bị ảnh hưởng
+                    rowsAffected = _command.ExecuteNonQuery();
+
+                    // Kiểm tra xem có bản ghi nào đã được xóa không
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
+                Console.WriteLine("Lỗi khi xóa phim: " + ex.Message);
+                return false;
+            }
+        }
+
         public MovieModel GetTrailerbyID(int id)
         {
             // Khởi tạo khachhang
@@ -134,7 +267,7 @@ namespace DAL
                     _command = connection.CreateCommand();
                     // Định nghĩa kiểu của command là 1 thủ tục lưu trữ (không sử dụng câu lệnh sql)
                     _command.CommandType = CommandType.StoredProcedure;
-                    _command.CommandText = "GetTrailerById"; // Tên thủ tục lấy thông tin khách hàng
+                    _command.CommandText = "GetTrailerById"; // Tên thủ tục lấy thông tin phim
 
                     // Định nghĩa tham số cho thủ tục lưu trữ
                     _command.Parameters.AddWithValue("@movieId", id);
@@ -317,7 +450,7 @@ namespace DAL
             catch (Exception ex)
             {
                 // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
-                Console.WriteLine("Lỗi khi thêm khách hàng: " + ex.Message);
+                Console.WriteLine("Lỗi khi thêm phim: " + ex.Message);
                 return false;
             }
         }

@@ -8,12 +8,13 @@ namespace BTL_NguyenVanTruong_.BLL.Interfaces
 {
     public partial interface IMovieBusiness
     {
-        //bool CreateAccount(AccountModel model);
-        //bool UpdateAccount(AccountModel model);
+        
         bool OrderTicket(TicketModel ticket);
         MovieModel GetMovieById(int id);
         MovieModel GetTrailerById(int id);
-        //bool DeleteAccount(int mtk);
+        bool CreateMovie(MovieModel model);
+        bool UpdateMovie(MovieModel model);
+        bool DeleteMovie(int movieId);
         List<MovieModel> GetMovie();
         List<FilmAndShowTimeModel> GetShowtimesByDate(string date);
         List<DayshowModel> GetMovieShowDays(int movieId);
