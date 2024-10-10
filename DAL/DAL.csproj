@@ -238,9 +238,11 @@
     <Compile Include="Interfaces\IFoodRepository.cs" />
     <Compile Include="Interfaces\IMovieRepository.cs" />
     <Compile Include="Interfaces\ISeatStatusRepository.cs" />
+    <Compile Include="Interfaces\ITheaterRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="MovieRepository.cs" />
     <Compile Include="SeatStatusRepository.cs" />
+    <Compile Include="TheaterRepository.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

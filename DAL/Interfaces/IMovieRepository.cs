@@ -20,6 +20,7 @@ namespace BTL_NguyenVanTruong_.DAL.Interfaces
         bool CreateMovie(MovieModel model);
         bool UpdateMovie(MovieModel model);
         bool DeleteMovie(int movieId);
-        //List<AccountModel> SearchAccount(string tk);
+        List<MovieModel> GetTopMovie();
+
     }
 }

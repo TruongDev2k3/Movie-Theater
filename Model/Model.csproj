@@ -231,6 +231,7 @@
     <Compile Include="PremiereModel.cs" />
     <Compile Include="SeatStatusModel.cs" />
     <Compile Include="ShowtimeModel.cs" />
+    <Compile Include="TheaterModel.cs" />
     <Compile Include="TicketModel.cs" />
     <Compile Include="UserModel.cs" />
   </ItemGroup>
