@@ -22,6 +22,22 @@ namespace BLL
         {
             return _res.GetMovie();
         }
+        public List<MovieModel> GetTopMovie()
+        {
+            return _res.GetTopMovie();
+        }
+        public List<MovieModel> GetMoviesNowShowing()
+        {
+            return _res.GetMoviesNowShowing();
+        }
+        public List<MovieModel> GetUpcomingMovies()
+        {
+            return _res.GetUpcomingMovies();
+        }
+        public List<DoanhThuModel> GetProceeds()
+        {
+            return _res.GetProceeds();
+        }
         public MovieModel GetMovieById(int id)
         {
             return _res.GetMoviebyID(id);

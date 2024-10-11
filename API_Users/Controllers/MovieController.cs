@@ -66,6 +66,84 @@ namespace API_Users.Controllers
                 return StatusCode(500, $"Lỗi server: {ex.Message}");
             }
         }
+
+        [HttpGet("get-top-movie")]
+        public ActionResult<List<MovieModel>> GetTopMovie()
+        {
+            try
+            {
+                var mvlist = _mv.GetTopMovie();
+
+                if (mvlist == null || mvlist.Count == 0)
+                {
+                    return NotFound("Danh sách khách hàng trống");
+                }
+
+                return Ok(mvlist);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi server: {ex.Message}");
+            }
+        }
+
+        [HttpGet("get-nowshowing-movie")]
+        public ActionResult<List<MovieModel>> GetMoviesNowShowing()
+        {
+            try
+            {
+                var mvlist = _mv.GetMoviesNowShowing();
+
+                if (mvlist == null || mvlist.Count == 0)
+                {
+                    return NotFound("Danh sách khách hàng trống");
+                }
+
+                return Ok(mvlist);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi server: {ex.Message}");
+            }
+        }
+        [HttpGet("get-upcoming-movie")]
+        public ActionResult<List<MovieModel>> GetUpcomingMovies()
+        {
+            try
+            {
+                var mvlist = _mv.GetUpcomingMovies();
+
+                if (mvlist == null || mvlist.Count == 0)
+                {
+                    return NotFound("Danh sách khách hàng trống");
+                }
+
+                return Ok(mvlist);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi server: {ex.Message}");
+            }
+        }
+        [HttpGet("get-proceeds-movie")]
+        public ActionResult<List<DoanhThuModel>> GetProceeds()
+        {
+            try
+            {
+                var mvlist = _mv.GetProceeds();
+
+                if (mvlist == null || mvlist.Count == 0)
+                {
+                    return NotFound("Danh sách khách hàng trống");
+                }
+
+                return Ok(mvlist);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi server: {ex.Message}");
+            }
+        }
         [HttpGet("detailMovie/{id}")]
         public ActionResult<MovieModel> GetMovieById(int id)
         {

@@ -20,5 +20,8 @@ namespace BTL_NguyenVanTruong_.BLL.Interfaces
         List<DayshowModel> GetMovieShowDays(int movieId);
         List<PremiereModel> GetShowtimesByMovieAndDate(int movieId, DateTime dayShowtime);
         List<MovieModel> GetTopMovie();
+        List<MovieModel> GetMoviesNowShowing();
+        List<MovieModel> GetUpcomingMovies();
+        List<DoanhThuModel> GetProceeds();
     }
 }

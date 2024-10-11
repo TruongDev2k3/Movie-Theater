@@ -10,7 +10,7 @@ namespace MODEL
     {
         public int DayShowId { get; set; }
         public DateTime DayShowtime { get; set; }
-        public int PremiereId { get; set; }
+        public string PremiereId { get; set; }
         public string day_of_week { get; set; }
     }
 }

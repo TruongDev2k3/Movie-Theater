@@ -454,6 +454,157 @@ namespace DAL
                 return false;
             }
         }
+        public List<MovieModel> GetTopMovie()
+        {
+            List<MovieModel> movies = new List<MovieModel>();
 
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetHotMoviesByRating"; // Tên stored procedure
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    MovieModel mv = new MovieModel();
+                    {
+                        mv.MovieId = (int)reader["movieId"];
+                        mv.Title = reader["title"].ToString();
+                        mv.Category = reader["category"].ToString();
+                        mv.DatePremiere = reader["date_premiere"] != DBNull.Value ? (DateTime?)reader["date_premiere"] : null;
+                        mv.Poster = reader["poster"].ToString();
+                        mv.Director = reader["director"].ToString();
+                        mv.Content = reader["content"].ToString();
+                        mv.Trailer = reader["trailer"].ToString();
+                        mv.Rating = reader["rating"] != DBNull.Value ? (decimal)reader["rating"] : 0m;
+                        mv.Actor = reader["actor"].ToString();
+                        movies.Add(mv);
+                    }
+                }
+                connection.Close();
+                reader.Close();
+
+            }
+            return movies;
+        }
+        public List<MovieModel> GetMoviesNowShowing()
+        {
+            List<MovieModel> movies = new List<MovieModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetMoviesNowShowing"; // Tên stored procedure
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    MovieModel mv = new MovieModel();
+                    {
+                        mv.MovieId = (int)reader["movieId"];
+                        mv.Title = reader["title"].ToString();
+                        mv.Category = reader["category"].ToString();
+                        mv.DatePremiere = reader["date_premiere"] != DBNull.Value ? (DateTime?)reader["date_premiere"] : null;
+                        mv.Poster = reader["poster"].ToString();
+                        mv.Director = reader["director"].ToString();
+                        mv.Content = reader["content"].ToString();
+                        mv.Trailer = reader["trailer"].ToString();
+                        mv.Rating = reader["rating"] != DBNull.Value ? (decimal)reader["rating"] : 0m;
+                        mv.Actor = reader["actor"].ToString();
+                        movies.Add(mv);
+                    }
+                }
+                connection.Close();
+                reader.Close();
+
+            }
+            return movies;
+        }
+        public List<MovieModel> GetUpcomingMovies()
+        {
+            List<MovieModel> movies = new List<MovieModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetUpcomingMovies"; // Tên stored procedure
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    MovieModel mv = new MovieModel();
+                    {
+                        mv.MovieId = (int)reader["movieId"];
+                        mv.Title = reader["title"].ToString();
+                        mv.Category = reader["category"].ToString();
+                        mv.DatePremiere = reader["date_premiere"] != DBNull.Value ? (DateTime?)reader["date_premiere"] : null;
+                        mv.Poster = reader["poster"].ToString();
+                        mv.Director = reader["director"].ToString();
+                        mv.Content = reader["content"].ToString();
+                        mv.Trailer = reader["trailer"].ToString();
+                        mv.Rating = reader["rating"] != DBNull.Value ? (decimal)reader["rating"] : 0m;
+                        mv.Actor = reader["actor"].ToString();
+                        movies.Add(mv);
+                    }
+                }
+                connection.Close();
+                reader.Close();
+
+            }
+            return movies;
+        }
+        public List<DoanhThuModel> GetProceeds()
+        {
+            List<DoanhThuModel> dt = new List<DoanhThuModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "sp_ThongKeDoanhSoTungPhim"; // Tên stored procedure
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    DoanhThuModel mv = new DoanhThuModel();
+                    {                      
+                        mv.MovieId = (int)reader["movieId"];
+                        mv.TitleMovie = reader["titlemovie"].ToString();
+                        mv.poster = reader["poster"].ToString();
+                        mv.TongSoLuongVe = (int)reader["TongSoLuongVe"];
+                        mv.TongDoanhThu = (decimal)reader["TongDoanhThu"];
+
+                        dt.Add(mv);
+                    }
+                }
+                connection.Close();
+                reader.Close();
+
+            }
+            return dt;
+        }
     }
 }

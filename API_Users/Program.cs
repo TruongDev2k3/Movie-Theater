@@ -34,6 +34,10 @@ builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<ICategoryBusiness, CategoryBusiness>();
 builder.Services.AddTransient<ITheaterRepository, TheaterRepository>();
 builder.Services.AddTransient<ITheaterBusiness, TheaterBusiness>();
+builder.Services.AddTransient<IPremiereRepository, PremiereRepository>();
+builder.Services.AddTransient<IPremiereBusiness, PremiereBusiness>();
+builder.Services.AddTransient<IDayshowtimeRepository, DayshowtimeRepository>();
+builder.Services.AddTransient<IDayshowtimeBusiness, DayshowtimeBusiness>();
 // configure strongly typed settings objects
 IConfiguration configuration = builder.Configuration;
 var appSettingsSection = configuration.GetSection("AppSettings");

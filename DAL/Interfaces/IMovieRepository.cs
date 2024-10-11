@@ -21,6 +21,8 @@ namespace BTL_NguyenVanTruong_.DAL.Interfaces
         bool UpdateMovie(MovieModel model);
         bool DeleteMovie(int movieId);
         List<MovieModel> GetTopMovie();
-
+        List<MovieModel> GetMoviesNowShowing();
+        List<MovieModel> GetUpcomingMovies();
+        List<DoanhThuModel> GetProceeds();
     }
 }

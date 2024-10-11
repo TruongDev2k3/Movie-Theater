@@ -225,6 +225,7 @@
     <Compile Include="AuthenticateModel.cs" />
     <Compile Include="CategoryModel.cs" />
     <Compile Include="DayshowModel.cs" />
+    <Compile Include="DoanhThuModel.cs" />
     <Compile Include="FilmAndShowTimeModel.cs" />
     <Compile Include="FoodModel.cs" />
     <Compile Include="MovieModel.cs" />
