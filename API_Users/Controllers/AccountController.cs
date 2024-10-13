@@ -75,24 +75,6 @@ namespace API_Users.Controllers
             var result = _acc.DeleteAccount(mtk);
             return Ok(result);
         }
-        [HttpPost("searchacc")]
-        public ActionResult<List<AccountModel>> SearchAccount(string tukhoa)
-        {
-            try
-            {
-                var accList = _acc.SearchAccount(tukhoa);
-
-                if (accList == null || accList.Count == 0)
-                {
-                    return NotFound("Danh sách tài khoản trống");
-                }
-
-                return Ok(accList);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Lỗi server: {ex.Message}");
-            }
-        }
+        
     }
 }

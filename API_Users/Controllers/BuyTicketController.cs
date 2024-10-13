@@ -69,5 +69,25 @@ namespace API_Users.Controllers
             return Ok(accs);
         }
 
+        [HttpPut("update-seatstatus")]
+        public IActionResult UpdateSeatStatus([FromBody] UpdateSeatAdmin model)
+        {
+            if (model == null || string.IsNullOrEmpty(model.SeatNames))
+            {
+                return BadRequest("Invalid input data.");
+            }
+
+            bool result = _mv.UpdateSeatStatus(model);
+
+            if (result)
+            {
+                return Ok("Seat status updated successfully.");
+            }
+            else
+            {
+                return StatusCode(500, "An error occurred while updating the seat status.");
+            }
+        }
+
     }
 }

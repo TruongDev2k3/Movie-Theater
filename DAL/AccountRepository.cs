@@ -41,7 +41,7 @@ namespace DAL
                 _command = connection.CreateCommand();
                 // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
                 _command.CommandType = CommandType.StoredProcedure;
-                _command.CommandText = "LayDanhSachTaiKhoan"; // Tên stored procedure
+                _command.CommandText = "GetAllTaiKhoans"; // Tên stored procedure
                 // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
                 SqlDataReader reader = _command.ExecuteReader();
                 // Đọc dữ liệu từ kết quả trả về
@@ -50,11 +50,12 @@ namespace DAL
                     AccountModel ac = new AccountModel();
                     {
                         ac.MaTaiKhoan = (int)reader["MaTaiKhoan"];
-                        ac.MaLoai = (int)reader["MaLoai"];
+                        ac.LoaiTaiKhoan = (int)reader["LoaiTaiKhoan"];
                         ac.TenTaiKhoan = reader["TenTaiKhoan"].ToString();
                         ac.MatKhau = reader["MatKhau"].ToString();
                         ac.Email = reader["Email"].ToString();
                         ac.Loai = reader["Loai"].ToString();
+                        ac.nameUsser = reader["nameUsser"].ToString();
                         acc.Add(ac);
                     }
                 }
@@ -83,15 +84,17 @@ namespace DAL
                     // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
                     _command.CommandType = CommandType.StoredProcedure;
                     // Tên của thủ tục lưu trữ
-                    _command.CommandText = "ThemTaiKhoan";
+                    _command.CommandText = "InsertTaiKhoan";
 
                     // Định nghĩa các tham số cho thủ tục lưu trữ
                     //Parameters.AddWithValue() : định nghĩa các giá trị tham số và gán giá trị cho chúng.
-                    _command.Parameters.AddWithValue("@MaLoai", model.MaLoai);
+                    _command.Parameters.AddWithValue("@LoaiTaiKhoan", model.LoaiTaiKhoan);
                     _command.Parameters.AddWithValue("@TenTaiKhoan", model.TenTaiKhoan);
                     _command.Parameters.AddWithValue("@MatKhau", model.MatKhau);
                     _command.Parameters.AddWithValue("@Email", model.Email);
                     _command.Parameters.AddWithValue("@Loai", model.Loai);
+                    _command.Parameters.AddWithValue("@nameUsser", model.nameUsser);
+
 
                     // Thực hiện thủ tục lưu trữ và lấy số hàng bị ảnh hưởng
                     rowsAffected = _command.ExecuteNonQuery();
@@ -121,13 +124,14 @@ namespace DAL
 
                     _command = connection.CreateCommand();
                     _command.CommandType = CommandType.StoredProcedure;
-                    _command.CommandText = "SuaTaiKhoan";
+                    _command.CommandText = "UpdateTaiKhoan";
                     _command.Parameters.AddWithValue("@MaTaiKhoan", model.MaTaiKhoan);
-                    _command.Parameters.AddWithValue("@MaLoai", model.MaLoai);
+                    _command.Parameters.AddWithValue("@LoaiTaiKhoan", model.LoaiTaiKhoan);
                     _command.Parameters.AddWithValue("@TenTaiKhoan", model.TenTaiKhoan);
                     _command.Parameters.AddWithValue("@MatKhau", model.MatKhau);
                     _command.Parameters.AddWithValue("@Email", model.Email);
                     _command.Parameters.AddWithValue("@Loai", model.Loai);
+                    _command.Parameters.AddWithValue("@nameUsser", model.nameUsser);
 
                     int rowsAffected = _command.ExecuteNonQuery();
                     connection.Close();
@@ -160,7 +164,7 @@ namespace DAL
                     // Định nghĩa kiểu của command là 1 thủ tục lưu trữ (không sử dụng câu lệnh SQL)
                     command.CommandType = CommandType.StoredProcedure;
                     // Tên của thủ tục lưu trữ xóa khách hàng
-                    command.CommandText = "XoaTaiKhoan"; // Thay thế "delete_KhachHang" bằng tên thực tế của thủ tục xóa
+                    command.CommandText = "DeleteTaiKhoan"; // Thay thế "delete_KhachHang" bằng tên thực tế của thủ tục xóa
 
                     // Định nghĩa tham số cho thủ tục lưu trữ
                     command.Parameters.AddWithValue("@MaTaiKhoan", mtk);
@@ -195,7 +199,7 @@ namespace DAL
                     _command = connection.CreateCommand();
                     // Định nghĩa kiểu của command là 1 thủ tục lưu trữ (không sử dụng câu lệnh sql)
                     _command.CommandType = CommandType.StoredProcedure;
-                    _command.CommandText = "LayTaiKhoanTheoMa"; // Tên thủ tục lấy thông tin khách hàng
+                    _command.CommandText = "GetTaiKhoanById"; // Tên thủ tục lấy thông tin khách hàng
 
                     // Định nghĩa tham số cho thủ tục lưu trữ
                     _command.Parameters.AddWithValue("@MaTaiKhoan", mtk);
@@ -206,11 +210,12 @@ namespace DAL
                         if (reader.Read())
                         {
                             ac.MaTaiKhoan = (int)reader["MaTaiKhoan"];
-                            ac.MaLoai = (int)reader["MaLoai"];
+                            ac.LoaiTaiKhoan = (int)reader["LoaiTaiKhoan"];
                             ac.TenTaiKhoan = reader["TenTaiKhoan"].ToString();
                             ac.MatKhau = reader["MatKhau"].ToString();
                             ac.Email = reader["Email"].ToString();
                             ac.Loai = reader["Loai"].ToString();
+                            ac.nameUsser = reader["nameUsser"].ToString();
                         }
                     }
                     connection.Close();
@@ -225,48 +230,6 @@ namespace DAL
             return ac;
         }
         // Tìm kiếm khách hàng
-        public List<AccountModel> SearchAccount(string tk)
-        {
-            List<AccountModel> searchResult = new List<AccountModel>();
-
-            using (var connection = new SqlConnection(GetConnectionString()))
-            {
-                connection.Open();
-
-                // Create a SqlCommand object to call the stored procedure
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "SearchAccount"; // Replace with the actual stored procedure name
-
-                    // Add parameter for the stored procedure
-                    command.Parameters.AddWithValue("@TuKhoa", tk);
-
-                    // Execute the stored procedure and get the results
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    // Read data from the result set
-                    while (reader.Read())
-                    {
-                        AccountModel ac = new AccountModel();
-                        {
-                            ac.MaTaiKhoan = (int)reader["MaTaiKhoan"];
-                            ac.MaLoai = (int)reader["MaLoai"];
-                            ac.TenTaiKhoan = reader["TenTaiKhoan"].ToString();
-                            ac.MatKhau = reader["MatKhau"].ToString();
-                            ac.Email = reader["Email"].ToString();
-                            ac.Loai = reader["Loai"].ToString();
-                            searchResult.Add(ac);
-                        }
-                    }
-
-                    reader.Close();
-                }
-
-                connection.Close();
-            }
-
-            return searchResult;
-        }
+        
     }
 }

@@ -11,5 +11,7 @@ namespace BLL.Interfaces
     public partial interface ISeatStatusBussiness
     {
         List<SeatStatusModel> GetSeatStatus(int movieId, DateTime showDate, TimeSpan showTime);
+        bool UpdateSeatStatus(UpdateSeatAdmin model);
+
     }
 }

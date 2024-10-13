@@ -10,5 +10,6 @@ namespace DAL.Interfaces
     public partial interface ISeatStatusRepository
     {
         List<SeatStatusModel> GetSeatStatus(int movieId, DateTime showDate, TimeSpan showTime);
+        bool UpdateSeatStatus(UpdateSeatAdmin model);
     }
 }

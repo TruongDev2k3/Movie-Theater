@@ -65,5 +65,32 @@ namespace DAL
 
             return seatStatuses;
         }
+        public bool UpdateSeatStatus(UpdateSeatAdmin model)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand("UpdateSeatStatus", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@movieId", model.MovieId);
+                        cmd.Parameters.AddWithValue("@showDate", model.ShowDate);
+                        cmd.Parameters.AddWithValue("@showTime", model.ShowTime);
+                        cmd.Parameters.AddWithValue("@id_theater", model.TheaterId);
+                        cmd.Parameters.AddWithValue("@seatNames", model.SeatNames);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (optional)
+                return false;
+            }
+        }
     }
 }

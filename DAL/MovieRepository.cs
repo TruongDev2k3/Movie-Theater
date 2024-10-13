@@ -606,5 +606,45 @@ namespace DAL
             }
             return dt;
         }
+        public List<Data_TicketModel> getDataTicket()
+        {
+            List<Data_TicketModel> dt = new List<Data_TicketModel>();
+
+            using (var connection = new SqlConnection(GetConnectionString()))
+            {
+                // Mở kết nối
+                connection.Open();
+                // Tạo một đối tượng SqlCommand để gọi stored procedure
+                _command = connection.CreateCommand();
+                // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                _command.CommandType = CommandType.StoredProcedure;
+                _command.CommandText = "GetAllData_Ticket"; // Tên stored procedure
+                // Thực hiện truy vấn và lấy kết quả (ExecuteReader trả về  SqlDataReader dùng đọc dữ liệu từ sql)
+                SqlDataReader reader = _command.ExecuteReader();
+                // Đọc dữ liệu từ kết quả trả về
+                while (reader.Read())
+                {
+                    Data_TicketModel mv = new Data_TicketModel();
+                    {
+        
+                        mv.titlemovie = reader["titlemovie"].ToString();
+                        mv.foodname = reader["foodname"].ToString();
+                        mv.chairName = reader["chairName"].ToString();
+                        mv.theaterName = reader["theaterName"].ToString();
+                        mv.showtime = reader["showtime"].ToString();
+                        mv.showdate = reader["showdate"] != DBNull.Value ? (DateTime?)reader["showdate"] : null;
+                        mv.quantity_ticket = (int)reader["quantity_ticket"];
+                        mv.total_price = (decimal)reader["total_price"];
+
+                        dt.Add(mv);
+                    }
+                }
+                connection.Close();
+                reader.Close();
+
+            }
+            return dt;
+        }
+
     }
 }

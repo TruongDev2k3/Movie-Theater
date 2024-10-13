@@ -23,5 +23,7 @@ namespace BTL_NguyenVanTruong_.BLL.Interfaces
         List<MovieModel> GetMoviesNowShowing();
         List<MovieModel> GetUpcomingMovies();
         List<DoanhThuModel> GetProceeds();
+        List<Data_TicketModel> getDataTicket();
+
     }
 }

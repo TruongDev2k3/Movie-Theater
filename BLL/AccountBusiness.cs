@@ -39,9 +39,6 @@ namespace BTL_NguyenVanTruong_.BLL
         {
             return _res.GetAccount();
         }
-        public List<AccountModel> SearchAccount(string tk)
-        {
-            return _res.SearchAccount(tk);
-        }
+        
     }
 }

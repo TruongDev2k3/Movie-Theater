@@ -224,6 +224,7 @@
     <Compile Include="AccountModel.cs" />
     <Compile Include="AuthenticateModel.cs" />
     <Compile Include="CategoryModel.cs" />
+    <Compile Include="Data_TicketModel.cs" />
     <Compile Include="DayshowModel.cs" />
     <Compile Include="DoanhThuModel.cs" />
     <Compile Include="FilmAndShowTimeModel.cs" />
@@ -234,6 +235,7 @@
     <Compile Include="ShowtimeModel.cs" />
     <Compile Include="TheaterModel.cs" />
     <Compile Include="TicketModel.cs" />
+    <Compile Include="UpdateSeatAdmin.cs" />
     <Compile Include="UserModel.cs" />
   </ItemGroup>
   <ItemGroup>

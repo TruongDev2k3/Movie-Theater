@@ -29,5 +29,9 @@ namespace BLL
 
             return _res.GetSeatStatus(movieId, showDate, showTime);
         }
+        public bool UpdateSeatStatus(UpdateSeatAdmin model)
+        {
+            return _res.UpdateSeatStatus(model);
+        }
     }
 }

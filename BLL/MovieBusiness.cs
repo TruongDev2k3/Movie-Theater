@@ -38,6 +38,10 @@ namespace BLL
         {
             return _res.GetProceeds();
         }
+        public List<Data_TicketModel> getDataTicket()
+        {
+            return _res.getDataTicket();
+        }
         public MovieModel GetMovieById(int id)
         {
             return _res.GetMoviebyID(id);
