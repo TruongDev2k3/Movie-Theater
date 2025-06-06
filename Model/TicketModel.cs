@@ -21,6 +21,7 @@ namespace MODEL
         public DateTime ShowDate { get; set; }
         public int QuantityTicket { get; set; }
         public decimal TotalPrice { get; set; }
+        
     }
 
 }

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
+using System.Xml.Linq;
 
 namespace DAL
 {
@@ -438,6 +439,7 @@ namespace DAL
                     _command.Parameters.AddWithValue("@showdate", model.ShowDate);
                     _command.Parameters.AddWithValue("@quantity_ticket", model.QuantityTicket);
                     _command.Parameters.AddWithValue("@total_price", model.TotalPrice);
+                    
                     // Định nghĩa các tham số cho thủ tục lưu trữ
 
                     // Thực hiện thủ tục lưu trữ và lấy số hàng bị ảnh hưởng
@@ -635,7 +637,7 @@ namespace DAL
                         mv.showdate = reader["showdate"] != DBNull.Value ? (DateTime?)reader["showdate"] : null;
                         mv.quantity_ticket = (int)reader["quantity_ticket"];
                         mv.total_price = (decimal)reader["total_price"];
-
+                        mv.qrcode = reader["qrcode"].ToString();
                         dt.Add(mv);
                     }
                 }
@@ -645,6 +647,89 @@ namespace DAL
             }
             return dt;
         }
+        public bool AddComment(CommentModel model)
+        {
+            try
+            {
+                int rowsAffected = 0;
+
+                // Lấy chuỗi kết nối từ cấu hình
+                using (var connection = new SqlConnection(GetConnectionString()))
+                {
+                    connection.Open();
+
+                    // Tạo một đối tượng SqlCommand để gọi thủ tục lưu trữ
+                    _command = connection.CreateCommand();
+                    // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
+                    _command.CommandType = CommandType.StoredProcedure;
+                    // Tên của thủ tục lưu trữ
+                    _command.CommandText = "AddComment";
+
+                    // Định nghĩa các tham số cho thủ tục lưu trữ, gán các giá trị từ model
+                    _command.Parameters.AddWithValue("@MovieId", model.MovieId);
+                    _command.Parameters.AddWithValue("@UserId", model.UserId);
+                    _command.Parameters.AddWithValue("@Rating", model.Rating);
+                    _command.Parameters.AddWithValue("@CommentText", model.CommentText);
+
+
+                    // Thực hiện thủ tục lưu trữ và lấy số hàng bị ảnh hưởng
+                    rowsAffected = _command.ExecuteNonQuery();
+
+                    // Kiểm tra xem có bản ghi nào đã được thêm vào không
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
+                Console.WriteLine("Lỗi khi thêm phim: " + ex.Message);
+                return false;
+            }
+        }
+
+        public List<CommentModel> getCommentByMovieID(int movieId)
+        {
+            var comments = new List<CommentModel>();
+
+            try
+            {
+                using (var connection = new SqlConnection(GetConnectionString()))
+                {
+                    connection.Open();
+
+                    using (var command = new SqlCommand("getCommentByMovieID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@MovieId", movieId);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var comment = new CommentModel
+                                {
+                                    CommentId = (int)reader["CommentId"],
+                                    MovieId = (int)reader["MovieId"],                   
+                                    TenTaiKhoan = reader["TenTaiKhoan"].ToString(),
+                                    Rating = (int)reader["Rating"],
+                                    CommentText = reader["CommentText"].ToString(),
+                                    CreatedAt = (DateTime)reader["CreatedAt"]
+                                };
+                                comments.Add(comment);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy bình luận: " + ex.Message);
+            }
+
+            return comments;
+        }
+
+
 
     }
 }

@@ -24,6 +24,7 @@ namespace BTL_NguyenVanTruong_.BLL.Interfaces
         List<MovieModel> GetUpcomingMovies();
         List<DoanhThuModel> GetProceeds();
         List<Data_TicketModel> getDataTicket();
-
+        bool AddComment(CommentModel model);
+        List<CommentModel> getCommentByMovieID(int movieId);
     }
 }

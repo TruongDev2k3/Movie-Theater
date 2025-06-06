@@ -58,6 +58,10 @@ namespace BLL
         {
             return _res.GetMovieShowDays(movieId);
         }
+        public List<CommentModel> getCommentByMovieID(int movieId)
+        {
+            return _res.getCommentByMovieID(movieId);
+        }
         public List<PremiereModel> GetShowtimesByMovieAndDate(int movieId, DateTime dayShowtime)
         {
             return _res.GetShowtimesByMovieAndDate(movieId, dayShowtime);
@@ -69,6 +73,10 @@ namespace BLL
         public bool CreateMovie(MovieModel model)
         {
             return _res.CreateMovie(model);
+        }
+        public bool AddComment(CommentModel model)
+        {
+            return _res.AddComment(model);
         }
         public bool UpdateMovie(MovieModel model)
         {

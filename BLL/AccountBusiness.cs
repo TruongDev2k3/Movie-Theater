@@ -19,9 +19,9 @@ namespace BTL_NguyenVanTruong_.BLL
             _res = new AccountRepository(_configuration); // Khởi tạo _res sau khi _configuration đã được gán giá trị
         }
 
-        public bool CreateAccount(AccountModel model)
+        public bool CreateAccount(AccountModel model, out string errorMessage)
         {
-            return _res.CreateAccount(model);
+            return _res.CreateAccount(model,out errorMessage);
         }
         public bool UpdateAccount(AccountModel model)
         {

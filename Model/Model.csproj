@@ -224,6 +224,7 @@
     <Compile Include="AccountModel.cs" />
     <Compile Include="AuthenticateModel.cs" />
     <Compile Include="CategoryModel.cs" />
+    <Compile Include="CommentModel.cs" />
     <Compile Include="Data_TicketModel.cs" />
     <Compile Include="DayshowModel.cs" />
     <Compile Include="DoanhThuModel.cs" />
@@ -240,6 +241,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />

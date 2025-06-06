@@ -12,6 +12,7 @@ namespace MODEL
         public string TheaterName { get; set; } // Theater name, not null
         public string Description { get; set; } // Description of the theater
         public string ImageTheater { get; set; } // Image URL or path for the theater
+
     }
 
 }

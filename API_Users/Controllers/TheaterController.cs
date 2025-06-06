@@ -35,9 +35,6 @@ namespace API_Users.Controllers
                 return StatusCode(500, $"Lỗi server: {ex.Message}");
             }
         }
-
-
-
         [HttpGet("getbyid/{mtl}")]
         public ActionResult<TheaterModel> GetTheaterbyID(int mtl)
         {
@@ -50,22 +47,18 @@ namespace API_Users.Controllers
 
             return Ok(acc);
         }
-
-
         [HttpPost("create-theater")]
         public ActionResult CreateTheater([FromBody] TheaterModel model)
         {
             var result = _acc.CreateTheater(model);
             return Ok(result);
         }
-
         [HttpPut("update-theater")]
         public ActionResult UpdateTheater([FromBody] TheaterModel model)
         {
             var result = _acc.UpdateTheater(model);
             return Ok(result);
         }
-
         [HttpDelete("delete-theater/{mtk}")]
         public ActionResult DeleteTheater(int mtk)
         {

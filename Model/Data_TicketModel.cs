@@ -16,5 +16,6 @@ namespace MODEL
         public DateTime? showdate { get; set; }
         public int quantity_ticket { get; set; }
         public decimal total_price { get; set; }
+        public string qrcode { get; set; }
     }
 }

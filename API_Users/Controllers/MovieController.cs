@@ -66,7 +66,6 @@ namespace API_Users.Controllers
                 return StatusCode(500, $"Lỗi server: {ex.Message}");
             }
         }
-
         [HttpGet("get-top-movie")]
         public ActionResult<List<MovieModel>> GetTopMovie()
         {
@@ -86,7 +85,6 @@ namespace API_Users.Controllers
                 return StatusCode(500, $"Lỗi server: {ex.Message}");
             }
         }
-
         [HttpGet("get-nowshowing-movie")]
         public ActionResult<List<MovieModel>> GetMoviesNowShowing()
         {
@@ -175,6 +173,25 @@ namespace API_Users.Controllers
 
             return Ok(acc);
         }
+        [HttpGet("detailComment/{id}")]
+        public ActionResult<List<CommentModel>> getCommentByMovieID(int id)
+        {
+            try
+            {
+                var mvlist = _mv.getCommentByMovieID(id);
+
+                if (mvlist == null || mvlist.Count == 0)
+                {
+                    return NotFound("Danh sách khách hàng trống");
+                }
+
+                return Ok(mvlist);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi server: {ex.Message}");
+            }
+        }
         [HttpGet("trailer/{id}")]
         public ActionResult<MovieModel> GetTrailerbyID(int id)
         {
@@ -225,21 +242,24 @@ namespace API_Users.Controllers
             var result = _mv.OrderTicket(model);
             return Ok(result);
         }
-
         [HttpPost("create-movie")]
         public ActionResult CreateMovie([FromBody] MovieModel model)
         {
             var result = _mv.CreateMovie(model);
             return Ok(result);
         }
-
+        [HttpPost("create-comment")]
+        public ActionResult AddComment([FromBody] CommentModel model)
+        {
+            var result = _mv.AddComment(model);
+            return Ok(result);
+        }
         [HttpPut("update-movie")]
         public ActionResult UpdateMovie([FromBody] MovieModel model)
         {
             var result = _mv.UpdateMovie(model);
             return Ok(result);
         }
-
         [HttpDelete("delete-movie/{movieId}")]
         public ActionResult DeleteMovie(int movieId)
         {

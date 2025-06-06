@@ -68,49 +68,53 @@ namespace DAL
 
 
 
-        public bool CreateAccount(AccountModel model)
+        public bool CreateAccount(AccountModel model, out string errorMessage)
         {
-
+            errorMessage = null;
             try
             {
-                int rowsAffected = 0;
-                // Lấy chuỗi kết nối từ cấu hình
                 using (var connection = new SqlConnection(GetConnectionString()))
                 {
                     connection.Open();
 
-                    // Tạo một đối tượng SqlCommand để gọi thủ tục lưu trữ
-                    _command = connection.CreateCommand();
-                    // kiểu cmd là 1 hàm thủ tục không phải câu lệnh sql
-                    _command.CommandType = CommandType.StoredProcedure;
-                    // Tên của thủ tục lưu trữ
-                    _command.CommandText = "InsertTaiKhoan";
+                    using (var cmd = connection.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "InsertTaiKhoan";
 
-                    // Định nghĩa các tham số cho thủ tục lưu trữ
-                    //Parameters.AddWithValue() : định nghĩa các giá trị tham số và gán giá trị cho chúng.
-                    _command.Parameters.AddWithValue("@LoaiTaiKhoan", model.LoaiTaiKhoan);
-                    _command.Parameters.AddWithValue("@TenTaiKhoan", model.TenTaiKhoan);
-                    _command.Parameters.AddWithValue("@MatKhau", model.MatKhau);
-                    _command.Parameters.AddWithValue("@Email", model.Email);
-                    _command.Parameters.AddWithValue("@Loai", model.Loai);
-                    _command.Parameters.AddWithValue("@nameUsser", model.nameUsser);
+                        cmd.Parameters.AddWithValue("@LoaiTaiKhoan", model.LoaiTaiKhoan);
+                        cmd.Parameters.AddWithValue("@TenTaiKhoan", model.TenTaiKhoan);
+                        cmd.Parameters.AddWithValue("@MatKhau", model.MatKhau);
+                        cmd.Parameters.AddWithValue("@Email", model.Email);
+                        cmd.Parameters.AddWithValue("@Loai", model.Loai);
+                        cmd.Parameters.AddWithValue("@nameUsser", model.nameUsser);
 
+                        // Tham số output để nhận lỗi
+                        var paramError = new SqlParameter("@ErrorMessage", SqlDbType.NVarChar, 250);
+                        paramError.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(paramError);
 
-                    // Thực hiện thủ tục lưu trữ và lấy số hàng bị ảnh hưởng
-                    rowsAffected = _command.ExecuteNonQuery();
+                        // Thực thi
+                        var returnValue = cmd.ExecuteNonQuery();
 
-                    // Kiểm tra xem có bản ghi nào đã được thêm vào không
-                    return rowsAffected > 0 ? true : false;
+                        // Lấy thông báo lỗi trả về
+                        errorMessage = paramError.Value as string;
+
+                        if (!string.IsNullOrEmpty(errorMessage))
+                        {
+                            return false; // Có lỗi trùng, không tạo được tài khoản
+                        }
+
+                        return true; // Thành công
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // Xử lý các ngoại lệ (ví dụ: log lại lỗi)
-                Console.WriteLine("Lỗi khi thêm khách hàng: " + ex.Message);
+                errorMessage = "Lỗi khi thêm tài khoản: " + ex.Message;
                 return false;
             }
         }
-
 
 
         // Sửa thông tin khách hàng

@@ -12,7 +12,7 @@ namespace BTL_NguyenVanTruong_.DAL.Interfaces
 
         MovieModel GetMoviebyID(int id);
         MovieModel GetTrailerbyID(int id);
-        
+        List<CommentModel> getCommentByMovieID(int movieId);
         List<MovieModel> GetMovie();
         List<FilmAndShowTimeModel> GetShowtimesByDate(string date);
         List<DayshowModel> GetMovieShowDays(int movieId);
@@ -25,6 +25,7 @@ namespace BTL_NguyenVanTruong_.DAL.Interfaces
         List<MovieModel> GetUpcomingMovies();
         List<DoanhThuModel> GetProceeds();
         List<Data_TicketModel> getDataTicket();
+        bool AddComment(CommentModel model);
 
     }
 }

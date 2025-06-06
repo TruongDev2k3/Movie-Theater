@@ -36,9 +36,6 @@ namespace API_Users.Controllers
                 return StatusCode(500, $"Lỗi server: {ex.Message}");
             }
         }
-
-
-
         [HttpGet("getbyid/{mtl}")]
         public ActionResult<CategoryModel> GetCategorybyID(int mtl)
         {
@@ -51,15 +48,12 @@ namespace API_Users.Controllers
 
             return Ok(acc);
         }
-
-
         [HttpPost("create-category")]
         public ActionResult CreateCategory([FromBody] CategoryModel model)
         {
             var result = _acc.CreateCategory(model);
             return Ok(result);
         }
-
         [HttpPut("update-acc")]
         public ActionResult UpdateCategory([FromBody] CategoryModel model)
         {
